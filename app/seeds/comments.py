@@ -59,3 +59,9 @@ def seed_comments():
     db.session.add(com25)
     db.session.add(com26)
     db.session.add(com27)
+
+    db.session.commit()
+
+def undo_comments():
+    db.session.execute('TRUNCATE comments RESTART IDENTITY CASCADE;')
+    db.session.commit()

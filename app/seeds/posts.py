@@ -36,7 +36,7 @@ def seed_posts():
     post16 = Post(
         caption="howlin rays is the best spicy chicken sandwich, don't @ me", imageURL="https://i.imgur.com/CnfM48Y.jpg", userId="16")
     post17 = Post(
-        caption="I can eat shabu errrday",  imageURl="https://i.imgur.com/YjcmJfo.jpg", userId="17")
+        caption="I can eat shabu errrday",  imageURL="https://i.imgur.com/YjcmJfo.jpg", userId="17")
     post18 = Post(
         caption="sesame charcoal icecream, tastes better than it looks!", imageURL="https://i.imgur.com/V7nY5zF.png", userId=18)
     post19 = Post(
@@ -83,3 +83,9 @@ def seed_posts():
     db.session.add(post24)
     db.session.add(post25)
     db.session.add(post26)
+    
+    db.session.commit()
+
+def undo_posts():
+    db.session.execute('TRUNCATE posts RESTART IDENTITY CASCADE;')
+    db.session.commit()

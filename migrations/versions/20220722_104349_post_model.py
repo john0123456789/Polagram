@@ -30,7 +30,7 @@ def upgrade():
         'posts',
         sa.Column("id", sa.Integer, primary_key=True),
         sa.Column("userId", sa.Integer, nullable=False),
-        sa.Column("caption", sa.String(50), nullable=False),
+        sa.Column("caption", sa.String(500), nullable=False),
         sa.Column("imageURL", sa.String(255), nullable=False),
         sa.PrimaryKeyConstraint('id'),
         sa.ForeignKeyConstraint(['userId'], ['users.id'], )
