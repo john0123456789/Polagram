@@ -28,3 +28,7 @@ class User(db.Model, UserMixin):
             'username': self.username,
             'email': self.email
         }
+
+    comments = db.relationship("Comment", back_populates="userIds")
+    likes = db.relationship("Like", back_populates="userIds")
+    posts = db.relationship("Post", back_populates="userIds")
