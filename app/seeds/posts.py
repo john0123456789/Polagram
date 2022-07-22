@@ -26,7 +26,7 @@ def seed_posts():
     post11 = Post(
         caption='good burgie', imageURL='https://i.imgur.com/E0vEeRL.png', userId=11)
     post12 = Post(
-        caption='#mommyblogger #ifhewantedtohewould',  imageURL='https://i.imgur.com/ksYYfZR.png', userId=12)
+        caption='#mommyblogger #ifhewantedtohewould',  imageURL='https://i.imgur.com/uByZYDj.png', userId=12)
     post13 = Post(
         caption='Not worth it! Do not go here.',  imageURL='https://i.imgur.com/ksYYfZR.png', userId=13)
     post14 = Post(
