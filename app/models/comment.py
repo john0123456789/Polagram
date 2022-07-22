@@ -1,5 +1,5 @@
 from .db import db
-from flask_login import UserMixin
+
 
 
 class Comment(db.Model):
@@ -11,4 +11,4 @@ class Comment(db.Model):
     content = db.Column(db.String(500), nullable=False)
 
     userIds = db.relationship("User", back_populates="comments")
-    # postIds = db.relationship("Post", back_populates="comments")
+    postIds = db.relationship("Post", back_populates="comments")

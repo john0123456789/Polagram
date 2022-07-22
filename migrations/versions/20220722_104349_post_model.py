@@ -27,15 +27,48 @@ def upgrade():
         sa.UniqueConstraint('username')
     )
     op.create_table(
-        "posts",
+        'posts',
         sa.Column("id", sa.Integer, primary_key=True),
         sa.Column("userId", sa.Integer, nullable=False),
         sa.Column("caption", sa.String(50), nullable=False),
         sa.Column("imageURL", sa.String(255), nullable=False),
-        sa.ForeignKeyConstraint(['user_id'], ['users.id'], )
+        sa.PrimaryKeyConstraint('id'),
+        sa.ForeignKeyConstraint(['userId'], ['users.id'], )
+    )
+    op.create_table(
+        'comments',
+        sa.Column("id", sa.Integer, primary_key=True),
+        sa.Column("userId", sa.Integer, nullable=False),
+        sa.Column("postId", sa.Integer, nullable=False),
+        sa.Column("content", sa.String(500), nullable=False),
+        sa.PrimaryKeyConstraint('id'),
+        sa.ForeignKeyConstraint(['userId'], ['users.id'], ),
+        sa.ForeignKeyConstraint(['postId'], ['posts.id'], )
+    )
+    op.create_table(
+        "followers",
+        sa.Column("id", sa.Integer, primary_key=True),
+        sa.Column("followerId", sa.Integer, nullable=False),
+        sa.Column("followingId", sa.Integer, nullable=False),
+        sa.PrimaryKeyConstraint('id'),
+        sa.ForeignKeyConstraint(['followerId'], ['users.id'], ),
+        sa.ForeignKeyConstraint(['followingId'], ['users.id'], )
+    )
+    op.create_table(
+        "likes",
+        sa.Column("id", sa.Integer, primary_key=True),
+        sa.Column("postId", sa.Integer, nullable=False),
+        sa.Column("userId", sa.Integer, nullable=False),
+        sa.PrimaryKeyConstraint('id'),
+        sa.ForeignKeyConstraint(['userId'], ['users.id'], ),
+        sa.ForeignKeyConstraint(['postId'], ['posts.id'], )
     )
 
 
+
 def downgrade():
-    op.drop_table('users')
+    op.drop_table('likes')
+    op.drop_table('comments')
+    op.drop_table('followers')
     op.drop_table('posts')
+    op.drop_table('users')
