@@ -1,6 +1,6 @@
 from flask import Blueprint, request
 from flask_login import login_required
-from app.models import Post, db
+from app.models import Post, Comment, comment, db
 from app.forms.post_form import PostsForm
 
 post_routes = Blueprint('posts', __name__)
@@ -35,6 +35,9 @@ def post_post():
 @login_required
 def delete_post(id):
     post = Post.query.get(id)
+    allComments = Comment.query.filter_by(postId=id)
+    for comments in allComments:
+        db.session.delete(comments)
     db.session.delete(post)
     db.session.commit()
 
