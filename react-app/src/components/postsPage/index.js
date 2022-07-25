@@ -22,9 +22,9 @@ function PostsPage() {
   };
 
   const handleDeleteClick = (e) => {
-    e.preventdefault();
+    e.preventDefault();
     dispatch(deletePostThunk(postsObject, id))
-    history.push("/")
+    history.push("/posts")
   }
 
 
@@ -41,7 +41,7 @@ function PostsPage() {
             <li>Caption: {post.caption}</li>
           </div>
             <button type="button" onClick={handleClick}>Like</button>
-            <button type="button" onClick={handleDeleteClick}>Delete</button>
+            <button value={post.id} type="button" onClick={handleDeleteClick}>Delete</button>
         </ul>)
 
       )}
