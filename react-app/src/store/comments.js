@@ -8,10 +8,10 @@ const getAllComments = (comments) => {
         comments
     }
 }
-
+// fix csrf stuff on all of store
 
 export const thunkGetAllComments = (comments) => async (dispatch) => {
-    const response = await csrfFetch('/api/comments')
+    const response = await fetch('/api/comments')
 
     if(response.ok) {
         const data = await response.json();

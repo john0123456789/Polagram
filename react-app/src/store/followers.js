@@ -1,4 +1,4 @@
-import { csrfFetch } from './csrf';
+
 
 export const GET_FOLLOWERS = 'comment/GET_FOLLOWERS'
 
@@ -11,7 +11,7 @@ const getAllFollowers = (followers) => {
 
 
 export const thunkGetAllFollowers = (followers) => async (dispatch) => {
-    const response = await csrfFetch('/api/followers')
+    const response = await fetch('/api/followers')
 
     if(response.ok) {
         const data = await response.json();

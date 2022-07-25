@@ -1,6 +1,3 @@
-import {csrfFetch} from './csrf';
-
-
 const GET_LIKES = 'posts/GET_LIKES'
 
 const getAllLikes = likes => ({
@@ -9,7 +6,7 @@ const getAllLikes = likes => ({
  });
 
 export const getAllLikesThunk = (id) => async(dispatch) => {
-    const res = await csrfFetch(`/api/posts/${id}`)
+    const res = await fetch(`/api/posts/${id}`)
 
     if(res.ok) {
         const likes = await res.json()
