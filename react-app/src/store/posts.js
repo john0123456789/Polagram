@@ -19,8 +19,8 @@ export const postsReducer = (state = initialState, action) => {
     let newState = {...state};
     switch(action.type) {
         case GET_ALL_POSTS:
-            action.tests.forEach((test) => {
-                return newState[test.id] = test;
+            action.posts.forEach((post) => {
+                return newState[post.id] = post;
             })
             return newState;
         default:
