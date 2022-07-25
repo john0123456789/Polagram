@@ -12,6 +12,7 @@ const rootReducer = combineReducers({
   comments: commentReducer,
   likes: likesReducer,
   followers: followersReducer,
+
 });
 
 
