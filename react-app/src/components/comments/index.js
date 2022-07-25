@@ -1,21 +1,20 @@
 import { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { thunkGetAllComments } from '../../store/comments'
+import { useHistory } from "react-router-dom";
 
 
-const PostsComments = ({postId}) => {
+const PostsComments = () => {
     const dispatch = useDispatch();
+    const history = useHistory();
 
     const comments = useSelector(state => {
-        return Object.values(state.comments).filter(comment => comment.postId === postId);
+        return Object.values(state.comments);
     })
 
     useEffect(() => {
-        async function getComments() {
-            await dispatch(thunkGetAllComments(postId))
-        }
-        getComments();
-    }, [dispatch,postId])
+       dispatch(thunkGetAllComments())
+    }, [dispatch])
 
     return(
         <div id="PostsComments-container">

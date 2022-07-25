@@ -6,29 +6,27 @@ const getAllComments = (comments) => {
         comments
     }
 }
-// fix csrf stuff on all of store
 
-export const thunkGetAllComments = (comments) => async (dispatch) => {
+
+export const thunkGetAllComments = () => async (dispatch) => {
     const response = await fetch('/api/comments')
-
-    if(response.ok) {
-        const data = await response.json();
-        dispatch(getAllComments(data));
-    }
+    const data = await response.json();
+    dispatch(getAllComments(data.comments));
+    return data
 }
 
 const initialState = {};
 
 export const commentReducer = (state = initialState, action) => {
     let newState = {...state}
-
     switch(action.type) {
-
         case GET_COMMENT:
-            action.comments.forEach(comment => {
-                newState[comment.id] = comment
-            })
-            return newState
+            const anotherState = {};
+            action.comments.forEach((comment) => {
+            return anotherState[comment.id] = comment;
+          });
+            return anotherState;
+        default:
+            return state;
     }
 }
-

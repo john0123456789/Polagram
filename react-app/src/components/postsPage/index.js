@@ -8,7 +8,8 @@ function PostsPage() {
   const history = useHistory();
 
   const postsObject = useSelector((state) => state.posts);
-  const postsArray = Object.values(postsObject);
+  // console.log(postsObject)
+  const posts = Object.values(postsObject);
 
   useEffect(() => {
     dispatch(getAllPostsThunk());
@@ -21,19 +22,23 @@ function PostsPage() {
 
 
   return (
+    <>
+      <h1>Posts</h1>
+      {posts.map((post) =>
+        (<ul key={post.id}>
+          <div>
+            <img className="photo" src={post.imageURL} alt={"Where Posts go"} width="300" height="300"/>
+          </div>
+          <div>
+            <li>Caption: {post.caption}</li>
+          </div>
+            <button type="button" onClick={handleClick}>Like</button>
+        </ul>)
 
-    postsArray.map((post) => {
-    <ul key={post.id}>
-      <div>
-      <img className="photo" src={post.url} alt={"Where Posts go"} width="300" height="300"/>
-      </div>
-      <div>
-      <li>Caption: {post.caption}</li>
-      </div>
-      <button type="button" onClick={handleClick}>Like</button>
-    </ul>
-    }
-  ));
+      )}
+    </>
+  );
+
 }
 
 export default PostsPage;

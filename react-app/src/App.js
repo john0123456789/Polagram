@@ -7,6 +7,7 @@ import NavBar from './components/NavBar';
 import ProtectedRoute from './components/auth/ProtectedRoute';
 import UsersList from './components/UsersList';
 import User from './components/User';
+import PostsComments from './components/comments';
 import PostsPage from './components/postsPage';
 import { authenticate } from './store/session';
 import FollowersPage from './components/followersPage';
@@ -32,6 +33,9 @@ function App() {
       <Switch>
         <Route path='/posts' exact={true}>
           <PostsPage />
+        </Route>
+        <Route path='/comments' exact={true}>
+          <PostsComments />
         </Route>
         <Route path='/login' exact={true}>
           <LoginForm />

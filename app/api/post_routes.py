@@ -1,6 +1,6 @@
 from flask import Blueprint, request
 from app.models import Post, db
-from forms.post_form import PostsForm
+from app.forms.post_form import PostsForm
 
 post_routes = Blueprint('posts', __name__)
 

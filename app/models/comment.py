@@ -19,5 +19,5 @@ class Comment(db.Model):
             'userId': self.userId,
             'postId': self.postId,
             'content': self.content,
-            'poster': self.user.username
+            'poster': self.userIds.username
         }

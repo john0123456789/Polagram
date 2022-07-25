@@ -16,7 +16,8 @@ const createPosts = (createdPost) => ({
 export const getAllPostsThunk = () => async(dispatch) => {
     const response = await fetch('/api/posts')
     const data = await response.json();
-    dispatch(getAllPosts(data))
+    dispatch(getAllPosts(data.posts))
+    return data.posts
 }
 
 export const createPostThunk = (createdPost) => async(dispatch) => {

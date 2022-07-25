@@ -9,7 +9,7 @@ const rootReducer = combineReducers({
   session,
   posts: postsReducer,
   comments: commentReducer,
-  likes: likesReducer,
+  likes: likesReducer
 });
 
 
