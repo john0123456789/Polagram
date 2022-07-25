@@ -22,9 +22,9 @@ function PostsPage() {
   };
 
   const handleDeleteClick = (e) => {
-    e.preventdefault();
+    e.preventDefault();
     dispatch(deletePostThunk(postsObject, id))
-    history.push("/")
+    history.push("/posts")
   }
 
 

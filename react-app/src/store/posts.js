@@ -41,13 +41,14 @@ export const createPostThunk = (createdPost) => async(dispatch) => {
     }
   };
 
-export const deletePostThunk = (post) => async(dispatch) => {
-  const response = await fetch(`/api/posts/${post.id}`, {
+export const deletePostThunk = (post, id) => async(dispatch) => {
+  const response = await fetch(`/api/posts/${id}`, {
     method: "DELETE",
-    body: JSON.stringify({ postId: post.id })
   })
   if (response.ok) {
-    dispatch(deletePost(post))
+    const postId = await response.json(post)
+    dispatch(deletePost(postId))
+    return postId;
   }
 }
 
