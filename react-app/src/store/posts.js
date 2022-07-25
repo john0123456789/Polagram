@@ -1,5 +1,3 @@
-import {csrfFetch} from './csrf';
-
 const GET_ALL_POSTS = 'posts/GET_ALL_POSTS';
 
 const getAllPosts = (posts) => ({
@@ -10,7 +8,7 @@ const getAllPosts = (posts) => ({
   const initialState = {};
 
 export const getAllPostsThunk = () => async(dispatch) => {
-    const response = await csrfFetch('/api/posts')
+    const response = await fetch('/api/posts')
     const data = await response.json();
     dispatch(getAllPosts(data))
 }
