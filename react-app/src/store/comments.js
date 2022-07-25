@@ -1,5 +1,3 @@
-import { csrfFetch } from './csrf';
-
 export const GET_COMMENT = 'comment/GET_COMMENT'
 
 const getAllComments = (comments) => {

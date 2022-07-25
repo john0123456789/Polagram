@@ -1,5 +1,3 @@
-
-
 export const GET_FOLLOWERS = 'comment/GET_FOLLOWERS'
 
 const getAllFollowers = (followers) => {
