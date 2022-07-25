@@ -8,14 +8,12 @@ const getAllFollowers = (followers) => {
 }
 
 
-export const thunkGetAllFollowers = (followers) => async (dispatch) => {
+export const thunkGetAllFollowers = () => async(dispatch) => {
     const response = await fetch('/api/followers')
-
-    if(response.ok) {
-        const data = await response.json();
-        dispatch(getAllFollowers(data));
-    }
+    const data = await response.json();
+    dispatch(getAllFollowers(data))
 }
+
 
 const initialState = {};
 const followersReducer = (state = initialState, action) => {
