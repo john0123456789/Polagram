@@ -27,7 +27,7 @@ export const getAllLikesThunk = (id) => async(dispatch) => {
     }
 }
 
-export const addLikesThunk = newLikes => async(dispatch) => {
+export const addLikesThunk = newLike => async(dispatch) => {
     const res = await fetch (`/api/posts`, {
         method: 'POST',
         headers: { 'Content-Type' : 'application/json' },
