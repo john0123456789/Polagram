@@ -16,7 +16,7 @@ def posts():
     posts = Post.query.all()
     return {'posts': [post.to_dict() for post in posts]}
 
-@post_routes.route('/post', methods=['POST'])
+@post_routes.route('/create', methods=['POST'])
 def post_post():
     form = PostsForm()
     form['csrf_token'].data = request.cookies['csrf_token']
