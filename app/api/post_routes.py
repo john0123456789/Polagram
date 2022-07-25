@@ -1,4 +1,5 @@
 from flask import Blueprint, request
+from flask_login import login_required
 from app.models import Post, db
 from app.forms.post_form import PostsForm
 
@@ -29,3 +30,12 @@ def post_post():
         db.session.commit()
         return post.to_dict()
     return {'errors': validation_errors_to_error_messages(form.errors)}, 401
+
+@post_routes.route('/<int:id>', methods=["DELETE"])
+@login_required
+def delete_post(id):
+    post = Post.query.get(id)
+    db.session.delete(post)
+    db.session.commit()
+
+    return "Post has been removed."
