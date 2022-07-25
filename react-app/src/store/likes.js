@@ -12,7 +12,7 @@ const getAllLikes = likes => ({
     like
  })
 
- const deleteLikes = deletelike => ({
+ const deleteLikes = deleteLike => ({
     type: DELETE_LIKES,
     deleteLike
  })
@@ -36,8 +36,8 @@ export const addLikesThunk = newLikes => async(dispatch) => {
 
     if (res.ok) {
         const newLike = await res.json()
-        dispatch(addLikes(newLikes))
-        return newLikes
+        dispatch(addLikes(newLike))
+        return newLike
     }
 }
 
