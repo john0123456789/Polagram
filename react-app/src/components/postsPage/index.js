@@ -18,7 +18,7 @@ function PostsPage() {
 
   const handleClick = (e) => {
     e.preventDefault();
-    history.push("/");
+    history.push("/posts");
   };
 
   const handleDeleteClick = (e) => {
