@@ -19,7 +19,7 @@ export const thunkGetAllComments = (comments) => async (dispatch) => {
 
 const initialState = {};
 
-const commentReducer = (state = initialState, action) => {
+export const commentReducer = (state = initialState, action) => {
     let newState = {...state}
 
     switch(action.type) {
@@ -32,4 +32,3 @@ const commentReducer = (state = initialState, action) => {
     }
 }
 
-export default commentReducer
