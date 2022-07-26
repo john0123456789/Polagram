@@ -20,7 +20,7 @@ const deletePost = (post) => ({
   const initialState = {};
 
 export const getAllPostsThunk = () => async(dispatch) => {
-    const response = await fetch('/api/posts')
+    const response = await fetch('/api/posts/')
     const data = await response.json();
     dispatch(getAllPosts(data.posts))
     return data.posts
