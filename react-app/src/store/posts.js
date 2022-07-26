@@ -1,6 +1,7 @@
 const GET_ALL_POSTS = 'posts/GET_ALL_POSTS';
 const CREATE_POST = 'posts/CREATE_POST';
-const DELETE_POST = 'posts/DELETE_POST'
+const DELETE_POST = 'posts/DELETE_POST';
+const UPDATE_POST = 'posts/UPDATE_POST'
 
 const getAllPosts = (posts) => ({
     type: GET_ALL_POSTS,
@@ -15,6 +16,11 @@ const createPosts = (createdPost) => ({
 const deletePost = (post) => ({
     type: DELETE_POST,
     post
+})
+
+const updatePost = (post) => ({
+  type: UPDATE_POST,
+  post,
 })
 
   const initialState = {};
@@ -52,6 +58,21 @@ export const deletePostThunk = (post, id) => async(dispatch) => {
   }
 }
 
+export const updatePostThunk = (post, id) => async(dispatch) => {
+  const response = await fetch(`/api/posts/${id}`, {
+      method: "PUT",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(post),
+    });
+    if (response.ok) {
+      const post = await response.json();
+      dispatch(updatePost(post));
+      return post;
+    }
+  }
+
 export const postsReducer = (state = initialState, action) => {
     let newState = {...state};
     switch(action.type) {
@@ -67,6 +88,9 @@ export const postsReducer = (state = initialState, action) => {
                     [action.createdPost.id]: action.createdPost,
                 };
             }
+            return newState;
+        case UPDATE_POST:
+          newState = {...state, [action.post.id]: action.post,};
             return newState
         case DELETE_POST:
             delete newState[action.post.id]

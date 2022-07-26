@@ -39,6 +39,14 @@ function PostsPage() {
     }
   }
 
+
+  const handleEditClick = (e) => {
+    e.preventDefault();
+    const buttonData = Number(e.target.id);
+        history.push(`/posts/${buttonData}`)
+      }
+
+
   return (
     <>
     <div className="feed">
@@ -54,6 +62,7 @@ function PostsPage() {
           <div>
             <img className="photo" src={post.imageURL} alt={"Where Posts go"} width="400" height="280"/>
           </div>
+          
           <div className="content">
             <button type="button" className="likebutton" onClick={handleClick}><FaRegHeart size="20px" /></button>
             <button type="button" className="likebutton" onClick={commentClick}><FaRegComment size="20px" /></button>
@@ -69,7 +78,6 @@ function PostsPage() {
       </div>
     </>
   );
-
 }
 
 export default PostsPage;

@@ -30,6 +30,15 @@ def post_post():
     db.session.commit()
     return redirect("/posts")
 
+@post_routes.route('/<int:id>', methods=['PUT'])
+def put_post(id):
+    post = Post.query.get(id)
+    data = request.json
+    post.imageURL = data['imageURL']
+    post.caption = data['caption']
+    db.session.commit()
+    return post.to_dict()
+
 @post_routes.route('/<int:id>', methods=["DELETE"])
 @login_required
 def delete_post(id):
