@@ -12,6 +12,7 @@ import PostsPage from './components/postsPage';
 import { authenticate } from './store/session';
 import FollowersPage from './components/followersPage';
 import CreatePostsPage from './components/createPostsPage'
+import EditPostsPage from './components/editPostsPage'
 
 function App() {
   const [loaded, setLoaded] = useState(false);
@@ -37,6 +38,9 @@ function App() {
         </Route>
         <Route path='/posts/create' exact={true}>
           <CreatePostsPage />
+        </Route>
+        <Route path="/posts/:id">
+            <EditPostsPage />
         </Route>
         <Route path='/comments' exact={true}>
           <PostsComments />

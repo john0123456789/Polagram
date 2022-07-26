@@ -31,6 +31,12 @@ function PostsPage() {
     }
   }
 
+  const handleEditClick = (e) => {
+    e.preventDefault();
+    const buttonData = Number(e.target.id);
+        history.push(`/posts/${buttonData}`)
+      }
+
 
 
   return (
@@ -46,12 +52,12 @@ function PostsPage() {
           </div>
             <button type="button" onClick={handleClick}>Like</button>
             <button type="button" id={post.id} onClick={handleDeleteClick}>Delete</button>
+            <button type="button" id={post.id} onClick={handleEditClick}>Edit</button>
         </ul>)
 
       )}
     </>
   );
-
 }
 
 export default PostsPage;
