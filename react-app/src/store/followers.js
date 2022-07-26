@@ -24,7 +24,6 @@ const followersReducer = (state = initialState, action) => {
                 newState[follower.id] = follower
             })
             return newState
-
         default:
             return state;
 
