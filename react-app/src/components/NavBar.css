@@ -1,0 +1,20 @@
+.polalogo{
+    width:200px;
+    margin-left:30%;
+    padding-right:25%
+}
+
+
+.createbutton {
+    /* padding:5px; */
+    background-color:transparent;
+    border:none;
+    cursor:pointer;
+}
+
+.navbar{
+    width:100%;
+    margin-bottom:140px;
+    background-color:white;
+    padding-bottom:10px
+}
