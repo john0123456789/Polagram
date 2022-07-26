@@ -13,6 +13,8 @@ import { authenticate } from './store/session';
 import FollowersPage from './components/followersPage';
 import CreatePostsPage from './components/createPostsPage'
 import EditPostsPage from './components/editPostsPage'
+import CreateCommentsPage from './components/createCommentsPage';
+import EditCommentsPage from './components/editCommentsPage';
 
 function App() {
   const [loaded, setLoaded] = useState(false);
@@ -40,10 +42,16 @@ function App() {
           <CreatePostsPage />
         </Route>
         <Route path="/posts/:id">
-            <EditPostsPage />
+          <EditPostsPage />
         </Route>
         <Route path='/comments' exact={true}>
           <PostsComments />
+        </Route>
+        <Route path='/comments/create/:id' exact={true}>
+          <CreateCommentsPage />
+        </Route>
+        <Route path="/comments/:id">
+          <EditCommentsPage />
         </Route>
         <Route path='/login' exact={true}>
           <LoginForm />

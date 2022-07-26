@@ -9,7 +9,7 @@ const getAllFollowers = (followers) => {
 
 
 export const thunkGetAllFollowers = () => async(dispatch) => {
-    const response = await fetch('/api/followers')
+    const response = await fetch('/api/followers/')
     const data = await response.json();
     dispatch(getAllFollowers(data))
 }
