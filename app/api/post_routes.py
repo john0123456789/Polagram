@@ -21,15 +21,14 @@ def posts():
 def post_post():
     form = PostsForm()
     form['csrf_token'].data = request.cookies['csrf_token']
-    if form.validate_on_submit():
-        post = Post(
-            caption=form.data['caption'],
-            imageURL=form.data['imageURL']
-        )
-        db.session.add(post)
-        db.session.commit()
-        return post.to_dict()
-    return {'errors': validation_errors_to_error_messages(form.errors)}, 401
+    post = Post(
+        userId=form.data['userId'],
+        caption=form.data['caption'],
+        imageURL=form.data['imageURL']
+    )
+    db.session.add(post)
+    db.session.commit()
+    return redirect("/posts")
 
 @post_routes.route('/<int:id>', methods=["DELETE"])
 @login_required

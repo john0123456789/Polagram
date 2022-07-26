@@ -11,6 +11,7 @@ import PostsComments from './components/comments';
 import PostsPage from './components/postsPage';
 import { authenticate } from './store/session';
 import FollowersPage from './components/followersPage';
+import CreatePostsPage from './components/createPostsPage'
 
 function App() {
   const [loaded, setLoaded] = useState(false);
@@ -33,6 +34,9 @@ function App() {
       <Switch>
         <Route path='/posts' exact={true}>
           <PostsPage />
+        </Route>
+        <Route path='/posts/create' exact={true}>
+          <CreatePostsPage />
         </Route>
         <Route path='/comments' exact={true}>
           <PostsComments />

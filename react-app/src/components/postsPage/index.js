@@ -1,13 +1,12 @@
 import { getAllPostsThunk, deletePostThunk } from "../../store/posts";
 import { useDispatch, useSelector} from "react-redux";
-import { useHistory, useParams } from "react-router-dom";
+import { useHistory } from "react-router-dom";
 import { useEffect } from "react";
 
 function PostsPage() {
   const dispatch = useDispatch();
   const history = useHistory();
 
-  const { id } = useParams();
   const postsObject = useSelector((state) => state.posts);
   // console.log(postsObject)
   const posts = Object.values(postsObject);

@@ -27,7 +27,7 @@ export const getAllPostsThunk = () => async(dispatch) => {
 }
 
 export const createPostThunk = (createdPost) => async(dispatch) => {
-    const response = await fetch('/api/post/create', {
+    const response = await fetch('/api/posts/create', {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
