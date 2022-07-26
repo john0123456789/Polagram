@@ -48,7 +48,15 @@ h1 {
 
 .content{
     padding:7px;
-    background-color:white
+    background-color:white;
+}
+
+.contentbuttons{
+    margin-bottom:8px
+}
+
+.likedby{
+    margin-bottom:5px;
 }
 
 .profpic{
@@ -56,4 +64,8 @@ h1 {
     width:25px;
     border-radius:50%;
     padding-left:5px;
+}
+
+.comment{
+    margin-top:2px
 }

@@ -39,7 +39,6 @@ function PostsPage() {
     }
   }
 
-
   const handleEditClick = (e) => {
     e.preventDefault();
     const buttonData = Number(e.target.id);
@@ -50,8 +49,7 @@ function PostsPage() {
   return (
     <>
     <div className="feed">
-      <h1>Posts</h1>
-      <div className="photofeed">
+
       {posts.map((post) =>
         (
         <div className="eachpost">
@@ -62,19 +60,31 @@ function PostsPage() {
           <div>
             <img className="photo" src={post.imageURL} alt={"Where Posts go"} width="400" height="280"/>
           </div>
-          
+
           <div className="content">
+            <div className="contentbuttons">
             <button type="button" className="likebutton" onClick={handleClick}><FaRegHeart size="20px" /></button>
             <button type="button" className="likebutton" onClick={commentClick}><FaRegComment size="20px" /></button>
+            {/* <button type="button" id={post.id} onClick={handleEditClick}>Edit</button> */}
             {/* <button type="button" id={post.id} onClick={handleDeleteClick}>Delete</button> */}
+            </div>
+            <div className="likedby">
+              Liked by
+            </div>
             <div>
-              <li>Caption: {post.caption}</li>
+            username: {post.caption}
+            </div>
+            <div className="comment">
+              username:comment
+            </div>
+            <div className="comment">
+              username:comment
             </div>
           </div>
           </div>
         </div>
         )
-      )}</div>
+      )}
       </div>
     </>
   );
