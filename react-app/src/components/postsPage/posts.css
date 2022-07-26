@@ -1,0 +1,12 @@
+.likebutton {
+    background-color:transparent;
+    border:none;
+    cursor:pointer;
+    color:red
+}
+
+.dropdown {
+    background-color:transparent;
+    border:none;
+    cursor:pointer;
+}
