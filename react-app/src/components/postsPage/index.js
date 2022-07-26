@@ -23,6 +23,11 @@ function PostsPage() {
     history.push("/posts");
   };
 
+  const commentClick = (e) => {
+    e.preventDefault();
+    history.push("/comments")
+  }
+
   const handleDeleteClick = (e) => {
     e.preventDefault();
     const buttonData = Number(e.target.id);
@@ -51,7 +56,7 @@ function PostsPage() {
           </div>
           <div className="content">
             <button type="button" className="likebutton" onClick={handleClick}><FaRegHeart size="20px" /></button>
-            <button type="button" className="likebutton" ><FaRegComment size="20px" /></button>
+            <button type="button" className="likebutton" onClick={commentClick}><FaRegComment size="20px" /></button>
             {/* <button type="button" id={post.id} onClick={handleDeleteClick}>Delete</button> */}
             <div>
               <li>Caption: {post.caption}</li>
