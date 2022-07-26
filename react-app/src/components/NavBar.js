@@ -1,6 +1,7 @@
 import React from 'react';
 import LogoutButton from './auth/LogoutButton';
-import { FiPlusSquare } from "react-icons/fi"
+import { FiPlusSquare } from "react-icons/fi";
+import { FaUsers } from "react-icons/fa";
 import { useHistory  } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import './NavBar.css'
@@ -22,23 +23,23 @@ function NavBar({ isLoaded }){
     e.preventDefault();
     history.push('/sign-up')
   }
-  const forUSERS = (e) => {
-    e.preventDefault();
-    history.push('/users')
-  }
+
   const forCREATE = (e) => {
     e.preventDefault();
     history.push('/posts/create')
   }
-
+  const forUSERS = (e) => {
+    e.preventDefault();
+    history.push('/users')
+  }
   let sessionLinks;
   if (sessionUser){
     sessionLinks = (
       <div className='navbarright'>
-        <button type="button" className='button' onClick={forLOGIN}> Log In</button>
-        <button type="button" className='button' onClick={forSIGNUP}> Sign Up</button>
-        <button type="button" className='createbutton' onClick={forCREATE}><FiPlusSquare /></button>
-        <button type="button" className='button' onClick-={forUSERS}> Explore Users</button>
+        <button type="button" className='usebutton' onClick={forLOGIN}> Log In</button>
+        <button type="button" className='usebutton' onClick={forSIGNUP}> Sign Up</button>
+        <button type="button" className='usebutton' onClick={forCREATE}><FiPlusSquare /></button>
+        <button type="button" className='usebutton' onClick-={forUSERS}><FaUsers /></button>
         <LogoutButton/>
       </div>
     );
@@ -49,11 +50,11 @@ function NavBar({ isLoaded }){
     <div className='navbar'>
       <img src="https://i.imgur.com/41BYjqQ.png" alt="logo" className='polalogo'  onClick={forHOME}/>
         {isLoaded && sessionLinks}
-        <button type="button" className='button' onClick={forLOGIN}> Log In</button>
-        <button type="button" className='button' onClick={forSIGNUP}> Sign Up</button>
-        <button type="button" className='createbutton' onClick={forCREATE}> <FiPlusSquare size="27px"/></button>
-        <button type="button" className='button' onClick-={forUSERS}> Explore Users</button>
-        <LogoutButton/>
+        <button type="button" className='usebutton' onClick={forLOGIN}>Log In</button>
+        <button type="button" className='usebutton' onClick={forSIGNUP}> Sign Up</button>
+        <button type="button" className='usebutton' onClick={forCREATE}><FiPlusSquare size="23px"/></button>
+        <button type="button" className='usebutton' onClick={forUSERS}><FaUsers size="23px"/></button>
+        <button type="button" className='usebutton'><LogoutButton/></button>
     </div>
   );
 }
