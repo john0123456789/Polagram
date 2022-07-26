@@ -1,12 +1,52 @@
 .likebutton {
+    padding:5px;
     background-color:transparent;
     border:none;
     cursor:pointer;
-    color:red
 }
 
-.dropdown {
+.popup {
     background-color:transparent;
     border:none;
     cursor:pointer;
+    padding-left:360px;
+    padding-top:17px
+}
+
+li{
+    list-style: none;
+}
+
+.eachpost {
+    display:block;
+    /* text-align:center; */
+    /* border:10px solid white; */
+    height: auto;
+    margin: auto;
+    width: min-content;
+    margin-bottom:20px;
+    background-color:white;
+    padding-bottom:20px;
+    border: 1px solid #dcdcdc;
+}
+.posttopbar {
+    display:inline-block;
+    width:400px;
+    height:50px;
+    background-color:white;
+
+}
+
+h1 {
+    text-align:center
+}
+
+.feed{
+    display:block;
+    justify-content:center
+}
+
+.content{
+    padding:7px;
+    background-color:white
 }

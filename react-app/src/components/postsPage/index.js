@@ -2,7 +2,7 @@ import { getAllPostsThunk, deletePostThunk } from "../../store/posts";
 import { useDispatch, useSelector} from "react-redux";
 import { useHistory } from "react-router-dom";
 import { useEffect } from "react";
-import { AiFillHeart, AiOutlineHeart } from "react-icons/ai"
+import { FaHeart, FaRegHeart,FaRegComment} from "react-icons/fa"
 import { BsThreeDots } from "react-icons/bs"
 import  './posts.css'
 
@@ -36,21 +36,32 @@ function PostsPage() {
 
   return (
     <>
+    <div className="feed">
       <h1>Posts</h1>
+      <div className="photofeed">
       {posts.map((post) =>
-        (<ul key={post.id}>
-          <button type="button" className="dropdown"><BsThreeDots /></button>
-          <div>
-            <img className="photo" src={post.imageURL} alt={"Where Posts go"} width="350" height="250"/>
+        (
+        <div className="eachpost">
+          <div key={post.id}>
+          <div className="posttopbar">
+          <button type="button" className="popup"><BsThreeDots size="18px" /></button>
           </div>
           <div>
-            <li>Caption: {post.caption}</li>
+            <img className="photo" src={post.imageURL} alt={"Where Posts go"} width="400" height="280"/>
           </div>
-            <button type="button" className="likebutton" onClick={handleClick}><AiFillHeart /></button>
-            <button type="button" id={post.id} onClick={handleDeleteClick}>Delete</button>
-        </ul>)
-
-      )}
+          <div className="content">
+            <button type="button" className="likebutton" onClick={handleClick}><FaRegHeart size="20px" /></button>
+            <button type="button" className="likebutton" ><FaRegComment size="20px" /></button>
+            {/* <button type="button" id={post.id} onClick={handleDeleteClick}>Delete</button> */}
+            <div>
+              <li>Caption: {post.caption}</li>
+            </div>
+          </div>
+          </div>
+        </div>
+        )
+      )}</div>
+      </div>
     </>
   );
 
