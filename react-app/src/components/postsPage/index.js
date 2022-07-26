@@ -57,7 +57,7 @@ function PostsPage() {
         <div className="eachpost">
           <div key={post.id}>
           <div className="posttopbar">
-          <button type="button" className="popup"><BsThreeDots size="18px" /></button>
+          <img src={post.imageURL} className="profpic"/>jack<button type="button" className="popup"><BsThreeDots size="18px" /></button>
           </div>
           <div>
             <img className="photo" src={post.imageURL} alt={"Where Posts go"} width="400" height="280"/>
