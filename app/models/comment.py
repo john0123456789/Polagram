@@ -1,5 +1,5 @@
 from .db import db
-
+import datetime
 
 
 class Comment(db.Model):
@@ -9,6 +9,8 @@ class Comment(db.Model):
     userId = db.Column(db.Integer,db.ForeignKey("users.id"), nullable=False)
     postId = db.Column(db.Integer,db.ForeignKey("posts.id"), nullable=False)
     content = db.Column(db.String(500), nullable=False)
+    created_at = db.Column(db.DateTime, default=datetime.datetime.now())
+
 
     userIds = db.relationship("User", back_populates="comments")
     postIds = db.relationship("Post", back_populates="comments")

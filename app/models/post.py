@@ -1,4 +1,5 @@
 from .db import db
+import datetime
 
 
 
@@ -9,6 +10,7 @@ class Post(db.Model):
     userId = db.Column(db.Integer,db.ForeignKey("users.id"), nullable=False)
     caption = db.Column(db.String(400), nullable=False)
     imageURL = db.Column(db.String(255), nullable=False)
+    created_at = db.Column(db.DateTime, default=datetime.datetime.now())
 
     userIds = db.relationship("User", back_populates="posts")
     likes = db.relationship("Like", back_populates="likeIds")
