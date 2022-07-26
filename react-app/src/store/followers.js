@@ -26,6 +26,7 @@ const followersReducer = (state = initialState, action) => {
             return newState
         default:
             return state;
+
     }
 }
 
