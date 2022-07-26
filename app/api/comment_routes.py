@@ -21,8 +21,10 @@ def post_comment():
 
 
 @comment_routes.route('/<int:id>', methods=['DELETE'])
+@login_required
 def delete_comment(id):
     comment = Comment.query.get(id)
     db.session.delete(comment)
     db.session.commit()
-    return comment.to_dict()
+
+    return "Comment has been removed."

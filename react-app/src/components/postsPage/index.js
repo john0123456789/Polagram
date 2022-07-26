@@ -2,6 +2,9 @@ import { getAllPostsThunk, deletePostThunk } from "../../store/posts";
 import { useDispatch, useSelector} from "react-redux";
 import { useHistory } from "react-router-dom";
 import { useEffect } from "react";
+import { FaHeart, FaRegHeart,FaRegComment} from "react-icons/fa"
+import { BsThreeDots } from "react-icons/bs"
+import  './posts.css'
 
 function PostsPage() {
   const dispatch = useDispatch();
@@ -20,6 +23,11 @@ function PostsPage() {
     history.push("/posts");
   };
 
+  const commentClick = (e) => {
+    e.preventDefault();
+    history.push("/comments")
+  }
+
   const handleDeleteClick = (e) => {
     e.preventDefault();
     const buttonData = Number(e.target.id);
@@ -31,6 +39,7 @@ function PostsPage() {
     }
   }
 
+
   const handleEditClick = (e) => {
     e.preventDefault();
     const buttonData = Number(e.target.id);
@@ -38,24 +47,35 @@ function PostsPage() {
       }
 
 
-
   return (
     <>
+    <div className="feed">
       <h1>Posts</h1>
+      <div className="photofeed">
       {posts.map((post) =>
-        (<ul key={post.id}>
-          <div>
-            <img className="photo" src={post.imageURL} alt={"Where Posts go"} width="350" height="250"/>
+        (
+        <div className="eachpost">
+          <div key={post.id}>
+          <div className="posttopbar">
+          <button type="button" className="popup"><BsThreeDots size="18px" /></button>
           </div>
           <div>
-            <li>Caption: {post.caption}</li>
+            <img className="photo" src={post.imageURL} alt={"Where Posts go"} width="400" height="280"/>
           </div>
-            <button type="button" onClick={handleClick}>Like</button>
-            <button type="button" id={post.id} onClick={handleDeleteClick}>Delete</button>
-            <button type="button" id={post.id} onClick={handleEditClick}>Edit</button>
-        </ul>)
-
-      )}
+          
+          <div className="content">
+            <button type="button" className="likebutton" onClick={handleClick}><FaRegHeart size="20px" /></button>
+            <button type="button" className="likebutton" onClick={commentClick}><FaRegComment size="20px" /></button>
+            {/* <button type="button" id={post.id} onClick={handleDeleteClick}>Delete</button> */}
+            <div>
+              <li>Caption: {post.caption}</li>
+            </div>
+          </div>
+          </div>
+        </div>
+        )
+      )}</div>
+      </div>
     </>
   );
 }
