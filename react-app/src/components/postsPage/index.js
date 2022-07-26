@@ -25,7 +25,8 @@ function PostsPage() {
 
   const commentClick = (e) => {
     e.preventDefault();
-    history.push("/comments")
+    const buttonData = Number(e.target.id);
+    history.push(`/comments/create/${buttonData}`)
   }
 
   const handleDeleteClick = (e) => {
@@ -46,7 +47,6 @@ function PostsPage() {
         history.push(`/posts/${buttonData}`)
       }
 
-
   return (
     <>
     <div className="feed">
@@ -62,10 +62,10 @@ function PostsPage() {
           <div>
             <img className="photo" src={post.imageURL} alt={"Where Posts go"} width="400" height="280"/>
           </div>
-          
+
           <div className="content">
-            <button type="button" className="likebutton" onClick={handleClick}><FaRegHeart size="20px" /></button>
-            <button type="button" className="likebutton" onClick={commentClick}><FaRegComment size="20px" /></button>
+            <button type="button" id={post.id} className="likebutton" onClick={handleClick}><FaRegHeart size="20px" /></button>
+            <button type="button" id={post.id} className="likebutton" onClick={commentClick}><FaRegComment size="20px" /></button>
             {/* <button type="button" id={post.id} onClick={handleDeleteClick}>Delete</button> */}
             <div>
               <li>Caption: {post.caption}</li>

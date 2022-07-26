@@ -30,6 +30,12 @@ const PostsComments = () => {
         }
       }
 
+    const handleEditComment = (e) => {
+        e.preventDefault();
+        const buttonData = Number(e.target.id);
+        history.push(`/comments/${buttonData}`)
+    }
+
     return(
         <ul id="PostsComments-container">
             <h1>Comments</h1>
@@ -38,6 +44,7 @@ const PostsComments = () => {
                     return (
                         <div key={comment.id}>
                             <h3>{comment.content}</h3>
+                            <button type="button" id={comment.id} onClick={handleEditComment}>Edit</button>
                             <button type="button" id={comment.id} onClick={handleDeleteComment}>Delete</button>
                         </div>
                         )

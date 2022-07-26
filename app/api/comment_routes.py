@@ -1,4 +1,4 @@
-from flask import Blueprint, jsonify, request
+from flask import Blueprint, jsonify, request, redirect
 from flask_login import login_required
 from app.models import db, Comment
 from app.forms import CommentForm
@@ -13,12 +13,26 @@ def get_comments():
     data = [comment.to_dict() for comment in comments]
     return {'comments': data}
 
-@comment_routes.route('/', methods=['POST'])
+@comment_routes.route('/create/<int:id>', methods=['POST'])
 def post_comment():
-    form = CommentForm
+    form = CommentForm()
     form['csrf_token'].data = request.cookies['csrf_token']
-    pass
+    comment = Comment(
+        userId=form.data['userId'],
+        postId=form.data['postId'],
+        content=form.data['content']
+    )
+    db.session.add(comment)
+    db.session.commit()
+    return redirect('/comments')
 
+@comment_routes.route('/<int:id>', methods=['PUT'])
+def put_comment(id):
+    comment = Comment.query.get(id)
+    data = request.json
+    comment.content = data['content']
+    db.session.commit()
+    return comment.to_dict()
 
 @comment_routes.route('/<int:id>', methods=['DELETE'])
 @login_required

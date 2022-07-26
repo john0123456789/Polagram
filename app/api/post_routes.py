@@ -1,4 +1,4 @@
-from flask import Blueprint, request
+from flask import Blueprint, request, redirect
 from flask_login import login_required
 from app.models import Post, Comment, comment, db
 from app.forms.post_form import PostsForm
