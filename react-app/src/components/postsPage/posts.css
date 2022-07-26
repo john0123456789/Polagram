@@ -9,7 +9,7 @@
     background-color:transparent;
     border:none;
     cursor:pointer;
-    padding-left:360px;
+    padding-left:300px;
     padding-top:17px
 }
 
@@ -49,4 +49,11 @@ h1 {
 .content{
     padding:7px;
     background-color:white
+}
+
+.profpic{
+    height:22px;
+    width:25px;
+    border-radius:50%;
+    padding-left:5px;
 }
