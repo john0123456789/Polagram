@@ -40,7 +40,7 @@ function PostsPage() {
       {posts.map((post) =>
         (<ul key={post.id}>
           <div>
-            <img className="photo" src={post.imageURL} alt={"Where Posts go"} width="300" height="300"/>
+            <img className="photo" src={post.imageURL} alt={"Where Posts go"} width="350" height="250"/>
           </div>
           <div>
             <li>Caption: {post.caption}</li>
