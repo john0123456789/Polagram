@@ -62,14 +62,12 @@ function PostsPage() {
           </div>
 
           <div className="content">
-
             <div className="contentbuttons">
-
-            <button type="button" id={post.id} className="likebutton" onClick={handleClick}><FaRegHeart size="20px" /></button>
-            <button type="button" id={post.id} className="likebutton" onClick={commentClick}><FaRegComment size="20px" /></button>
-            {/* <button type="button" id={post.id} onClick={handleEditClick}>Edit</button> */}
-
-            {/* <button type="button" id={post.id} onClick={handleDeleteClick}>Delete</button> */}
+            <button type="button" id={post.id} onClick={commentClick}>comment</button>
+            {/* <button type="button" id={post.id} className="likebutton" onClick={handleClick}><FaRegHeart size="20px" /></button> */}
+            {/* <button type="button" id={post.id} className="likebutton" onClick={commentClick}><FaRegComment size="20px" /></button> */}
+            <button type="button" id={post.id} onClick={handleEditClick}>Edit</button>
+            <button type="button" id={post.id} onClick={handleDeleteClick}>Delete</button>
             </div>
             <div className="likedby">
               Liked by
