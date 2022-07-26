@@ -13,7 +13,7 @@ def get_comments():
     data = [comment.to_dict() for comment in comments]
     return {'comments': data}
 
-@comment_routes.route('/create/<int:id>', methods=['POST'])
+@comment_routes.route('/create', methods=['POST'])
 def post_comment():
     form = CommentForm()
     form['csrf_token'].data = request.cookies['csrf_token']

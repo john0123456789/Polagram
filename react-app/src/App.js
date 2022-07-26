@@ -47,7 +47,7 @@ function App() {
         <Route path='/comments' exact={true}>
           <PostsComments />
         </Route>
-        <Route path='/comments/create/:id' exact={true}>
+        <Route path='/comments/create/:id'>
           <CreateCommentsPage />
         </Route>
         <Route path="/comments/:id">
