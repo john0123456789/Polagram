@@ -1,17 +1,22 @@
 import { createCommentThunk } from '../../store/comments'
 import { useDispatch, useSelector} from "react-redux";
-import { useHistory } from "react-router-dom";
+import { useHistory, useParams } from "react-router-dom";
 import { useState } from "react";
 
 function CreateCommentsPage() {
   const dispatch = useDispatch();
   const history = useHistory();
 
-  const user = useSelector(state => state.session.user)
-  const post = useSelector(state => state.posts)
 
-  const[userId] = useState(user.id);
-  const[postId] = useState(post.id);
+  const user = useSelector(state => state.session.user)
+  const urlArray = window.location.href.split('/');
+  const num = Number(urlArray[urlArray.length - 1]);
+
+  const [postId] = useState(num)
+  const [userId] = useState(user.id);
+
+
+
 
   const [content, setContent] = useState("");
 
@@ -25,7 +30,7 @@ function CreateCommentsPage() {
         content
       };
 
-    dispatch(createCommentThunk(newComment));
+    dispatch(createCommentThunk(newComment, num));
     history.push("/comments");
   };
 
