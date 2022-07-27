@@ -1,7 +1,7 @@
 import { getAllPostsThunk, deletePostThunk } from "../../store/posts";
 import { useDispatch, useSelector} from "react-redux";
 import { useHistory, useParams } from "react-router-dom";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { FaHeart, FaRegHeart,FaRegComment} from "react-icons/fa"
 import { BsThreeDots } from "react-icons/bs"
 import  './posts.css'
@@ -9,11 +9,15 @@ import  './posts.css'
 function PostsPage() {
   const dispatch = useDispatch();
   const history = useHistory();
-  const [users, setUsers] = useState([]);
 
   const postsObject = useSelector((state) => state.posts);
+  // const usersObject = useSelector((state) => state.users);
+  // const users = Object.values(usersObject);
   // console.log(postsObject)
   const posts = Object.values(postsObject);
+  const [users, setUsers] = useState([]);
+  console.log("HERE I AM XD", users)
+  console.log("POSTS HERE", posts)
 
   useEffect(() => {
     dispatch(getAllPostsThunk());
@@ -28,7 +32,6 @@ function PostsPage() {
     }
     fetchData();
   }, []);
-
 
   const handleClick = (e) => {
     e.preventDefault();
@@ -63,13 +66,17 @@ function PostsPage() {
   return (
           <>
     <div className="feed">
-
       {posts.map((post) =>
         (
           <div className="eachpost">
           <div key={post.id}>
           <div className="posttopbar">
-          <img src={post.imageURL} className="profpic"/><b className="name">jack</b><button type="button" className="popup"><BsThreeDots size="18px" /></button>
+          {users.map((user) => {
+              <div>
+                <img src={user.profile_pic} className="profpic"/><b className="name">{user.username}</b><button type="button" className="popup"><BsThreeDots size="18px" /></button>
+              </div>
+          }
+          )}
           </div>
           <div>
             <img className="photo" src={post.imageURL} alt={"Where Posts go"} width="400" height="280"/>
