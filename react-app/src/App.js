@@ -20,6 +20,7 @@ import LikesPage from './components/likesPage';
 import UserPage from './components/UserPage';
 
 
+
 function App() {
   const [loaded, setLoaded] = useState(false);
   const dispatch = useDispatch();
@@ -62,9 +63,6 @@ function App() {
         </Route>
         <Route path='/sign-up' exact={true}>
           <SignUpForm />
-        </Route>
-        <Route path='/users/:id' exact={true}>
-          <UserPage/>
         </Route>
         <Route path='/followers' exact={true}>
           <FollowersPage/>
