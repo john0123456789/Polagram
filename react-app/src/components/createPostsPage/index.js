@@ -40,7 +40,7 @@ function CreatePostsPage() {
   return (
     <form className="post-form">
       <h2 className="postword">Create new post</h2>
-      <input type="text" className='inputs' placeholder="Image Url" value={imageURL} onChange={updateUrl}/>
+      <input type="text" className='inputfirst' placeholder="Image Url" value={imageURL} onChange={updateUrl}/>
       <input type="text" className='inputs' placeholder="Caption" value={caption} onChange={updateCaption}/>
       <button className="button" type="submit" onClick={handleSubmit}>Post</button>
       <button className="button" type="button" onClick={handleCancelClick}>Cancel</button>

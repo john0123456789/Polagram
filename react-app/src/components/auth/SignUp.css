@@ -1,4 +1,4 @@
-.loginform {
+.signupform {
     background-color: rgb(255, 255, 255);
     display: block;
     width: min-content;
@@ -34,6 +34,7 @@
     margin-top:20px
 }
 
+
 body {
     background-color:#f7f7f7;
     font-family: Helvetica;
@@ -43,7 +44,8 @@ body {
     margin:-.5px
 }
 
-/* .button {
+
+.button {
     display:inline-block;
     padding:0.25em 1em;
     margin: 0 0.2em 0.2em 0;
@@ -60,11 +62,3 @@ body {
     padding-bottom:10px;
     padding-top:10px;
 }
-
-/* .button:hover {
-    background-color: #d4d4d4;
-    border:none;
-    padding:0.25em 1em;
-    margin: 0 0.2em 0.2em 0;
-    border-radius:10px
-} */

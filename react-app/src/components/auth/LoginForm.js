@@ -37,10 +37,10 @@ const LoginForm = () => {
           <div key={ind}>{error}</div>
         ))}
         {/* <label htmlFor='email'>Email</label> */}
-        <input name='email' type='text' className='inputs' placeholder='Email' value={email} onChange={updateEmail}/>
+        <input name='email' type='text' className='inputfirst' placeholder='Email' value={email} onChange={updateEmail}/>
         {/* <label htmlFor='password'>Password</label> */}
         <input name='password' type='password' className='inputs' placeholder='Password' value={password} onChange={updatePassword}/>
-        <button className="button" type='submit'>Login</button>
+        <button type='submit' className="button" >Login</button>
     </form>
   );
 };
