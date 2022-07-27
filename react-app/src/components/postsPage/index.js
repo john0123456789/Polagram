@@ -64,12 +64,12 @@ function PostsPage() {
           <div className="content">
             <div className="contentbuttons">
             <FaRegHeart size="22px" id={post.id} className="likebutton" onClick={handleClick}/>
-            <FaRegComment size="22px" id={post.id} className="likebutton" onClick={commentClick}/>
+            <FaRegComment size="22px" id={post.id} className="likebutton" onClick={(e)=> commentClick(e)}/>
             <button type="button" id={post.id} onClick={handleEditClick}>Edit</button>
             <button type="button" id={post.id} onClick={handleDeleteClick}>Delete</button>
             </div>
             <div className="likedby">
-              Liked by <b>john</b> and <b>christian</b>
+              Liked by <b>like.userId.username[0]</b> and <b>like.userId.username[1]</b>
             </div>
             <div>
             <b>username</b> {post.caption}
