@@ -3,6 +3,7 @@ import thunk from 'redux-thunk';
 import { postsReducer } from './posts';
 import { commentReducer } from './comments';
 import { likesReducer } from './likes';
+import { usersReducer } from './users';
 import session from './session'
 import followersReducer from './followers';
 
@@ -12,6 +13,7 @@ const rootReducer = combineReducers({
   comments: commentReducer,
   likes: likesReducer,
   followers: followersReducer,
+  users: usersReducer,
 });
 
 
