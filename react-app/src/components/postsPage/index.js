@@ -11,7 +11,6 @@ function PostsPage() {
   const history = useHistory();
 
   const postsObject = useSelector((state) => state.posts);
-  // console.log(postsObject)
   const posts = Object.values(postsObject);
 
   useEffect(() => {
@@ -20,7 +19,7 @@ function PostsPage() {
 
   const handleClick = (e) => {
     e.preventDefault();
-    history.push("/posts");
+    history.push("/likes");
   };
 
   const commentClick = (e) => {
@@ -64,7 +63,7 @@ function PostsPage() {
           <div className="content">
             <div className="contentbuttons">
             <button type="button" id={post.id} onClick={commentClick}>comment</button>
-            {/* <button type="button" id={post.id} className="likebutton" onClick={handleClick}><FaRegHeart size="20px" /></button> */}
+            <button type="button" id={post.id} className="likebutton" onClick={handleClick}><FaRegHeart size="20px" /></button>
             {/* <button type="button" id={post.id} className="likebutton" onClick={commentClick}><FaRegComment size="20px" /></button> */}
             <button type="button" id={post.id} onClick={handleEditClick}>Edit</button>
             <button type="button" id={post.id} onClick={handleDeleteClick}>Delete</button>
