@@ -1,6 +1,7 @@
 from flask.cli import AppGroup
 from .users import seed_users, undo_users
 from .posts import seed_posts, undo_posts
+from .likes import seed_likes, undo_likes
 from .comments import seed_comments, undo_comments
 
 # Creates a seed group to hold our commands
@@ -14,6 +15,7 @@ def seed():
     seed_users(),
     seed_posts(),
     seed_comments(),
+    seed_likes(),
     # Add other seed functions here
 
 
@@ -23,4 +25,5 @@ def undo():
     undo_users()
     undo_comments()
     undo_posts()
+    undo_likes()
     # Add other undo functions here
