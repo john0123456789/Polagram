@@ -10,7 +10,7 @@ def likes():
     return {'likes': [like.to_dict() for like in likes]}
 
 
-@like_routes.routes('/<int:id>', methods=['POST'])
+@like_routes.route('/<int:id>', methods=['POST'])
 @login_required
 def like_post(id):
 
