@@ -15,7 +15,7 @@ const createPosts = (createdPost) => ({
 
 const deletePost = (post) => ({
     type: DELETE_POST,
-    post
+    post,
 })
 
 const updatePost = (post) => ({

@@ -6,23 +6,23 @@ export const UPDATE_COMMENT = 'comments/UPDATE_COMMENT'
 
 const createComment = (newComment) => ({
     type: CREATE_COMMENT,
-    newComment
+    newComment,
 })
 
 const getAllComments = (comments) => ({
     type: GET_COMMENT,
-    comments
+    comments,
 })
 
 
 const updateComment = (comment) => ({
     type: UPDATE_COMMENT,
-    comment
+    comment,
 })
 
 const deleteComment = (comment) => ({
     type: DELETE_COMMENT,
-    comment
+    comment,
 })
 
 
@@ -33,8 +33,8 @@ export const thunkGetAllComments = () => async (dispatch) => {
     return data
 }
 
-export const createCommentThunk = (newComment, id) => async(dispatch) => {
-    const response = await fetch(`/api/comments/create/${id}`, {
+export const createCommentThunk = (newComment) => async(dispatch) => {
+    const response = await fetch(`/api/comments/create`, {
         method: "POST",
         headers: {
             "Content-Type": "application/json",
