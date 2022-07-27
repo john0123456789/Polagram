@@ -42,7 +42,7 @@ function EditCommentsPage() {
   return (
     <form>
       <h1>Edit your COMMENT!</h1>
-      <input type="text" placeholder="Content" value={content} onChange={updateContent}/>
+      <input type="text" className='inputs' placeholder="Content" value={content} onChange={updateContent}/>
       <button type="submit" onClick={handleSubmit}>Update Comment</button>
       <button type="button" onClick={handleCancelClick}>Cancel</button>
     </form>

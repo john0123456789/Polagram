@@ -44,7 +44,7 @@ function CreateCommentsPage() {
   return (
     <form>
       <h1>CREATE A COMMENT!</h1>
-      <input type="text" placeholder="Content" value={content} onChange={updateContent}/>
+      <input type="text" className='inputs' placeholder="Content" value={content} onChange={updateContent}/>
       <button type="submit" onClick={handleSubmit}>Comment</button>
       <button type="button" onClick={handleCancelClick}>Cancel</button>
     </form>
