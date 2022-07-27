@@ -19,7 +19,7 @@ const getAllLikes = (likes) => ({
 
 
 export const getAllLikesThunk = () => async(dispatch) => {
-    const response = await fetch(`/api/likes`)
+    const response = await fetch(`/api/likes/`)
     const data = await response.json();
     dispatch(getAllLikes(data.likes))
     return data.likes
