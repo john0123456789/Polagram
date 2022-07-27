@@ -55,7 +55,7 @@ function PostsPage() {
         <div className="eachpost">
           <div key={post.id}>
           <div className="posttopbar">
-          <img src={post.imageURL} className="profpic"/>jack<button type="button" className="popup"><BsThreeDots size="18px" /></button>
+          <img src={post.imageURL} className="profpic"/><b className="name">jack</b><button type="button" className="popup"><BsThreeDots size="18px" /></button>
           </div>
           <div>
             <img className="photo" src={post.imageURL} alt={"Where Posts go"} width="400" height="280"/>
@@ -63,17 +63,16 @@ function PostsPage() {
 
           <div className="content">
             <div className="contentbuttons">
-            <button type="button" id={post.id} onClick={commentClick}>comment</button>
-            {/* <button type="button" id={post.id} className="likebutton" onClick={handleClick}><FaRegHeart size="20px" /></button> */}
-            {/* <button type="button" id={post.id} className="likebutton" onClick={commentClick}><FaRegComment size="20px" /></button> */}
+            <FaRegHeart size="22px" id={post.id} className="likebutton" onClick={handleClick}/>
+            <FaRegComment size="22px" id={post.id} className="likebutton" onClick={commentClick}/>
             <button type="button" id={post.id} onClick={handleEditClick}>Edit</button>
             <button type="button" id={post.id} onClick={handleDeleteClick}>Delete</button>
             </div>
             <div className="likedby">
-              Liked by
+              Liked by <b>john</b> and <b>christian</b>
             </div>
             <div>
-            username: {post.caption}
+            <b>username</b> {post.caption}
             </div>
             <div className="comment">
               username:comment
