@@ -15,6 +15,10 @@ import CreatePostsPage from './components/createPostsPage'
 import EditPostsPage from './components/editPostsPage'
 import CreateCommentsPage from './components/createCommentsPage';
 import EditCommentsPage from './components/editCommentsPage';
+import LikesPage from './components/likesPage';
+
+import UserPage from './components/UserPage';
+
 
 
 function App() {
@@ -62,6 +66,9 @@ function App() {
         </Route>
         <Route path='/followers' exact={true}>
           <FollowersPage/>
+        </Route>
+        <Route path='/likes' exact={true}>
+          <LikesPage/>
         </Route>
         <ProtectedRoute path='/users' exact={true} >
           <UsersList/>
