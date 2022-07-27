@@ -15,6 +15,10 @@ import CreatePostsPage from './components/createPostsPage'
 import EditPostsPage from './components/editPostsPage'
 import CreateCommentsPage from './components/createCommentsPage';
 import EditCommentsPage from './components/editCommentsPage';
+import LikesPage from './components/likesPage';
+
+import UserPage from './components/UserPage';
+
 
 function App() {
   const [loaded, setLoaded] = useState(false);
@@ -59,8 +63,14 @@ function App() {
         <Route path='/sign-up' exact={true}>
           <SignUpForm />
         </Route>
+        <Route path='/users/:id' exact={true}>
+          <UserPage/>
+        </Route>
         <Route path='/followers' exact={true}>
           <FollowersPage/>
+        </Route>
+        <Route path='/likes' exact={true}>
+          <LikesPage/>
         </Route>
         <ProtectedRoute path='/users' exact={true} >
           <UsersList/>
