@@ -1,6 +1,6 @@
 import { getAllPostsThunk, deletePostThunk } from "../../store/posts";
 import { useDispatch, useSelector} from "react-redux";
-import { useHistory } from "react-router-dom";
+import { useHistory, useParams } from "react-router-dom";
 import { useEffect } from "react";
 import { FaHeart, FaRegHeart,FaRegComment} from "react-icons/fa"
 import { BsThreeDots } from "react-icons/bs"
@@ -9,6 +9,7 @@ import  './posts.css'
 function PostsPage() {
   const dispatch = useDispatch();
   const history = useHistory();
+  const [users, setUsers] = useState([]);
 
   const postsObject = useSelector((state) => state.posts);
   // console.log(postsObject)
@@ -17,6 +18,17 @@ function PostsPage() {
   useEffect(() => {
     dispatch(getAllPostsThunk());
   }, [dispatch]);
+
+
+  useEffect(() => {
+    async function fetchData() {
+      const response = await fetch('/api/users/');
+      const responseData = await response.json();
+      setUsers(responseData.users);
+    }
+    fetchData();
+  }, []);
+
 
   const handleClick = (e) => {
     e.preventDefault();
@@ -46,13 +58,15 @@ function PostsPage() {
         history.push(`/posts/${buttonData}`)
       }
 
+
+
   return (
-    <>
+          <>
     <div className="feed">
 
       {posts.map((post) =>
         (
-        <div className="eachpost">
+          <div className="eachpost">
           <div key={post.id}>
           <div className="posttopbar">
           <img src={post.imageURL} className="profpic"/><b className="name">jack</b><button type="button" className="popup"><BsThreeDots size="18px" /></button>
@@ -84,10 +98,11 @@ function PostsPage() {
           </div>
         </div>
         )
-      )}
+        )}
       </div>
     </>
   );
 }
+
 
 export default PostsPage;

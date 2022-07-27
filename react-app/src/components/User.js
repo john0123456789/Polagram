@@ -31,6 +31,9 @@ function User() {
       <li>
         <strong>Email</strong> {user.email}
       </li>
+      <li>
+        <strong>Profile Picture</strong> <img src={user.profile_pic}/>
+      </li>
     </ul>
   );
 }
