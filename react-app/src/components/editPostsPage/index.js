@@ -41,8 +41,8 @@ function EditPostsPage() {
   return (
     <form>
       <h1>Edit your POST!</h1>
-      <input type="text" placeholder="Image Url" value={imageURL} onChange={updateUrl}/>
-      <input type="text" placeholder="Caption" value={caption} onChange={updateCaption}/>
+      <input type="text" className='inputs' placeholder="Image Url" value={imageURL} onChange={updateUrl}/>
+      <input type="text" className='inputs' placeholder="Caption" value={caption} onChange={updateCaption}/>
       <button type="submit" onClick={handleSubmit}>POST THAT POST HOMIE</button>
       <button type="button" onClick={handleCancelClick}>Cancel</button>
     </form>

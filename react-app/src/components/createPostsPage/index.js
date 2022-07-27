@@ -2,6 +2,7 @@ import { createPostThunk } from '../../store/posts'
 import { useDispatch, useSelector} from "react-redux";
 import { useHistory } from "react-router-dom";
 import { useState } from "react";
+import './createpost.css'
 
 function CreatePostsPage() {
   const dispatch = useDispatch();
@@ -37,12 +38,12 @@ function CreatePostsPage() {
 
 
   return (
-    <form>
-      <h1>POSTS A POST!</h1>
-      <input type="text" placeholder="Image Url" value={imageURL} onChange={updateUrl}/>
-      <input type="text" placeholder="Caption" value={caption} onChange={updateCaption}/>
-      <button type="submit" onClick={handleSubmit}>POST THAT POST HOMIE</button>
-      <button type="button" onClick={handleCancelClick}>Cancel</button>
+    <form className="post-form">
+      <h2 className="postword">Create new post</h2>
+      <input type="text" className='inputfirst' placeholder="Image Url" value={imageURL} onChange={updateUrl}/>
+      <input type="text" className='inputs' placeholder="Caption" value={caption} onChange={updateCaption}/>
+      <button className="button" type="submit" onClick={handleSubmit}>Post</button>
+      <button className="button" type="button" onClick={handleCancelClick}>Cancel</button>
     </form>
   );
 

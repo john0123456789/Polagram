@@ -2,7 +2,7 @@
     padding:5px;
     background-color:transparent;
     border:none;
-    cursor:pointer;
+    /* cursor:pointer; */
 }
 
 .popup {
@@ -60,12 +60,19 @@ h1 {
 }
 
 .profpic{
+    /* display:inline-flex; */
     height:22px;
     width:25px;
     border-radius:50%;
     padding-left:5px;
+
 }
 
 .comment{
     margin-top:2px
+}
+
+
+.name{
+    padding-left:10px;
 }
