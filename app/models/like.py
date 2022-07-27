@@ -13,9 +13,9 @@ class Like(db.Model):
     likeIds = db.relationship("Post", back_populates="likes")
 
     def to_dict(self):
-            return {
-                'id': self.id,
-                'postId': self.postId,
-                'userId': self.userId,
-                'totalLikes': self.totalLikes
-            }
+        return {
+            'id': self.id,
+            'postId': self.postId,
+            'userId': self.userId,
+            'totalLikes': self.totalLikes
+        }
