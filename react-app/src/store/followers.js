@@ -39,7 +39,7 @@ export const addFollowThunk = (id) => async(dispatch) => {
 }
 
 
-export const deleteFollowerThunk = (removeFollow, id) => async(dispatch) => {
+export const deleteFollowThunk = (removeFollow, id) => async(dispatch) => {
     const res = await fetch(`/api/followers/${id}`, {
         method: 'DELETE',
     });

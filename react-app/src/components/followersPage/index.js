@@ -34,7 +34,7 @@ function FollowersPage() {
 
     return(
       <ul id="Followers-container">
-          <h1>Likes</h1>
+          <h1>Followers</h1>
           <div id="thisfollowers-container">
               { followers.map(follower =>{
                   return (
