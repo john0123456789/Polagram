@@ -7,12 +7,16 @@ function FollowersPage() {
     const dispatch = useDispatch();
     const history = useHistory();
 
+
+    const urlArray = window.location.href.split('/');
+    const num = Number(urlArray[urlArray.length - 1]);
+
     const followers = useSelector(state => {
       return Object.values(state.followers)
     })
 
     useEffect(() => {
-      dispatch(getAllFollowersThunk());
+      dispatch(getAllFollowersThunk(num));
     }, [dispatch]);
 
     const handleBack = (e) => {

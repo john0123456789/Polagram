@@ -18,8 +18,8 @@ const getAllFollowers = (followers) => ({
  })
 
 
-export const getAllFollowersThunk = () => async(dispatch) => {
-    const response = await fetch(`/api/followers/`)
+export const getAllFollowersThunk = (id) => async(dispatch) => {
+    const response = await fetch(`/api/followers/${id}`)
     const data = await response.json();
     dispatch(getAllFollowers(data.followers))
     return data.followers
@@ -59,17 +59,16 @@ export const followersReducer = (state = initialState, action) => {
     let newState = {...state};
     switch(action.type) {
         case GET_FOLLOWERS:
-            const anotherState = {};
-            action.likes.forEach((follower) => {
-                return anotherState[follower.id] = follower;
+            action.followers.forEach((follower) => {
+                return newState[follower.id] = follower;
             })
-            return anotherState;
+            return newState;
 
         case ADD_FOLLOW:
             return { ...state, [action.follower.id]: { ...action.follower}}
 
         case DELETE_FOLLOW:
-            delete newState[action.deleteFollow.id];
+            delete newState[action.removeFollow.id];
             return newState
 
     default:

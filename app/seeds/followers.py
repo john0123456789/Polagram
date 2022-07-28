@@ -5,7 +5,7 @@ def seed_follows():
     follow1 = Follower(
         followerId=3, followingId=1)
     follow2 = Follower(
-        followerId=2, followingId=2)
+        followerId=2, followingId=1)
     follow3 = Follower(
         followerId=1, followingId=3)
 
