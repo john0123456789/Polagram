@@ -23,7 +23,7 @@ const PostComments = ({postId}) => {
                 {comments.map((comment)=>{
                     return (
                         <div>
-                        {comment.poster}<h3> {comment.content}</h3>
+                            {comment.poster.toUpperCase()}: {comment.content}
                         </div>
                     )
                 })}

@@ -17,5 +17,6 @@ class Like(db.Model):
             'id': self.id,
             'postId': self.postId,
             'userId': self.userId,
-            'totalLikes': self.totalLikes
+            'totalLikes': self.totalLikes,
+            'liker': self.userIds.username,
         }

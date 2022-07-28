@@ -6,6 +6,7 @@ import { FaHeart, FaRegHeart,FaRegComment} from "react-icons/fa"
 import { BsThreeDots } from "react-icons/bs"
 import  './posts.css'
 import PostComments from "../postComments";
+import LikeComponent from "../LikeComponent";
 
 function PostsPage() {
   const dispatch = useDispatch();
@@ -92,17 +93,14 @@ function PostsPage() {
             <button type="button" id={post.id} onClick={handleEditClick}>Edit</button>
             <button type="button" id={post.id} onClick={handleDeleteClick}>Delete</button>
             </div>
+            <div>
+              {post.caption}
+            </div>
             <div className="likedby">
-              Liked by <b>like.userId.username[0]</b> and <b>like.userId.username[1]</b>
+              <LikeComponent postId={post.id} userId={users.id}/>
             </div>
             <div>
               <PostComments postId={post.id}/>
-            </div>
-            <div className="comment">
-             {} :comment
-            </div>
-            <div className="comment">
-              username:comment
             </div>
           </div>
           </div>
