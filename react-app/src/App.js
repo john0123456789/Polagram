@@ -20,6 +20,7 @@ import LikesPage from './components/likesPage';
 
 
 
+
 function App() {
   const [loaded, setLoaded] = useState(false);
   const dispatch = useDispatch();
@@ -66,7 +67,7 @@ function App() {
         <Route path='/followers' exact={true}>
           <FollowersPage/>
         </Route>
-        <Route path='/likes' exact={true}>
+        <Route path='/likes/new' exact={true}>
           <LikesPage/>
         </Route>
         <ProtectedRoute path='/users' exact={true} >

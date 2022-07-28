@@ -5,12 +5,12 @@
     cursor:pointer;
 }
 
-.popup {
+.popupimg {
     background-color:transparent;
     border:none;
     cursor:pointer;
     position:absolute;
-    margin-left:24%;
+    margin-left:250px;
     padding-top:17px;
 
 }
