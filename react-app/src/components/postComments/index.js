@@ -1,7 +1,7 @@
 import { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { thunkGetAllComments } from '../../store/comments'
-
+import './postComment.css'
 
 const PostComments = ({postId}) => {
     const dispatch = useDispatch();
@@ -22,8 +22,8 @@ const PostComments = ({postId}) => {
             <div>
                 {comments.map((comment)=>{
                     return (
-                        <div>
-                           <b>{comment.poster}</b>: {comment.content}
+                        <div className="commenter">
+                           <b>{comment.poster}</b> {comment.content}
                         </div>
                     )
                 })}
