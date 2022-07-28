@@ -34,4 +34,5 @@ class User(db.Model, UserMixin):
     comments = db.relationship("Comment", back_populates="userIds")
     likes = db.relationship("Like", back_populates="userIds")
     posts = db.relationship("Post", back_populates="userIds")
-    # follow = db.relationship("Follower", back_populates="followIds")
+    # followers = db.relationship("Follower", back_populates="followerId", foreign_keys="Follower.followerId")
+    # following = db.relationship("Follower", back_populates="followingId", foreign_keys="Follower.followingId" )
