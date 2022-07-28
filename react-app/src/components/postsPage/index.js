@@ -31,7 +31,6 @@ function PostsPage() {
 
   const [totalLikes, setTotalLikes] = useState("");
 
-  // const updateTotalLike = (e) => setTotalLikes(e.target.value)
 
 
   useEffect(() => {
@@ -51,7 +50,7 @@ function PostsPage() {
       setUsers(responseData.users);
     }
     fetchData();
-  }, []);
+  }, [dispatch]);
 
   const likeClick = (e) => {
     e.preventDefault();
@@ -113,8 +112,9 @@ function PostsPage() {
 
           <div className="content">
             <div className="contentbuttons">
-            {/* <FaRegHeart size="22px"/> */}
-            <button id={post.id} className="likebutton" onClick={likeClick}>click</button>
+
+            <FaRegHeart size="22px" id={post.id} className="likebutton" onClick={handleClick}/>
+
             <FaRegComment size="22px" id={post.id} className="likebutton" onClick={(e)=> commentClick(e)}/>
 
             </div>
