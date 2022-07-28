@@ -5,57 +5,57 @@ from app.models import db, User
 def seed_users():
 
     demo = User(
-         profile_pic='https://i.imgur.com/bjlFtRx.png', username='Demo', email='demo@aa.io', password='password')
+         profile_pic='https://i.imgur.com/UXPTR6x.png', username='Demo', email='demo@aa.io', password='password')
     marnie = User(
-         profile_pic='https://i.imgur.com/bjlFtRx.png', username='marnie', email='marnie@aa.io', password='password')
+         profile_pic='https://i.imgur.com/UXPTR6x.png', username='marnie', email='marnie@aa.io', password='password')
     bobbie = User(
-         profile_pic='https://i.imgur.com/bjlFtRx.png' ,username='bobbie', email='bobbie@aa.io', password='password')
+         profile_pic='https://i.imgur.com/UXPTR6x.png' ,username='bobbie', email='bobbie@aa.io', password='password')
     jack = User(
-         profile_pic='https://i.imgur.com/bjlFtRx.png', username='jackie', email='jackie@aa.io', password='password')
+         profile_pic='https://i.imgur.com/UXPTR6x.png', username='jackie', email='jackie@aa.io', password='password')
     matty = User(
-         profile_pic = 'https://cdn.discordapp.com/attachments/998737172335173682/1001887100980973650/download.jpg', username='matty', email='matty@aa.io', password='password')
+         profile_pic = 'https://i.imgur.com/81nqVhr.png', username='matty', email='matty@aa.io', password='password')
     john = User(
-        profile_pic='https://i.imgur.com/okVErzG.png',username='john', email='john@aa.io', password='password')
+        profile_pic='https://i.imgur.com/6IG8gew.png',username='john', email='john@aa.io', password='password')
     christian = User(
-         profile_pic='https://i.pinimg.com/736x/30/d2/a6/30d2a6d938a00636f4591f0aa0115854.jpg' ,username='christian', email='christian@aa.io', password='password')
+         profile_pic='https://i.imgur.com/Za0ee6N.png' ,username='christian', email='christian@aa.io', password='password')
     helicopter = User(
-         profile_pic='https://i.imgur.com/bjlFtRx.png' ,username='helicopter', email='helicopter@aa.io', password='password')
+         profile_pic='https://i.imgur.com/UXPTR6x.png' ,username='helicopter', email='helicopter@aa.io', password='password')
     mrlarsen = User(
-         profile_pic='https://i.imgur.com/bjlFtRx.png' ,username='mrlarsen', email='mrlarsen@aa.io', password='password')
+         profile_pic='https://i.imgur.com/UXPTR6x.png' ,username='mrlarsen', email='mrlarsen@aa.io', password='password')
     bradthebard = User(
-         profile_pic='https://i.imgur.com/bjlFtRx.png' ,username='bradthebard', email='bardbrad@aa.io', password='password')
+         profile_pic='https://i.imgur.com/UXPTR6x.png' ,username='bradthebard', email='bardbrad@aa.io', password='password')
     restroom = User(
-         profile_pic='https://i.imgur.com/bjlFtRx.png' ,username='restroom', email='restroom@aa.io', password='password')
+         profile_pic='https://i.imgur.com/UXPTR6x.png' ,username='restroom', email='restroom@aa.io', password='password')
     apple = User(
-        profile_pic='https://i.imgur.com/bjlFtRx.png', username='apple', email='apple@aa.io', password='password')
+        profile_pic='https://i.imgur.com/UXPTR6x.png', username='apple', email='apple@aa.io', password='password')
     banana = User(
-         profile_pic='https://i.imgur.com/bjlFtRx.png' ,username='banana', email='banana@aa.io', password='password')
+         profile_pic='https://i.imgur.com/UXPTR6x.png' ,username='banana', email='banana@aa.io', password='password')
     cookie = User(
-        profile_pic='https://i.imgur.com/bjlFtRx.png', username='cookie', email='cookie@aa.io', password='password')
+        profile_pic='https://i.imgur.com/UXPTR6x.png', username='cookie', email='cookie@aa.io', password='password')
     donut = User(
-         profile_pic='https://i.imgur.com/bjlFtRx.png' ,username='donut', email='donut@aa.io', password='password')
+         profile_pic='https://i.imgur.com/UXPTR6x.png' ,username='donut', email='donut@aa.io', password='password')
     eggs = User(
-         profile_pic='https://i.imgur.com/bjlFtRx.png' ,username='eggs', email='eggs@aa.io', password='password')
+         profile_pic='https://i.imgur.com/UXPTR6x.png' ,username='eggs', email='eggs@aa.io', password='password')
     frenchtoast = User(
-         profile_pic='https://i.imgur.com/bjlFtRx.png', username='frenchtoast', email='frenchtoast@aa.io', password='password')
+         profile_pic='https://i.imgur.com/UXPTR6x.png', username='frenchtoast', email='frenchtoast@aa.io', password='password')
     grape = User(
-         profile_pic='https://i.imgur.com/bjlFtRx.png', username='grape', email='grape@aa.io', password='password')
+         profile_pic='https://i.imgur.com/UXPTR6x.png', username='grape', email='grape@aa.io', password='password')
     hotdog = User(
-         profile_pic='https://i.imgur.com/bjlFtRx.png', username='hotdog', email='hotdog@aa.io', password='password')
+         profile_pic='https://i.imgur.com/UXPTR6x.png', username='hotdog', email='hotdog@aa.io', password='password')
     icecream = User(
-         profile_pic='https://i.imgur.com/bjlFtRx.png', username='icecream', email='icecream@aa.io', password='password')
+         profile_pic='https://i.imgur.com/UXPTR6x.png', username='icecream', email='icecream@aa.io', password='password')
     jello = User(
-         profile_pic='https://i.imgur.com/bjlFtRx.png' ,username='jello', email='jello@aa.io', password='password')
+         profile_pic='https://i.imgur.com/UXPTR6x.png' ,username='jello', email='jello@aa.io', password='password')
     kandy = User(
-         profile_pic='https://i.imgur.com/bjlFtRx.png' ,username='kandy', email='kandy@aa.io', password='password')
+         profile_pic='https://i.imgur.com/UXPTR6x.png' ,username='kandy', email='kandy@aa.io', password='password')
     lemon = User(
-         profile_pic='https://i.imgur.com/bjlFtRx.png' ,username='lemon', email='lemon@aa.io', password='password')
+         profile_pic='https://i.imgur.com/UXPTR6x.png' ,username='lemon', email='lemon@aa.io', password='password')
     milk = User(
-         profile_pic='https://i.imgur.com/bjlFtRx.png', username='milk', email='milk@aa.io', password='password')
+         profile_pic='https://i.imgur.com/UXPTR6x.png', username='milk', email='milk@aa.io', password='password')
     noodles = User(
-         profile_pic='https://i.imgur.com/bjlFtRx.png' ,username='noodles', email='noodles@aa.io', password='password')
+         profile_pic='https://i.imgur.com/UXPTR6x.png' ,username='noodles', email='noodles@aa.io', password='password')
     orange = User(
-         profile_pic='https://i.imgur.com/bjlFtRx.png' ,username='orange', email='orange@aa.io', password='password')
+         profile_pic='https://i.imgur.com/UXPTR6x.png' ,username='orange', email='orange@aa.io', password='password')
 
 
     db.session.add(demo)
