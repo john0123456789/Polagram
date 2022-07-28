@@ -98,7 +98,7 @@ function PostsPage() {
             <b>{post.user.username}</b> {post.caption}
             </div>
             <div className="comment">
-              username:comment
+             {post.comments.userIds.username} :comment
             </div>
             <div className="comment">
               username:comment
