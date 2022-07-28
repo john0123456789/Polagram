@@ -4,8 +4,8 @@ import { postsReducer } from './posts';
 import { commentReducer } from './comments';
 import { likesReducer } from './likes';
 import { usersReducer } from './users';
+import { followersReducer } from './followers';
 import session from './session'
-import followersReducer from './followers';
 
 const rootReducer = combineReducers({
   session,
