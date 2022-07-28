@@ -75,8 +75,7 @@ function PostsPage() {
           <div className="eachpost">
           <div key={post.id}>
           <div className="posttopbar">
-
-          <img src={post.user.profile_pic} width="25px" height="25px" className="profpic"/><b className="name">{post.user.username}</b><button type="button" className="popup"><BsThreeDots size="18px" /></button>
+          <img src={post.user.profile_pic} width="25px" height="25px" className="profpic"/><b className="name">{post.user.username}</b> <BsThreeDots size="18px" className="popup"/>
 
           </div>
           <div>
@@ -87,17 +86,17 @@ function PostsPage() {
             <div className="contentbuttons">
             <FaRegHeart size="22px" id={post.id} className="likebutton" onClick={handleClick}/>
             <FaRegComment size="22px" id={post.id} className="likebutton" onClick={(e)=> commentClick(e)}/>
-            <button type="button" id={post.id} onClick={handleEditClick}>Edit</button>
-            <button type="button" id={post.id} onClick={handleDeleteClick}>Delete</button>
+            {/* <button type="button" id={post.id} onClick={handleEditClick}>Edit</button>
+            <button type="button" id={post.id} onClick={handleDeleteClick}>Delete</button> */}
             </div>
             <div className="likedby">
               <LikeComponent postId={post.id} userId={users.id}/>
             </div>
-            <div>
-              <b>{post.user.username}</b>{post.caption}
+            <div className="usercapt">
+              <b>{post.user.username}</b> {post.caption}
             </div>
 
-            <div>
+            <div className="commenter">
               <PostComments postId={post.id}/>
             </div>
           </div>
