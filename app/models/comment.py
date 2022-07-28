@@ -12,14 +12,14 @@ class Comment(db.Model):
     created_at = db.Column(db.DateTime, default=datetime.datetime.now())
 
 
-    userIds = db.relationship("User", back_populates="comments")
-    postIds = db.relationship("Post", back_populates="comments")
 
     def to_dict(self):
         return {
             'id': self.id,
-            'userId': self.userId,
+            'userIds': self.userId,
             'postId': self.postId,
             'content': self.content,
             'poster': self.userIds.username
         }
+    userIds = db.relationship("User", back_populates="comments")
+    postIds = db.relationship("Post", back_populates="comments")

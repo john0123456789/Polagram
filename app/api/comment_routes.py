@@ -10,8 +10,7 @@ comment_routes = Blueprint("comments", __name__, url_prefix="")
 @comment_routes.route('/')
 def get_comments():
     comments = Comment.query.all()
-    data = [comment.to_dict() for comment in comments]
-    return {'comments': data}
+    return {'comments': [comment.to_dict() for comment in comments]}
 
 @comment_routes.route('/create', methods=['POST'])
 def post_comment():

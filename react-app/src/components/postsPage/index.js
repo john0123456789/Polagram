@@ -5,6 +5,7 @@ import { useEffect, useState } from "react";
 import { FaHeart, FaRegHeart,FaRegComment} from "react-icons/fa"
 import { BsThreeDots } from "react-icons/bs"
 import  './posts.css'
+import PostComments from "../postComments";
 
 function PostsPage() {
   const dispatch = useDispatch();
@@ -95,10 +96,10 @@ function PostsPage() {
               Liked by <b>like.userId.username[0]</b> and <b>like.userId.username[1]</b>
             </div>
             <div>
-            <b>{post.user.username}</b> {post.caption}
+              <PostComments postId={post.id}/>
             </div>
             <div className="comment">
-              username:comment
+             {} :comment
             </div>
             <div className="comment">
               username:comment
