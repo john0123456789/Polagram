@@ -24,8 +24,7 @@ def like_post(id):
 
 @like_routes.route('/<int:id>', methods=['DELETE'])
 @login_required
-def unlike_post():
-    data = request.json
-    like = Like.query.filter(Like.postId == data['postId'])
+def unlike_post(id):
+    like = Like.query.get(id)
     db.session.delete(like)
     db.session.commit()

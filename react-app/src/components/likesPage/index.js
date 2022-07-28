@@ -1,4 +1,4 @@
-import { getAllLikesThunk  } from "../../store/likes";
+import { getAllLikesThunk, deleteLikesThunk } from "../../store/likes";
 import { useDispatch, useSelector} from "react-redux";
 import { useHistory } from "react-router-dom";
 import { useEffect } from "react";
@@ -7,10 +7,11 @@ function LikesPage() {
     const dispatch = useDispatch();
     const history = useHistory();
 
-    const likesObject = useSelector((state) => state.likes);
-    console.log(likesObject)
-    const likes = Object.values(likesObject);
-
+    // const likesObject = useSelector((state) => state.likes);
+    // const likes = Object.values(likesObject);
+    const likes = useSelector(state => {
+      return Object.values(state.likes)
+    })
 
     useEffect(() => {
       dispatch(getAllLikesThunk());
@@ -20,6 +21,17 @@ function LikesPage() {
       e.preventDefault();
       history.push("/posts");
     };
+
+    const handleUnlike = (e) => {
+      e.preventDefault();
+      const buttonData = Number(e.target.id);
+      for (const like of likes) {
+        if (like.id === buttonData) {
+          dispatch(deleteLikesThunk(like, buttonData))
+          history.push("/likes")
+        }
+      }
+    }
 
 
     return(
@@ -33,6 +45,7 @@ function LikesPage() {
                           <h3>{like.postId}</h3>
                           <h3>{like.totalLikes}</h3>
                           <button type="button" onClick={handleBack}>Back</button>
+                          <button id={like.id} type="button" onClick={handleUnlike}>unlike</button>
                       </div>
                       )
                   })}

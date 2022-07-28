@@ -17,7 +17,6 @@ import CreateCommentsPage from './components/createCommentsPage';
 import EditCommentsPage from './components/editCommentsPage';
 import LikesPage from './components/likesPage';
 
-import UserPage from './components/UserPage';
 
 
 
