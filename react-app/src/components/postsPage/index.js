@@ -1,7 +1,7 @@
 import { getAllPostsThunk, deletePostThunk } from "../../store/posts";
 import { useDispatch, useSelector} from "react-redux";
-import { useHistory } from "react-router-dom";
-import { useEffect } from "react";
+import { useHistory, useParams } from "react-router-dom";
+import { useEffect, useState } from "react";
 import { FaHeart, FaRegHeart,FaRegComment} from "react-icons/fa"
 import { BsThreeDots } from "react-icons/bs"
 import  './posts.css'
@@ -11,11 +11,29 @@ function PostsPage() {
   const history = useHistory();
 
   const postsObject = useSelector((state) => state.posts);
+
+  // const usersObject = useSelector((state) => state.users);
+  // const users = Object.values(usersObject);
+  // console.log(postsObject)
+
   const posts = Object.values(postsObject);
+  const [users, setUsers] = useState([]);
+  console.log("HERE I AM XD", users)
+  console.log("POSTS HERE", posts)
 
   useEffect(() => {
     dispatch(getAllPostsThunk());
   }, [dispatch]);
+
+
+  useEffect(() => {
+    async function fetchData() {
+      const response = await fetch('/api/users/');
+      const responseData = await response.json();
+      setUsers(responseData.users);
+    }
+    fetchData();
+  }, []);
 
   const handleClick = (e) => {
     e.preventDefault();
@@ -45,16 +63,19 @@ function PostsPage() {
         history.push(`/posts/${buttonData}`)
       }
 
-  return (
-    <>
-    <div className="feed">
 
+
+  return (
+          <>
+    <div className="feed">
       {posts.map((post) =>
         (
-        <div className="eachpost">
+          <div className="eachpost">
           <div key={post.id}>
           <div className="posttopbar">
+
           <img src={post.user.profile_pic} className="profpic"/><b className="name">{post.user.username}</b><button type="button" className="popup"><BsThreeDots size="18px" /></button>
+
           </div>
           <div>
             <img className="photo" src={post.imageURL} alt={"Where Posts go"} width="400" height="280"/>
@@ -86,10 +107,11 @@ function PostsPage() {
           </div>
         </div>
         )
-      )}
+        )}
       </div>
     </>
   );
 }
+
 
 export default PostsPage;
