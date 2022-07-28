@@ -54,7 +54,7 @@ function PostsPage() {
         <div className="eachpost">
           <div key={post.id}>
           <div className="posttopbar">
-          <img src={post.imageURL} className="profpic"/><b className="name">jack</b><button type="button" className="popup"><BsThreeDots size="18px" /></button>
+          <img src={post.user.profile_pic} className="profpic"/><b className="name">{post.user.username}</b><button type="button" className="popup"><BsThreeDots size="18px" /></button>
           </div>
           <div>
             <img className="photo" src={post.imageURL} alt={"Where Posts go"} width="400" height="280"/>
@@ -74,7 +74,7 @@ function PostsPage() {
               Liked by <b>like.userId.username[0]</b> and <b>like.userId.username[1]</b>
             </div>
             <div>
-            <b>username</b> {post.caption}
+            <b>{post.user.username}</b> {post.caption}
             </div>
             <div className="comment">
               username:comment
