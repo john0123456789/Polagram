@@ -19,15 +19,15 @@ const PostLikes = ({postId}) => {
 
     return (
         <>
-            <div># of likes: {likes.length}
-                {/* {likes.map((like)=>{
+
+                {likes.map((like)=>{
                     return (
                         <div>
-                            {like.liker}
+                            <div>Liked by <b>{likes[0].liker}</b></div>
                         </div>
                     )
-                })} */}
-            </div>
+                })}
+
         </>
     )
 }
