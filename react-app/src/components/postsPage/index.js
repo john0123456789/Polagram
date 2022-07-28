@@ -20,8 +20,8 @@ function PostsPage() {
 
   const posts = Object.values(postsObject);
   const [users, setUsers] = useState([]);
-  console.log("HERE I AM XD", users)
-  console.log("POSTS HERE", posts)
+  // console.log("HERE I AM XD", users)
+  // console.log("POSTS HERE", posts)
 
   useEffect(() => {
     dispatch(getAllPostsThunk());
@@ -35,7 +35,7 @@ function PostsPage() {
       setUsers(responseData.users);
     }
     fetchData();
-  }, []);
+  }, [dispatch]);
 
   const handleClick = (e) => {
     e.preventDefault();
@@ -86,7 +86,6 @@ function PostsPage() {
           <div className="content">
             <div className="contentbuttons">
 
-            <button type="button" id={post.id} onClick={commentClick}>comment</button>
             <FaRegHeart size="22px" id={post.id} className="likebutton" onClick={handleClick}/>
             <FaRegComment size="22px" id={post.id} className="likebutton" onClick={(e)=> commentClick(e)}/>
 
