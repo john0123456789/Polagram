@@ -16,10 +16,10 @@ class Comment(db.Model):
     def to_dict(self):
         return {
             'id': self.id,
-            'userIds': self.userId.to_dict(),
-            'postId': self.postId.to_dict(),
+            'userIds': self.userId,
+            'postId': self.postId,
             'content': self.content,
-            'poster': self.userIds.to_dict()
+            'poster': self.userIds.username
         }
     userIds = db.relationship("User", back_populates="comments")
     postIds = db.relationship("Post", back_populates="comments")

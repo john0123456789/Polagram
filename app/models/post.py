@@ -23,5 +23,5 @@ class Post(db.Model):
             'caption': self.caption,
             'imageURL': self.imageURL,
             'time': self.created_at,
-            'comments': self.comments.to_dict()
+            # 'comments': self.comments
         }
