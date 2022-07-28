@@ -2,7 +2,7 @@ const GET_LIKES = 'posts/GET_LIKES'
 const ADD_LIKES = 'posts/ADD_LIKES'
 const DELETE_LIKES = 'posts/DELETE_LIKES'
 
-const getAllLikes = likes => ({
+const getAllLikes = (likes) => ({
     type: GET_LIKES,
     likes
  });
@@ -18,17 +18,15 @@ const getAllLikes = likes => ({
  })
 
 
-export const getAllLikesThunk = (id) => async(dispatch) => {
-    const res = await fetch(`/api/posts/${id}`)
-
-    if(res.ok) {
-        const likes = await res.json()
-        dispatch(getAllLikes(likes))
-    }
+export const getAllLikesThunk = () => async(dispatch) => {
+    const response = await fetch(`/api/likes/`)
+    const data = await response.json();
+    dispatch(getAllLikes(data))
+    return data
 }
 
-export const addLikesThunk = newLike => async(dispatch) => {
-    const res = await fetch (`/api/posts`, {
+export const addLikesThunk = (id) => async(dispatch) => {
+    const res = await fetch (`/api/likes/${id}`, {
         method: 'POST',
         headers: { 'Content-Type' : 'application/json' },
         body: JSON.stringify(newLike)
@@ -43,7 +41,7 @@ export const addLikesThunk = newLike => async(dispatch) => {
 
 
 export const deleteLikesThunk = (deleteLike, id) => async(dispatch) => {
-    const res = await fetch(`/api/posts/${id}`, {
+    const res = await fetch(`/api/likes/${id}`, {
         method: 'DELETE',
     });
 
@@ -55,18 +53,17 @@ export const deleteLikesThunk = (deleteLike, id) => async(dispatch) => {
 }
 
 
+
 const initialState = {};
 
-
 export const likesReducer = (state = initialState, action) => {
-    let newState = { ...state }
-    switch (action.type) {
+    let newState = {...state};
+    switch(action.type) {
         case GET_LIKES:
-            const anotherState = {};
             action.likes.forEach((like) => {
-            return anotherState[like.id] = like;
-        });
-            return anotherState;
+                return newState[like.id] = like;
+            })
+            return newState;
 
         case ADD_LIKES:
             return { ...state, [action.like.id]: { ...action.like}}
