@@ -19,13 +19,9 @@ const PostLikes = ({postId}) => {
 
     return (
         <>
-                {likes.map((like)=>{
-                    return (
                         <div>
-                            <div>Liked by <b>{likes[0].liker}</b></div>
+                            <div>Liked by <b>{likes.length}</b> people</div>
                         </div>
-                    )
-                })}
 
         </>
     )

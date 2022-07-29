@@ -9,7 +9,7 @@ import  './posts.css'
 import PostComments from "../postComments";
 import LikeComponent from "../LikeComponent";
 import Popup from '../popup'
-import {addLikesThunk, deleteLikesThunk} from "../../store/likes"
+// import {addLikesThunk, deleteLikesThunk} from "../../store/likes"
 
 
 function PostsPage() {
@@ -19,8 +19,8 @@ function PostsPage() {
 
   const [buttonPopup, setButtonPopup] = useState(false)
 
-  const postsObject = useSelector((state) => state.posts);
-  const post = useSelector((state) => state.posts)
+  // const postsObject = useSelector((state) => state.posts);
+  // const post = useSelector((state) => state.posts)
 
 
 
@@ -61,15 +61,13 @@ function PostsPage() {
 
   const likeClick = (e) => {
     e.preventDefault();
-    console.log("WORKS")
     const buttonData = Number(e.target.id);
     const createdLike = {
+      id: buttonData,
       postId: buttonData,
       userId,
       totalLikes: 1
     };
-    console.log(createdLike)
-    console.log("WORKS")
     dispatch(addLikesThunk(createdLike))
     history.push("/likes/new/");
   };
@@ -98,15 +96,15 @@ function PostsPage() {
         history.push(`/posts/${buttonData}`)
       }
 
-  const likeClick = async (e) => {
-    e.preventDefault();
-    dispatch(addLikesThunk(post.id))
-  }
+  // const likesClick = async (e) => {
+  //   e.preventDefault();
+  //   dispatch(addLikesThunk(post.id))
+  // }
 
-  const disLikeClick = async (e) => {
-    e.preventDefault();
-    dispatch(deleteLikesThunk(post.id))
-  }
+  // const disLikeClick = async (e) => {
+  //   e.preventDefault();
+  //   dispatch(deleteLikesThunk(post.id))
+  // }
 
   return (
           <>
@@ -119,13 +117,13 @@ function PostsPage() {
           <div key={post.id}>
           <div className="posttopbar">
           <img src={post.user.profile_pic} width="25px" height="25px" className="profpic"/><b className="name">{post.user.username}</b>
-          <BsThreeDots id={post.id} size="18px" className="popupimg" onClick={() => setButtonPopup(true)}/>
-          {/* <div>
+          <BsThreeDots prop={post.id} size="18px" className="popupimg" onClick={() => setButtonPopup(true)}/>
+          <div>
            <Popup trigger={buttonPopup} setTrigger={setButtonPopup}>
             <button type="button" id={post.id} onClick={handleEditClick}>Edit</button>
             <button type="button" id={post.id} onClick={handleDeleteClick}>Delete</button>
             </Popup>
-          </div> */}
+          </div>
           </div>
           <div>
             <img className="photo" src={post.imageURL} alt={"Where Posts go"} width="400" height="280"/>

@@ -13,16 +13,19 @@ def likes():
 
 @like_routes.route('/new/', methods=['POST'])
 @login_required
-def like_post(id):
+def like_post():
     form = LikesForm()
     form['csrf_token'].data = request.cookies['csrf_token']
 
     liked = Like (
-        userId = current_user.id,
-        postId = id
+        userId = form.data["userId"],
+        postId = form.data["postId"],
+        totalLikes = 0
     )
+
     db.session.add(liked)
     db.session.commit()
+    return liked.to_dict()
 
 
 @like_routes.route('/<int:id>', methods=['DELETE'])
@@ -31,3 +34,4 @@ def unlike_post(id):
     like = Like.query.get(id)
     db.session.delete(like)
     db.session.commit()
+    return liked.to_dict()
