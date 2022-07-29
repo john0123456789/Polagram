@@ -31,8 +31,6 @@ function PostsPage() {
 
   const [totalLikes, setTotalLikes] = useState("");
 
-  // const updateTotalLike = (e) => setTotalLikes(e.target.value)
-
 
   useEffect(() => {
     dispatch(getAllPostsThunk());
@@ -65,7 +63,7 @@ function PostsPage() {
     console.log(createdLike)
     console.log("WORKS")
     dispatch(addLikesThunk(createdLike))
-    history.push("/likes/new");
+    history.push("/likes/new/");
   };
 
   const commentClick = (e) => {
@@ -96,16 +94,21 @@ function PostsPage() {
   return (
           <>
     <div className="feed">
-      <main>
+
         {posts.map((post) =>
         (
-
+          <main>
           <div className="eachpost">
           <div key={post.id}>
           <div className="posttopbar">
           <img src={post.user.profile_pic} width="25px" height="25px" className="profpic"/><b className="name">{post.user.username}</b>
-          <BsThreeDots size="18px" className="popupimg" onClick={() => setButtonPopup(true)}/>
-
+          <BsThreeDots id={post.id} size="18px" className="popupimg" onClick={() => setButtonPopup(true)}/>
+          {/* <div>
+           <Popup trigger={buttonPopup} setTrigger={setButtonPopup}>
+            <button type="button" id={post.id} onClick={handleEditClick}>Edit</button>
+            <button type="button" id={post.id} onClick={handleDeleteClick}>Delete</button>
+            </Popup>
+          </div> */}
           </div>
           <div>
             <img className="photo" src={post.imageURL} alt={"Where Posts go"} width="400" height="280"/>
@@ -113,9 +116,10 @@ function PostsPage() {
 
           <div className="content">
             <div className="contentbuttons">
-            {/* <FaRegHeart size="22px"/> */}
-            <button id={post.id} className="likebutton" onClick={likeClick}>click</button>
+            <FaRegHeart size="22px" id={post.id} className="likebutton" onClick={(e)=> likeClick(e)}/>
             <FaRegComment size="22px" id={post.id} className="likebutton" onClick={(e)=> commentClick(e)}/>
+            <button type="button" id={post.id} onClick={handleEditClick}>Edit</button>
+            <button type="button" id={post.id} onClick={handleDeleteClick}>Delete</button>
 
             </div>
             <div className="likedby">
@@ -129,15 +133,16 @@ function PostsPage() {
               <PostComments postId={post.id}/>
             </div>
           </div>
-          </div><Popup trigger={buttonPopup} setTrigger={setButtonPopup}>
-            <button type="button" id={post.id} onClick={handleEditClick}>Edit</button>
-            <button type="button" id={post.id} onClick={handleDeleteClick}>Delete</button>
-            </Popup>
+          </div>
 
         </div>
+
+        </main>
+
         )
         )}
- </main>
+
+
       </div>
     </>
   );

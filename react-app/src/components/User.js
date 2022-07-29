@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
+import './User.css'
 
 function User() {
   const [user, setUser] = useState({});
@@ -23,6 +24,9 @@ function User() {
   return (
     <ul>
       <li>
+       <img className="profilepicture"src={user.profile_pic}/>
+      </li>
+      <li>
         <strong>User Id</strong> {userId}
       </li>
       <li>
@@ -30,9 +34,6 @@ function User() {
       </li>
       <li>
         <strong>Email</strong> {user.email}
-      </li>
-      <li>
-        <strong>Profile Picture</strong> <img src={user.profile_pic}/>
       </li>
     </ul>
   );

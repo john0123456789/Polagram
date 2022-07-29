@@ -26,7 +26,7 @@ export const getAllLikesThunk = () => async(dispatch) => {
 }
 
 export const addLikesThunk = (createdLike) => async(dispatch) => {
-    const res = await fetch (`/api/likes/new`, {
+    const res = await fetch (`/api/likes/new/`, {
         method: 'POST',
         headers: { 'Content-Type' : 'application/json' },
         body: JSON.stringify(createdLike)
@@ -66,7 +66,7 @@ export const likesReducer = (state = initialState, action) => {
             return newState;
 
         case ADD_LIKES:
-            return { ...state, [action.createdLike.id]: { ...action.createdLike}}
+            return { ...state, [action.createdLike.id]: {...action.createdLike}}
 
         case DELETE_LIKES:
             delete newState[action.deleteLike.id];

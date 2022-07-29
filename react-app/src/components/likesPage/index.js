@@ -28,7 +28,7 @@ function LikesPage() {
       for (const like of likes) {
         if (like.id === buttonData) {
           dispatch(deleteLikesThunk(like, buttonData))
-          history.push("/likes")
+          history.push("/likes/new")
         }
       }
     }

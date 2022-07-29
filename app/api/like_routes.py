@@ -11,7 +11,7 @@ def likes():
     return {'likes': [like.to_dict() for like in likes]}
 
 
-@like_routes.route('/new', methods=['POST'])
+@like_routes.route('/new/', methods=['POST'])
 @login_required
 def like_post(id):
     form = LikesForm()

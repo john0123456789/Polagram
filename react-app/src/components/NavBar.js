@@ -4,6 +4,7 @@ import { FiPlusSquare } from "react-icons/fi";
 import { FaUsers } from "react-icons/fa";
 import { useHistory  } from 'react-router-dom';
 import { useSelector } from 'react-redux';
+import ProfileButton from './ProfileButton';
 import './NavBar.css'
 
 function NavBar({ isLoaded }){
@@ -32,10 +33,18 @@ function NavBar({ isLoaded }){
     e.preventDefault();
     history.push('/users')
   }
+
+
+
+
   let sessionLinks;
   if (sessionUser){
+  sessionLinks= (
+  <ProfileButton user={sessionUser} />
+  );
+  } else {
     sessionLinks = (
-      <div className='navbarright'>
+      <div className='navbar'>
         <button type="button" className='usebutton' onClick={forLOGIN}> Log In</button>
         <button type="button" className='usebutton' onClick={forSIGNUP}> Sign Up</button>
         <button type="button" className='usebutton' onClick={forCREATE}><FiPlusSquare /></button>

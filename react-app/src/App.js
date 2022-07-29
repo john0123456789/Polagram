@@ -67,7 +67,7 @@ function App() {
         <Route path='/followers' exact={true}>
           <FollowersPage/>
         </Route>
-        <Route path='/likes/new' exact={true}>
+        <Route path='/likes/new/'>
           <LikesPage/>
         </Route>
         <ProtectedRoute path='/users' exact={true} >
