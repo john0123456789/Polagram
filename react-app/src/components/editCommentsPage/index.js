@@ -14,6 +14,9 @@ function EditCommentsPage() {
 
   const singleComment = comment[id]
 
+  let errorsObj = {content: ''};
+  const [errors, setErrors] = useState(errorsObj);
+
   const[userId] = useState(user.id);
   const[postId] = useState(post.id)
 
@@ -23,6 +26,19 @@ function EditCommentsPage() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+
+    let error = false;
+    errorsObj = {...errorsObj};
+    if(content === '') {
+      errorsObj.content = "Requires input!";
+      error = true;
+    } else if (content.length < 5 || content.length > 20) {
+      errorsObj.content = "contents must be longer than 5 characters and shorter than 20";
+      error = true;
+    }
+    setErrors(errorsObj);
+
+    if(!error) {
     const updatedComment = {
         userId,
         postId,
@@ -30,8 +46,10 @@ function EditCommentsPage() {
       };
 
       dispatch(updateCommentThunk(updatedComment, id));
+
     history.push("/posts");
   };
+
 
   const handleCancelClick = (e) => {
     e.preventDefault();
@@ -43,6 +61,7 @@ function EditCommentsPage() {
     <form>
       <h1>Edit your COMMENT!</h1>
       <input type="text" className='inputs' placeholder="Content" value={content} onChange={updateContent}/>
+      {errors.content && <div>{errors.content}</div>}
       <button type="submit" onClick={handleSubmit}>Update Comment</button>
       <button type="button" onClick={handleCancelClick}>Cancel</button>
     </form>
