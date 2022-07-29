@@ -13,6 +13,7 @@ function User() {
   const history = useHistory();
 
   const [user, setUser] = useState({});
+  const [following, setFollowing] = useState('')
   const { userId }  = useParams();
 
   const follower = useSelector(state => state.session.user)
@@ -51,7 +52,7 @@ function User() {
       followingId,
     };
     dispatch(addFollowThunk(followed))
-    history.push("/");
+    // history.push("/");
   };
 
 
@@ -70,7 +71,9 @@ function User() {
       <li>
         <strong>Email</strong> {user.email}
       </li>
+
       <button alt="follow" type="button" onClick={followClick}>Follow</button>
+
       <FollowersPage/>
     </ul>
       <UserPosts userId={user.id}></UserPosts>

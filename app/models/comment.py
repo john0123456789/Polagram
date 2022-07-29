@@ -19,7 +19,9 @@ class Comment(db.Model):
             'userIds': self.userId,
             'postId': self.postId,
             'content': self.content,
-            'poster': self.userIds.username
+            'poster': self.userIds.username,
+            'commentersId' : self.userIds.id
+
         }
     userIds = db.relationship("User", back_populates="comments")
     postIds = db.relationship("Post", back_populates="comments")
