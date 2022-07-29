@@ -1,5 +1,4 @@
 const GET_FOLLOWERS = 'followers/GET_FOLLOWERS'
-const ADD_FOLLOW = 'followers/ADD_FOLLOW'
 const DELETE_FOLLOW = 'followers/DELETE_FOLLOW'
 
 const getAllFollowers = (followers) => ({
@@ -7,14 +6,10 @@ const getAllFollowers = (followers) => ({
     followers
  });
 
- const addFollow = follow => ({
-    type: ADD_FOLLOW,
-    follow
- })
 
- const deleteFollow = removeFollow => ({
+ const deleteFollow = unfollow => ({
     type: DELETE_FOLLOW,
-    removeFollow
+    unfollow
  })
 
 
@@ -25,27 +20,13 @@ export const getAllFollowersThunk = (id) => async(dispatch) => {
     return data.followers
 }
 
-export const addFollowThunk = (id) => async(dispatch) => {
-    const res = await fetch (`/api/followers/${id}`, {
-        method: 'POST',
-        headers: { 'Content-Type' : 'application/json' },
-    })
-
-    if (res.ok) {
-        const newFollow = await res.json()
-        dispatch(addFollow(newFollow))
-        return newFollow
-    }
-}
-
-
-export const deleteFollowThunk = (removeFollow, id) => async(dispatch) => {
+export const deleteFollowThunk = (unfollow, id) => async(dispatch) => {
     const res = await fetch(`/api/followers/${id}`, {
         method: 'DELETE',
     });
 
     if (res.ok) {
-        const deleted = await res.json(removeFollow);
+        const deleted = await res.json(unfollow);
         dispatch(deleteFollow(deleted));
         return deleted
     }
@@ -64,11 +45,8 @@ export const followersReducer = (state = initialState, action) => {
             })
             return newState;
 
-        case ADD_FOLLOW:
-            return { ...state, [action.follower.id]: { ...action.follower}}
-
         case DELETE_FOLLOW:
-            delete newState[action.removeFollow.id];
+            delete newState[action.unfollow.id];
             return newState
 
     default:

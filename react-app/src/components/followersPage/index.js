@@ -21,7 +21,7 @@ function FollowersPage() {
 
     const handleBack = (e) => {
       e.preventDefault();
-      history.push("/followers");
+      history.push("/");
     };
 
     const handleUnfollow = (e) => {
@@ -30,10 +30,13 @@ function FollowersPage() {
       for (const follower of followers) {
         if (follower.id === buttonData) {
           dispatch(deleteFollowThunk(follower, buttonData))
-          history.push("/followers")
+          history.push("/")
         }
       }
     }
+
+
+
 
 
     return(
@@ -46,7 +49,7 @@ function FollowersPage() {
                           <h3>{follower.followerId}</h3>
                           <h3>{follower.followingId}</h3>
                           <button type="button" onClick={handleBack}>Back</button>
-                          <button id={follower.followerId} type="button" onClick={handleUnfollow}>unfollow</button>
+                          <button id={follower.id} type="button" onClick={handleUnfollow}>unfollow</button>
                       </div>
                       )
                   })}
