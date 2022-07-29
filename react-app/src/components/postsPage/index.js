@@ -7,12 +7,14 @@ import { BsThreeDots } from "react-icons/bs"
 import  './posts.css'
 import PostComments from "../postComments";
 import LikeComponent from "../LikeComponent";
+import {addLikesThunk, deleteLikesThunk} from "../../store/likes"
 
 function PostsPage() {
   const dispatch = useDispatch();
   const history = useHistory();
 
   const postsObject = useSelector((state) => state.posts);
+  const post = useSelector((state) => state.posts)
 
   // const usersObject = useSelector((state) => state.users);
   // const users = Object.values(usersObject);
@@ -37,10 +39,6 @@ function PostsPage() {
     fetchData();
   }, [dispatch]);
 
-  const handleClick = (e) => {
-    e.preventDefault();
-    history.push("/likes");
-  };
 
   const commentClick = (e) => {
     e.preventDefault();
@@ -65,7 +63,15 @@ function PostsPage() {
         history.push(`/posts/${buttonData}`)
       }
 
+  const likeClick = async (e) => {
+    e.preventDefault();
+    dispatch(addLikesThunk(post.id))
+  }
 
+  const disLikeClick = async (e) => {
+    e.preventDefault();
+    dispatch(deleteLikesThunk(post.id))
+  }
 
   return (
           <>
@@ -85,10 +91,8 @@ function PostsPage() {
           <div className="content">
             <div className="contentbuttons">
 
-            <FaRegHeart size="22px" id={post.id} className="likebutton" onClick={handleClick}/>
+            <FaRegHeart size="22px" id={post.id} className="likebutton" onClick={likeClick}/>
             <FaRegComment size="22px" id={post.id} className="likebutton" onClick={(e)=> commentClick(e)}/>
-            {/* <button type="button" id={post.id} onClick={handleEditClick}>Edit</button>
-            <button type="button" id={post.id} onClick={handleDeleteClick}>Delete</button> */}
             </div>
             <div className="likedby">
               <LikeComponent postId={post.id} userId={users.id}/>
