@@ -30,7 +30,7 @@ function EditCommentsPage() {
       };
 
       dispatch(updateCommentThunk(updatedComment, id));
-    history.push("/comments");
+    history.push("/posts");
   };
 
   const handleCancelClick = (e) => {

@@ -31,7 +31,7 @@ function NavBar({ isLoaded }){
   }
   const forUSERS = (e) => {
     e.preventDefault();
-    history.push('/users')
+    history.push(`/users/${sessionUser.id}`)
   }
 
   const forPosts = (e) => {

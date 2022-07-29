@@ -29,6 +29,7 @@ li{
     padding-bottom:20px;
     border: 1px solid #dcdcdc;
 }
+
 .posttopbar {
     display:inline-block;
     width:400px;
@@ -88,3 +89,20 @@ h1 {
 .fitted{
     width:50px;
 }
+
+
+.heart {
+    color:rgb(224, 223, 223);
+    padding:5px;
+    background-color:transparent;
+    border:none;
+    cursor:pointer;
+}
+/*
+.heart:hover{
+         color: pink
+ }
+
+.heart:active {
+     color: red
+    } */

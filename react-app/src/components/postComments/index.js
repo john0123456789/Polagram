@@ -50,8 +50,8 @@ const PostComments = ({postId}) => {
                            <NavLink className="comname" to={`/users/${comment.commentersId}`}><b>{comment.poster}</b></NavLink> {comment.content}
                            {comment.commentersId === user.id ? (
                             <>
-                            <MdEdit id={comment.id} size="13px" className="commentalters" onClick={handleEditComment}/>
-                            <AiFillDelete id={comment.id} size="13px" className="commentalters" onClick={handleDeleteComment}/>
+                            <button id={comment.id} size="13px" className="firstcommentalters" onClick={(e)=>handleEditComment(e)}>Edit</button>
+                            <button id={comment.id} size="13px" className="commentalters" onClick={(e)=>handleDeleteComment(e)}>Delete</button>
                             </>
                            ) : null}
                         </div>
