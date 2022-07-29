@@ -116,7 +116,7 @@ function PostsPage() {
           <div className="eachpost">
           <div key={post.id}>
           <div className="posttopbar">
-          <img src={post.user.profile_pic} width="25px" height="25px" className="profpic"/><NavLink to={`/users/${post.user.id}`}><b className="name">{post.user.username}</b></NavLink>
+          <img src={post.user.profile_pic} width="25px" height="25px" className="profpic"/><NavLink className="name" to={`/users/${post.user.id}`}><b>{post.user.username}</b></NavLink>
           {/* <BsThreeDots prop={post.id} size="18px" className="popupimg" onClick={() => setButtonPopup(true)}/>
           <div>
            <Popup trigger={buttonPopup} setTrigger={setButtonPopup}>

@@ -2,6 +2,8 @@ import React from 'react';
 import { useDispatch } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 import { logout } from '../../store/session';
+import { HiOutlineLogout } from 'react-icons/hi';
+
 
 const LogoutButton = () => {
   const history = useHistory()
@@ -11,7 +13,7 @@ const LogoutButton = () => {
     history.push('/')
   };
 
-  return <button onClick={onLogout}>Logout</button>;
+  return <HiOutlineLogout size="23px" className="logoutbutt" onClick={onLogout}/>
 };
 
 export default LogoutButton;

@@ -2,6 +2,8 @@ import { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { thunkGetAllComments, deleteCommentThunk } from '../../store/comments'
 import { useHistory, NavLink } from "react-router-dom";
+import { AiFillDelete } from 'react-icons/ai';
+import { MdEdit } from 'react-icons/md';
 import './postComment.css'
 
 const PostComments = ({postId}) => {
@@ -45,11 +47,11 @@ const PostComments = ({postId}) => {
                 {comments.map((comment)=>{
                     return (
                         <div className="commenter">
-                           <NavLink to={`/users/${comment.commentersId}`}><b syle={{color: "black"}}>{comment.poster} :</b></NavLink> {comment.content}
+                           <NavLink className="comname" to={`/users/${comment.commentersId}`}><b>{comment.poster}</b></NavLink> {comment.content}
                            {comment.commentersId === user.id ? (
                             <>
-                           <button type="button" id={comment.id} onClick={handleEditComment}>Edit</button>
-                            <button type="button" id={comment.id} onClick={handleDeleteComment}>Delete</button>
+                            <MdEdit id={comment.id} size="13px" className="commentalters" onClick={handleEditComment}/>
+                            <AiFillDelete id={comment.id} size="13px" className="commentalters" onClick={handleDeleteComment}/>
                             </>
                            ) : null}
                         </div>
