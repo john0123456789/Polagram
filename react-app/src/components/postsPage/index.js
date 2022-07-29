@@ -3,7 +3,7 @@ import { getAllLikesThunk, addLikesThunk } from "../../store/likes";
 import { useDispatch, useSelector} from "react-redux";
 import { useHistory, NavLink } from "react-router-dom";
 import { useEffect, useState } from "react";
-import { FaRegHeart,FaRegComment} from "react-icons/fa"
+import { FaHeart, FaRegHeart,FaRegComment} from "react-icons/fa"
 import { BsThreeDots } from "react-icons/bs"
 import  './posts.css'
 import PostComments from "../postComments";
@@ -24,6 +24,10 @@ function PostsPage() {
 
   const user = useSelector(state => state.session.user)
   const[userId] = useState(user.id);
+
+
+  // const  [toggleHeart, setToggleHeart] = useState(false)
+
 
   useEffect(() => {
     dispatch(getAllPostsThunk());
@@ -47,6 +51,7 @@ function PostsPage() {
 
   const likeClick = (e) => {
     e.preventDefault();
+    // setToggleHeart(!toggleHeart)
     const buttonData = Number(e.target.id);
     const createdLike = {
       id: buttonData,
@@ -112,7 +117,7 @@ function PostsPage() {
           <div className="content">
             <div className="contentbuttons">
 
-            <FaRegHeart size="22px" id={post.id} className="likebutton" onClick={(e)=> likeClick(e)}/>
+            <FaRegHeart size="22px" id={post.id} className="likebutton" onClick={(e)=>likeClick(e)}/>
             <FaRegComment size="22px" id={post.id} className="likebutton" onClick={(e)=> commentClick(e)}/>
           {post.user.id === user.id ? (
             <>
