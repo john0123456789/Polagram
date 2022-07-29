@@ -17,12 +17,7 @@ function FollowersPage() {
 
     useEffect(() => {
       dispatch(getAllFollowersThunk(num));
-    }, [dispatch]);
-
-    const handleBack = (e) => {
-      e.preventDefault();
-      history.push("/");
-    };
+    }, [dispatch, num]);
 
     const handleUnfollow = (e) => {
       e.preventDefault();
@@ -44,7 +39,6 @@ function FollowersPage() {
                   return (
                       <div key={follower.id}>
                           <h3>{follower.follower}</h3>
-                          {/* <button type="button" onClick={handleBack}>Back</button> */}
                           <button id={follower.id} type="button" onClick={handleUnfollow}>unfollow</button>
                       </div>
                       )

@@ -1,15 +1,14 @@
 import { getAllPostsThunk, deletePostThunk } from "../../store/posts";
-import { getAllLikesThunk, addLikesThunk, deleteLikesThunk } from "../../store/likes";
+import { getAllLikesThunk, addLikesThunk } from "../../store/likes";
 import { useDispatch, useSelector} from "react-redux";
-import { useHistory, useParams, NavLink } from "react-router-dom";
+import { useHistory, NavLink } from "react-router-dom";
 import { useEffect, useState } from "react";
-import { FaHeart, FaRegHeart,FaRegComment} from "react-icons/fa"
+import { FaRegHeart,FaRegComment} from "react-icons/fa"
 import { BsThreeDots } from "react-icons/bs"
 import  './posts.css'
 import PostComments from "../postComments";
 import LikeComponent from "../LikeComponent";
 import Popup from '../popup'
-// import {addLikesThunk, deleteLikesThunk} from "../../store/likes"
 
 
 function PostsPage() {
@@ -19,25 +18,12 @@ function PostsPage() {
 
   const [buttonPopup, setButtonPopup] = useState(false)
 
-  // const postsObject = useSelector((state) => state.posts);
-  // const post = useSelector((state) => state.posts)
-
-
-
   const postsObject = useSelector((state) => state.posts);
   const posts = Object.values(postsObject);
   const [users, setUsers] = useState([]);
 
-
-
   const user = useSelector(state => state.session.user)
   const[userId] = useState(user.id);
-
-  const [postId] = useState(posts.id);
-
-
-  const [totalLikes, setTotalLikes] = useState("");
-
 
   useEffect(() => {
     dispatch(getAllPostsThunk());
@@ -96,15 +82,7 @@ function PostsPage() {
         history.push(`/posts/${buttonData}`)
       }
 
-  // const likesClick = async (e) => {
-  //   e.preventDefault();
-  //   dispatch(addLikesThunk(post.id))
-  // }
 
-  // const disLikeClick = async (e) => {
-  //   e.preventDefault();
-  //   dispatch(deleteLikesThunk(post.id))
-  // }
 
   return (
           <>
@@ -116,7 +94,7 @@ function PostsPage() {
           <div className="eachpost">
           <div key={post.id}>
           <div className="posttopbar">
-          <img src={post.user.profile_pic} width="25px" height="25px" className="profpic"/><NavLink to={`/users/${post.user.id}`}><b className="name">{post.user.username}</b></NavLink>
+          <img alt="profilepic" src={post.user.profile_pic} width="25px" height="25px" className="profpic"/><NavLink to={`/users/${post.user.id}`}><b className="name">{post.user.username}</b></NavLink>
           <BsThreeDots prop={post.id} size="18px" className="popupimg" onClick={() => setButtonPopup(true)}/>
           <div>
            <Popup trigger={buttonPopup} setTrigger={setButtonPopup}>

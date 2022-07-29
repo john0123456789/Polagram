@@ -21,8 +21,6 @@ li{
 
 .eachpost {
     display:block;
-    /* text-align:center; */
-    /* border:10px solid white; */
     height: auto;
     margin: auto;
     width: min-content;
@@ -59,17 +57,11 @@ h1 {
 }
 
 .profpic{
-    /* display:inline-block; */
-    /* position:relative; */
-    /* overflow:hidden; */
     height:30px;
     width:30px;
     border-radius:50%;
     margin-top:10px;
     margin-left:10px;
-    /* padding-left:5px;
-    padding-top:20px; */
-
 }
 
 .comment{
@@ -82,8 +74,6 @@ h1 {
     color: black;
     padding-left:10px;
     font-size:13px;
-    /* padding-top:5px;; */
-    /* justify-content:flex-start; */
     position:relative;
     top:-9px;
 

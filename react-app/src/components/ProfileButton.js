@@ -1,13 +1,10 @@
 import React, { useState, useEffect } from "react";
-import { useDispatch } from 'react-redux';
-// import * as sessionActions from '../store/session';
 import {  useHistory } from "react-router-dom";
 import LogoutButton from './auth/LogoutButton';
 import { FiPlusSquare } from "react-icons/fi";
 import { FaUsers } from "react-icons/fa";
 
 function ProfileButton({ user }) {
-    const dispatch = useDispatch();
     const history = useHistory();
     const [showMenu, setShowMenu] = useState(false);
 
