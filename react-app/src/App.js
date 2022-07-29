@@ -64,7 +64,7 @@ function App() {
         <Route path='/sign-up' exact={true}>
           <SignUpForm />
         </Route>
-        <Route path='/followers' exact={true}>
+        <Route path='/followers/:id'>
           <FollowersPage/>
         </Route>
         <Route path='/likes/new/'>

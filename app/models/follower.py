@@ -14,3 +14,6 @@ class Follower(db.Model):
             'followerId': self.followerId,
             'followingId': self.followingId
         }
+
+    followerIds = db.relationship("User", back_populates="followers", foreign_keys=[followerId])
+    followingIds = db.relationship("User", back_populates="following", foreign_keys=[followingId])

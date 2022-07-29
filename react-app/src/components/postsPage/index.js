@@ -9,18 +9,25 @@ import  './posts.css'
 import PostComments from "../postComments";
 import LikeComponent from "../LikeComponent";
 import Popup from '../popup'
+import {addLikesThunk, deleteLikesThunk} from "../../store/likes"
 
 
 function PostsPage() {
   const dispatch = useDispatch();
   const history = useHistory();
 
+
   const [buttonPopup, setButtonPopup] = useState(false)
+
+  const postsObject = useSelector((state) => state.posts);
+  const post = useSelector((state) => state.posts)
+
 
 
   const postsObject = useSelector((state) => state.posts);
   const posts = Object.values(postsObject);
   const [users, setUsers] = useState([]);
+
 
 
   const user = useSelector(state => state.session.user)
@@ -49,7 +56,8 @@ function PostsPage() {
       setUsers(responseData.users);
     }
     fetchData();
-  }, []);
+  }, [dispatch]);
+
 
   const likeClick = (e) => {
     e.preventDefault();
@@ -65,6 +73,7 @@ function PostsPage() {
     dispatch(addLikesThunk(createdLike))
     history.push("/likes/new/");
   };
+
 
   const commentClick = (e) => {
     e.preventDefault();
@@ -89,7 +98,15 @@ function PostsPage() {
         history.push(`/posts/${buttonData}`)
       }
 
+  const likeClick = async (e) => {
+    e.preventDefault();
+    dispatch(addLikesThunk(post.id))
+  }
 
+  const disLikeClick = async (e) => {
+    e.preventDefault();
+    dispatch(deleteLikesThunk(post.id))
+  }
 
   return (
           <>
@@ -116,6 +133,7 @@ function PostsPage() {
 
           <div className="content">
             <div className="contentbuttons">
+
             <FaRegHeart size="22px" id={post.id} className="likebutton" onClick={(e)=> likeClick(e)}/>
             <FaRegComment size="22px" id={post.id} className="likebutton" onClick={(e)=> commentClick(e)}/>
             <button type="button" id={post.id} onClick={handleEditClick}>Edit</button>

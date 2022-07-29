@@ -1,10 +1,17 @@
 import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import './User.css'
+import { useSelector, useDispatch } from 'react-redux';
+import { getAllPostsThunk } from "../store/posts";
+import UserPosts from "../components/userPosts"
+
 
 function User() {
+  const dispatch = useDispatch();
+
   const [user, setUser] = useState({});
   const { userId }  = useParams();
+
 
   useEffect(() => {
     if (!userId) {
@@ -16,6 +23,10 @@ function User() {
       setUser(user);
     })();
   }, [userId]);
+
+  useEffect(() => {
+    dispatch(getAllPostsThunk());
+  }, [dispatch]);
 
   if (!user) {
     return null;

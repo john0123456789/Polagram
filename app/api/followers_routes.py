@@ -4,24 +4,13 @@ from app.models import Follower, db
 
 follow_routes = Blueprint('followers', __name__)
 
-@follow_routes.route('/')
-def followers():
-    followers = Follower.query.all()
-    return {'likes': [follower.to_dict() for follower in followers]}
-
-
-@follow_routes.route('/<int:id>', methods=['POST'])
-@login_required
-def follow_user(id):
-
-    followed = Follower (
-        followerId = id,
-        followingId = current_user.id
-    )
-    db.session.add(followed)
-    db.session.commit()
-
-
+@follow_routes.route('/<int:id>')
+def followers(id):
+    followers = Follower.query.filter_by(followingId=id)
+    following = Follower.query.filter_by(followerId=id)
+    return {'followers': [follower.to_dict() for follower in followers],
+            'following': [follower.to_dict() for follower in following]}
+            
 @follow_routes.route('/<int:id>', methods=['DELETE'])
 @login_required
 def unfollow_user(id):

@@ -28,9 +28,11 @@ class User(db.Model, UserMixin):
             'id': self.id,
             'username': self.username,
             'email': self.email,
-            'profile_pic': self.profile_pic
+            'profile_pic': self.profile_pic,
         }
 
     comments = db.relationship("Comment", back_populates="userIds")
     likes = db.relationship("Like", back_populates="userIds")
     posts = db.relationship("Post", back_populates="userIds")
+    followers = db.relationship("Follower", back_populates="followerIds", foreign_keys="Follower.followerId")
+    following = db.relationship("Follower", back_populates="followingIds", foreign_keys="Follower.followingId")

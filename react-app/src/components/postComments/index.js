@@ -9,6 +9,7 @@ const PostComments = ({postId}) => {
     const comments = useSelector(state => {
         return Object.values(state.comments).filter(comment => comment.postId === postId);
     })
+    console.log("comments=>", comments);
 
     useEffect(() => {
         async function getImages() {

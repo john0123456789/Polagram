@@ -1,5 +1,4 @@
 const GET_FOLLOWERS = 'followers/GET_FOLLOWERS'
-const ADD_FOLLOW = 'followers/ADD_FOLLOW'
 const DELETE_FOLLOW = 'followers/DELETE_FOLLOW'
 
 const getAllFollowers = (followers) => ({
@@ -7,45 +6,27 @@ const getAllFollowers = (followers) => ({
     followers
  });
 
- const addFollow = follow => ({
-    type: ADD_FOLLOW,
-    follow
- })
 
- const deleteFollow = removeFollow => ({
+ const deleteFollow = unfollow => ({
     type: DELETE_FOLLOW,
-    removeFollow
+    unfollow
  })
 
 
-export const getAllFollowersThunk = () => async(dispatch) => {
-    const response = await fetch(`/api/followers/`)
+export const getAllFollowersThunk = (id) => async(dispatch) => {
+    const response = await fetch(`/api/followers/${id}`)
     const data = await response.json();
     dispatch(getAllFollowers(data.followers))
     return data.followers
 }
 
-export const addFollowThunk = (id) => async(dispatch) => {
-    const res = await fetch (`/api/followers/${id}`, {
-        method: 'POST',
-        headers: { 'Content-Type' : 'application/json' },
-    })
-
-    if (res.ok) {
-        const newFollow = await res.json()
-        dispatch(addFollow(newFollow))
-        return newFollow
-    }
-}
-
-
-export const deleteFollowThunk = (removeFollow, id) => async(dispatch) => {
+export const deleteFollowThunk = (unfollow, id) => async(dispatch) => {
     const res = await fetch(`/api/followers/${id}`, {
         method: 'DELETE',
     });
 
     if (res.ok) {
-        const deleted = await res.json(removeFollow);
+        const deleted = await res.json(unfollow);
         dispatch(deleteFollow(deleted));
         return deleted
     }
@@ -59,17 +40,13 @@ export const followersReducer = (state = initialState, action) => {
     let newState = {...state};
     switch(action.type) {
         case GET_FOLLOWERS:
-            const anotherState = {};
-            action.likes.forEach((follower) => {
-                return anotherState[follower.id] = follower;
+            action.followers.forEach((follower) => {
+                return newState[follower.id] = follower;
             })
-            return anotherState;
-
-        case ADD_FOLLOW:
-            return { ...state, [action.follower.id]: { ...action.follower}}
+            return newState;
 
         case DELETE_FOLLOW:
-            delete newState[action.deleteFollow.id];
+            delete newState[action.unfollow.id];
             return newState
 
     default:
