@@ -9,7 +9,7 @@ const UserPosts = ({userId}) => {
     const posts = useSelector(state => {
         return Object.values(state.posts).filter(post => post.user.id === userId);
       })
-    
+
 
     useEffect(() => {
         dispatch(getAllPostsThunk());

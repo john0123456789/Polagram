@@ -29,12 +29,12 @@ function CreateCommentsPage() {
       };
 
     dispatch(createCommentThunk(newComment));
-    history.push("/comments");
+    history.push("/posts");
   };
 
   const handleCancelClick = (e) => {
     e.preventDefault();
-    history.push("/comments");
+    history.push("/posts");
   };
 
 
