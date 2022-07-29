@@ -19,6 +19,14 @@ function User() {
   const [followerId] = useState(follower.id)
   const [followingId] = useState(userId)
 
+
+  const updateFollowers = (e) => setFollowing(e.target.value)
+  const followersList = document.getElementById("followersList");
+
+  const followers = useSelector(state => {
+    return Object.values(state.followers)
+  })
+
   useEffect(() => {
     if (!userId) {
       return;
@@ -54,6 +62,21 @@ function User() {
   };
 
 
+  const handleUnfollow = (e) => {
+    e.preventDefault();
+    const buttonData = Number(e.target.id);
+    for (const follower of followers) {
+      if (follower.id === buttonData) {
+        dispatch(deleteFollowThunk(follower, buttonData))
+        history.push("/")
+      }
+    }
+  }
+
+  const showFollowers = (e) => {
+    followersList.style.display = "block"
+  };
+
   return (
       <>
     <ul>
@@ -69,10 +92,12 @@ function User() {
       <li>
         <strong>Email</strong> {user.email}
       </li>
+      <button type="button" onClick={followClick} onChange={updateFollowers}>Follow</button>
+      <button id="showFollowersList" onClick={showFollowers}>Show Followers</button>
+      <div id="followersList" style={{display:"none"}}><FollowersPage/></div>
+      {/* <button id={userId} type="button" onClick={handleUnfollow}>UnFollow</button> */}
 
-      <button alt="follow" type="button" onClick={followClick}>Follow</button>
 
-      <FollowersPage/>
     </ul>
       <UserPosts userId={user.id}></UserPosts>
     </>
