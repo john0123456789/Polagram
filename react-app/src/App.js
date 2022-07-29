@@ -17,6 +17,7 @@ import CreateCommentsPage from './components/createCommentsPage';
 import EditCommentsPage from './components/editCommentsPage';
 import LikesPage from './components/likesPage';
 import HomePage from './components/HomePage';
+import Footer from "./components/Footer";
 
 
 
@@ -38,6 +39,7 @@ function App() {
   }
 
   return (
+    <>
     <BrowserRouter>
       <NavBar />
       <Switch>
@@ -82,6 +84,8 @@ function App() {
         </ProtectedRoute>
       </Switch>
     </BrowserRouter>
+    <Footer />
+    </>
   );
 }
 

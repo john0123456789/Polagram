@@ -49,6 +49,7 @@ function EditCommentsPage() {
 
     history.push("/posts");
   };
+}
 
 
   const handleCancelClick = (e) => {
