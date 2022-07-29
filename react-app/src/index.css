@@ -1,10 +1,9 @@
-/* TODO Add site wide styles */
+
 
 body {
     background-color:#f7f7f7;
     font-family: Helvetica;
     font-size:11px;
-    /* border-top: 11px solid white; */
     padding:none;
     margin:-.5px
 }
@@ -26,11 +25,3 @@ body {
     padding-bottom:10px;
     padding-top:10px;
 }
-/*
-.button:hover {
-    background-color: #d4d4d4;
-    border:none;
-    padding:0.25em 1em;
-    margin: 0 0.2em 0.2em 0;
-    border-radius:10px
-} */

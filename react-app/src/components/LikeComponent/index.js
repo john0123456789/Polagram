@@ -15,7 +15,7 @@ const PostLikes = ({postId}) => {
             await dispatch(getAllLikesThunk(postId))
         }
         getlikes()
-    }, [dispatch])
+    }, [dispatch, postId])
 
     return (
         <>

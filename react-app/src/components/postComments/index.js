@@ -1,7 +1,8 @@
 import { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { thunkGetAllComments, deleteCommentThunk } from '../../store/comments'
-import { useHistory, NavLink } from "react-router-dom";
+import { useHistory } from "react-router-dom";
+
 import './postComment.css'
 
 const PostComments = ({postId}) => {
@@ -13,14 +14,13 @@ const PostComments = ({postId}) => {
     const comments = useSelector(state => {
         return Object.values(state.comments).filter(comment => comment.postId === postId);
     })
-    console.log("comments=>", comments);
 
     useEffect(() => {
         async function getImages() {
             await dispatch(thunkGetAllComments(postId))
         }
         getImages()
-    }, [dispatch])
+    }, [dispatch, postId])
 
     const handleDeleteComment = (e) => {
         e.preventDefault();

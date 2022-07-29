@@ -4,7 +4,7 @@ import './User.css'
 import { useSelector, useDispatch } from 'react-redux';
 import { getAllPostsThunk } from "../store/posts";
 import UserPosts from "../components/userPosts"
-import { addFollowThunk, deleteFollowThunk, getAllFollowersThunk } from "../store/followers"
+import { addFollowThunk, getAllFollowersThunk } from "../store/followers"
 import FollowersPage from "../components/followersPage"
 
 
@@ -15,16 +15,10 @@ function User() {
   const [user, setUser] = useState({});
   const [following, setFollowing] = useState('')
   const { userId }  = useParams();
-  console.log(userId);
+
   const follower = useSelector(state => state.session.user)
   const [followerId] = useState(follower.id)
   const [followingId] = useState(userId)
-
-  const updateFollowers = (e) => setFollowing(e.target.value)
-
-  const followers = useSelector(state => {
-    return Object.values(state.followers)
-  })
 
   useEffect(() => {
     if (!userId) {
@@ -44,7 +38,7 @@ function User() {
 
   useEffect(() => {
     dispatch(getAllFollowersThunk(userId));
-  }, [dispatch]);
+  }, [dispatch, userId]);
 
   if (!user) {
     return null;
@@ -53,7 +47,6 @@ function User() {
 
   const followClick = (e) => {
     e.preventDefault();
-    console.log("FOLLOWER HERE", follower)
     const followed = {
       followerId,
       followingId,
@@ -62,23 +55,12 @@ function User() {
     // history.push("/");
   };
 
-  const handleUnfollow = (e) => {
-    e.preventDefault();
-    const buttonData = Number(e.target.id);
-    for (const follower of followers) {
-      if (follower.id === buttonData) {
-        dispatch(deleteFollowThunk(follower, buttonData))
-        history.push("/")
-      }
-    }
-  }
-
 
   return (
       <>
     <ul>
       <li>
-       <img className="profilepicture"src={user.profile_pic}/>
+       <img alt="profilepic" className="profilepicture" src={user.profile_pic}/>
       </li>
       <li>
         <strong>User Id</strong> {userId}
@@ -89,8 +71,9 @@ function User() {
       <li>
         <strong>Email</strong> {user.email}
       </li>
-      <button type="button" onClick={followClick} onChange={updateFollowers}>Follow</button>
-      {/* <button id={userId} type="button" onClick={handleUnfollow}>UnFollow</button> */}
+
+      <button alt="follow" type="button" onClick={followClick}>Follow</button>
+
       <FollowersPage/>
     </ul>
       <UserPosts userId={user.id}></UserPosts>
