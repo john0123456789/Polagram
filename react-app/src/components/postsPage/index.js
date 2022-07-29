@@ -95,7 +95,7 @@ function PostsPage() {
           <div key={post.id}>
           <div className="posttopbar">
 
-          <img alt="profilepic" src={post.user.profile_pic} width="25px" height="25px" className="profpic"/><NavLink to={`/users/${post.user.id}`}><b className="name">{post.user.username}</b></NavLink>
+          <img alt="profilepic" src={post.user.profile_pic} width="25px" height="25px" className="profpic"/><NavLink className="name" to={`/users/${post.user.id}`}><b>{post.user.username}</b></NavLink>
           <BsThreeDots prop={post.id} size="18px" className="popupimg" onClick={() => setButtonPopup(true)}/>
 
           <div>
@@ -103,7 +103,7 @@ function PostsPage() {
             <button type="button" id={post.id} onClick={handleEditClick}>Edit</button>
             <button type="button" id={post.id} onClick={handleDeleteClick}>Delete</button>
             </Popup>
-          </div> */}
+          </div>
           </div>
           <div>
             <img className="photo" src={post.imageURL} alt={"Where Posts go"} width="400" height="280"/>
