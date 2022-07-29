@@ -13,7 +13,9 @@ function User() {
   const history = useHistory();
 
   const [user, setUser] = useState({});
+
   const [following, setFollowing] = useState('');
+
   const { userId }  = useParams();
 
   const follower = useSelector(state => state.session.user)
