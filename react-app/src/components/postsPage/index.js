@@ -94,6 +94,7 @@ function PostsPage() {
           <div className="eachpost">
           <div key={post.id}>
           <div className="posttopbar">
+
           <img alt="profilepic" src={post.user.profile_pic} width="25px" height="25px" className="profpic"/><NavLink to={`/users/${post.user.id}`}><b className="name">{post.user.username}</b></NavLink>
           <BsThreeDots prop={post.id} size="18px" className="popupimg" onClick={() => setButtonPopup(true)}/>
 
