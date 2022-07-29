@@ -78,6 +78,8 @@ h1 {
 
 
 .name{
+    text-decoration: none;
+    color: black;
     padding-left:10px;
     font-size:13px;
     /* padding-top:5px;; */
