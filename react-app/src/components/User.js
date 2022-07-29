@@ -4,7 +4,8 @@ import './User.css'
 import { useSelector, useDispatch } from 'react-redux';
 import { getAllPostsThunk } from "../store/posts";
 import UserPosts from "../components/userPosts"
-import { addFollowThunk } from "../store/followers"
+import { addFollowThunk, deleteFollowThunk, getAllFollowersThunk } from "../store/followers"
+import FollowersPage from "../components/followersPage"
 
 
 function User() {
@@ -13,10 +14,14 @@ function User() {
 
   const [user, setUser] = useState({});
   const { userId }  = useParams();
-
+  console.log(userId);
   const follower = useSelector(state => state.session.user)
   const [followerId] = useState(follower.id)
   const [followingId] = useState(userId)
+
+  const followers = useSelector(state => {
+    return Object.values(state.followers)
+  })
 
   useEffect(() => {
     if (!userId) {
@@ -31,6 +36,11 @@ function User() {
 
   useEffect(() => {
     dispatch(getAllPostsThunk());
+  }, [dispatch]);
+
+
+  useEffect(() => {
+    dispatch(getAllFollowersThunk(userId));
   }, [dispatch]);
 
   if (!user) {
@@ -49,6 +59,17 @@ function User() {
     history.push("/");
   };
 
+  const handleUnfollow = (e) => {
+    e.preventDefault();
+    const buttonData = Number(e.target.id);
+    for (const follower of followers) {
+      if (follower.id === buttonData) {
+        dispatch(deleteFollowThunk(follower, buttonData))
+        history.push("/")
+      }
+    }
+  }
+
 
   return (
       <>
@@ -66,8 +87,10 @@ function User() {
         <strong>Email</strong> {user.email}
       </li>
       <button type="button" onClick={followClick}>Follow</button>
+      {/* <button id={userId} type="button" onClick={handleUnfollow}>UnFollow</button> */}
+      <FollowersPage/>
     </ul>
-      <UserPosts userId={userId}></UserPosts>
+      <UserPosts userId={user.id}></UserPosts>
     </>
   );
 }
