@@ -1,7 +1,7 @@
 import { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { thunkGetAllComments, deleteCommentThunk } from '../../store/comments'
-import { useHistory, useParams } from "react-router-dom";
+import { useHistory, NavLink } from "react-router-dom";
 import './postComment.css'
 
 const PostComments = ({postId}) => {
@@ -45,7 +45,7 @@ const PostComments = ({postId}) => {
                 {comments.map((comment)=>{
                     return (
                         <div className="commenter">
-                           <b>{comment.poster}</b> {comment.content}    
+                           <NavLink to={`/users/${comment.commentersId}`}><b syle={{color: "black"}}>{comment.poster} :</b></NavLink> {comment.content}
                            {comment.commentersId === user.id ? (
                             <>
                            <button type="button" id={comment.id} onClick={handleEditComment}>Edit</button>
