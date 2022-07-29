@@ -15,12 +15,12 @@ function User() {
   const [user, setUser] = useState({});
   const [following, setFollowing] = useState('')
   const { userId }  = useParams();
-  console.log(userId);
   const follower = useSelector(state => state.session.user)
   const [followerId] = useState(follower.id)
   const [followingId] = useState(userId)
 
   const updateFollowers = (e) => setFollowing(e.target.value)
+  const followersList = document.getElementById("followersList");
 
   const followers = useSelector(state => {
     return Object.values(state.followers)
@@ -73,6 +73,9 @@ function User() {
     }
   }
 
+  const showFollowers = (e) => {
+    followersList.style.display = "block"
+  };
 
   return (
       <>
@@ -90,8 +93,10 @@ function User() {
         <strong>Email</strong> {user.email}
       </li>
       <button type="button" onClick={followClick} onChange={updateFollowers}>Follow</button>
+      <button id="showFollowersList" onClick={showFollowers}>Show Followers</button>
+      <div id="followersList" style={{display:"none"}}><FollowersPage/></div>
       {/* <button id={userId} type="button" onClick={handleUnfollow}>UnFollow</button> */}
-      <FollowersPage/>
+
     </ul>
       <UserPosts userId={user.id}></UserPosts>
     </>
