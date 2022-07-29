@@ -19,11 +19,6 @@ function FollowersPage() {
       dispatch(getAllFollowersThunk(num));
     }, [dispatch]);
 
-    const handleBack = (e) => {
-      e.preventDefault();
-      history.push("/");
-    };
-
     const handleUnfollow = (e) => {
       e.preventDefault();
       const buttonData = Number(e.target.id);

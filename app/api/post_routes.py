@@ -13,11 +13,13 @@ def validation_errors_to_error_messages(validation_errors):
     return errorMessages
 
 @post_routes.route('/')
+@login_required
 def posts():
     posts = Post.query.all()
     return {'posts': [post.to_dict() for post in posts]}
 
 @post_routes.route('/create', methods=['POST'])
+@login_required
 def post_post():
     form = PostsForm()
     form['csrf_token'].data = request.cookies['csrf_token']
@@ -31,6 +33,7 @@ def post_post():
     return redirect("/posts")
 
 @post_routes.route('/<int:id>', methods=['PUT'])
+@login_required
 def put_post(id):
     post = Post.query.get(id)
     data = request.json

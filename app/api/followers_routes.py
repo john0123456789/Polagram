@@ -6,6 +6,7 @@ from app.forms.follow_form import FollowForm
 follow_routes = Blueprint('followers', __name__)
 
 @follow_routes.route('/<int:id>')
+@login_required
 def followers(id):
     followers = Follower.query.filter_by(followingId=id)
     following = Follower.query.filter_by(followerId=id)

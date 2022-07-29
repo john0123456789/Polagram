@@ -8,6 +8,8 @@ const PostComments = ({postId}) => {
     const dispatch = useDispatch();
     const history = useHistory();
 
+    const user = useSelector(state => state.session.user)
+
     const comments = useSelector(state => {
         return Object.values(state.comments).filter(comment => comment.postId === postId);
     })
@@ -43,9 +45,13 @@ const PostComments = ({postId}) => {
                 {comments.map((comment)=>{
                     return (
                         <div className="commenter">
-                           <b>{comment.poster}</b> {comment.content}
+                           <b>{comment.poster}</b> {comment.content}    
+                           {comment.commentersId === user.id ? (
+                            <>
                            <button type="button" id={comment.id} onClick={handleEditComment}>Edit</button>
                             <button type="button" id={comment.id} onClick={handleDeleteComment}>Delete</button>
+                            </>
+                           ) : null}
                         </div>
                     )
                 })}
