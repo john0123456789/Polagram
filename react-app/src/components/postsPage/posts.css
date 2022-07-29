@@ -5,12 +5,12 @@
     cursor:pointer;
 }
 
-.popup {
+.popupimg {
     background-color:transparent;
     border:none;
     cursor:pointer;
     position:absolute;
-    margin-left:24%;
+    margin-left:250px;
     padding-top:17px;
 
 }
@@ -51,10 +51,6 @@ h1 {
 .content{
     padding:7px;
     background-color:white;
-}
-
-.contentbuttons{
-    /* margin-bottom:8px */
 }
 
 .likedby{

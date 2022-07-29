@@ -1,8 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
+import './User.css'
 import { useSelector, useDispatch } from 'react-redux';
 import { getAllPostsThunk } from "../store/posts";
 import UserPosts from "../components/userPosts"
+
 
 function User() {
   const dispatch = useDispatch();
@@ -31,13 +33,20 @@ function User() {
   }
 
   return (
-    <>
-      <div id='profile-container'>
-        <img src={user.profile_pic}/>
-        <h1>{user.username}'s posts:</h1>
-      </div>
-      <UserPosts  userId={user.id}/>
-    </>
+    <ul>
+      <li>
+       <img className="profilepicture"src={user.profile_pic}/>
+      </li>
+      <li>
+        <strong>User Id</strong> {userId}
+      </li>
+      <li>
+        <strong>Username</strong> {user.username}
+      </li>
+      <li>
+        <strong>Email</strong> {user.email}
+      </li>
+    </ul>
   );
 }
 export default User;

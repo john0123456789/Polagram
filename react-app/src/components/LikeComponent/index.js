@@ -19,7 +19,6 @@ const PostLikes = ({postId}) => {
 
     return (
         <>
-
                 {likes.map((like)=>{
                     return (
                         <div>

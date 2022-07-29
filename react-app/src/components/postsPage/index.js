@@ -1,4 +1,5 @@
 import { getAllPostsThunk, deletePostThunk } from "../../store/posts";
+import { getAllLikesThunk, addLikesThunk, deleteLikesThunk } from "../../store/likes";
 import { useDispatch, useSelector} from "react-redux";
 import { useHistory, useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
@@ -7,26 +8,44 @@ import { BsThreeDots } from "react-icons/bs"
 import  './posts.css'
 import PostComments from "../postComments";
 import LikeComponent from "../LikeComponent";
+import Popup from '../popup'
 import {addLikesThunk, deleteLikesThunk} from "../../store/likes"
+
 
 function PostsPage() {
   const dispatch = useDispatch();
   const history = useHistory();
 
+
+  const [buttonPopup, setButtonPopup] = useState(false)
+
   const postsObject = useSelector((state) => state.posts);
   const post = useSelector((state) => state.posts)
 
-  // const usersObject = useSelector((state) => state.users);
-  // const users = Object.values(usersObject);
-  // console.log(postsObject)
 
+
+  const postsObject = useSelector((state) => state.posts);
   const posts = Object.values(postsObject);
   const [users, setUsers] = useState([]);
-  // console.log("HERE I AM XD", users)
-  // console.log("POSTS HERE", posts)
+
+
+
+  const user = useSelector(state => state.session.user)
+  const[userId] = useState(user.id);
+
+  const [postId] = useState(posts.id);
+
+
+  const [totalLikes, setTotalLikes] = useState("");
+
 
   useEffect(() => {
     dispatch(getAllPostsThunk());
+  }, [dispatch]);
+
+
+  useEffect(() => {
+    dispatch(getAllLikesThunk());
   }, [dispatch]);
 
 
@@ -38,6 +57,22 @@ function PostsPage() {
     }
     fetchData();
   }, [dispatch]);
+
+
+  const likeClick = (e) => {
+    e.preventDefault();
+    console.log("WORKS")
+    const buttonData = Number(e.target.id);
+    const createdLike = {
+      postId: buttonData,
+      userId,
+      totalLikes: 1
+    };
+    console.log(createdLike)
+    console.log("WORKS")
+    dispatch(addLikesThunk(createdLike))
+    history.push("/likes/new/");
+  };
 
 
   const commentClick = (e) => {
@@ -76,13 +111,21 @@ function PostsPage() {
   return (
           <>
     <div className="feed">
-      {posts.map((post) =>
+
+        {posts.map((post) =>
         (
+          <main>
           <div className="eachpost">
           <div key={post.id}>
           <div className="posttopbar">
-          <img src={post.user.profile_pic} width="25px" height="25px" className="profpic"/><b className="name">{post.user.username}</b> <BsThreeDots size="18px" className="popup"/>
-
+          <img src={post.user.profile_pic} width="25px" height="25px" className="profpic"/><b className="name">{post.user.username}</b>
+          <BsThreeDots id={post.id} size="18px" className="popupimg" onClick={() => setButtonPopup(true)}/>
+          {/* <div>
+           <Popup trigger={buttonPopup} setTrigger={setButtonPopup}>
+            <button type="button" id={post.id} onClick={handleEditClick}>Edit</button>
+            <button type="button" id={post.id} onClick={handleDeleteClick}>Delete</button>
+            </Popup>
+          </div> */}
           </div>
           <div>
             <img className="photo" src={post.imageURL} alt={"Where Posts go"} width="400" height="280"/>
@@ -91,8 +134,11 @@ function PostsPage() {
           <div className="content">
             <div className="contentbuttons">
 
-            <FaRegHeart size="22px" id={post.id} className="likebutton" onClick={likeClick}/>
+            <FaRegHeart size="22px" id={post.id} className="likebutton" onClick={(e)=> likeClick(e)}/>
             <FaRegComment size="22px" id={post.id} className="likebutton" onClick={(e)=> commentClick(e)}/>
+            <button type="button" id={post.id} onClick={handleEditClick}>Edit</button>
+            <button type="button" id={post.id} onClick={handleDeleteClick}>Delete</button>
+
             </div>
             <div className="likedby">
               <LikeComponent postId={post.id} userId={users.id}/>
@@ -106,9 +152,15 @@ function PostsPage() {
             </div>
           </div>
           </div>
+
         </div>
+
+        </main>
+
         )
         )}
+
+
       </div>
     </>
   );

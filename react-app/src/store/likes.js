@@ -7,9 +7,9 @@ const getAllLikes = (likes) => ({
     likes
  });
 
- const addLikes = like => ({
+ const addLikes = createdLike => ({
     type: ADD_LIKES,
-    like
+    createdLike
  })
 
  const deleteLikes = deleteLike => ({
@@ -25,11 +25,11 @@ export const getAllLikesThunk = () => async(dispatch) => {
     return data.likes
 }
 
-export const addLikesThunk = (id) => async(dispatch) => {
-    const res = await fetch (`/api/likes/${id}`, {
+export const addLikesThunk = (createdLike) => async(dispatch) => {
+    const res = await fetch (`/api/likes/new/`, {
         method: 'POST',
         headers: { 'Content-Type' : 'application/json' },
-        // body: JSON.stringify(newLike)
+        body: JSON.stringify(createdLike)
     })
 
     if (res.ok) {
@@ -60,14 +60,13 @@ export const likesReducer = (state = initialState, action) => {
     let newState = {...state};
     switch(action.type) {
         case GET_LIKES:
-            const anotherState = {};
             action.likes.forEach((like) => {
-                return anotherState[like.id] = like;
+                return newState[like.id] = like;
             })
-            return anotherState;
+            return newState;
 
         case ADD_LIKES:
-            return { ...state, [action.like.id]: { ...action.like}}
+            return { ...state, [action.createdLike.id]: {...action.createdLike}}
 
         case DELETE_LIKES:
             delete newState[action.deleteLike.id];

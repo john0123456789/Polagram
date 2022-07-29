@@ -1,6 +1,7 @@
 from flask import Blueprint, request, redirect
 from flask_login import login_required, current_user
 from app.models import Like, db
+from app.forms.like_form import LikesForm
 
 like_routes = Blueprint('likes', __name__)
 
@@ -10,9 +11,11 @@ def likes():
     return {'likes': [like.to_dict() for like in likes]}
 
 
-@like_routes.route('/<int:id>', methods=['POST'])
+@like_routes.route('/new/', methods=['POST'])
 @login_required
 def like_post(id):
+    form = LikesForm()
+    form['csrf_token'].data = request.cookies['csrf_token']
 
     liked = Like (
         userId = current_user.id,
