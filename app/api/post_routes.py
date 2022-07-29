@@ -15,7 +15,7 @@ def validation_errors_to_error_messages(validation_errors):
 @post_routes.route('/')
 @login_required
 def posts():
-    posts = Post.query.all()
+    posts = Post.query.order_by(Post.id.desc()).all()
     return {'posts': [post.to_dict() for post in posts]}
 
 @post_routes.route('/create', methods=['POST'])
