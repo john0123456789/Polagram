@@ -19,7 +19,6 @@ export const getAUser = (id) => async(dispatch) => {
 const initialState = {}
 
 export const usersReducer = (state = initialState, action) => {
-    // let newState = {...state};
     switch(action.type) {
         case GET_USER:
             const anotherState= {};
