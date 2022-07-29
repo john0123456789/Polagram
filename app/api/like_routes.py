@@ -34,4 +34,4 @@ def unlike_post(id):
     like = Like.query.get(id)
     db.session.delete(like)
     db.session.commit()
-    return liked.to_dict()
+    return "Unliked."

@@ -1,17 +1,22 @@
 import React, { useState, useEffect } from 'react';
-import { useParams } from 'react-router-dom';
+import { useParams, useHistory } from 'react-router-dom';
 import './User.css'
 import { useSelector, useDispatch } from 'react-redux';
 import { getAllPostsThunk } from "../store/posts";
 import UserPosts from "../components/userPosts"
+import { addFollowThunk } from "../store/followers"
 
 
 function User() {
   const dispatch = useDispatch();
+  const history = useHistory();
 
   const [user, setUser] = useState({});
   const { userId }  = useParams();
 
+  const follower = useSelector(state => state.session.user)
+  const [followerId] = useState(follower.id)
+  const [followingId] = useState(userId)
 
   useEffect(() => {
     if (!userId) {
@@ -32,6 +37,19 @@ function User() {
     return null;
   }
 
+
+  const followClick = (e) => {
+    e.preventDefault();
+    console.log("FOLLOWER HERE", follower)
+    const followed = {
+      followerId,
+      followingId,
+    };
+    dispatch(addFollowThunk(followed))
+    history.push("/");
+  };
+
+
   return (
     <ul>
       <li>
@@ -46,6 +64,7 @@ function User() {
       <li>
         <strong>Email</strong> {user.email}
       </li>
+      <button type="button" onClick={followClick}>Follow</button>
     </ul>
   );
 }

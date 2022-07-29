@@ -5,5 +5,3 @@ from wtforms.validators import DataRequired
 class LikesForm(FlaskForm):
     postId = IntegerField('postId', validators=[DataRequired()])
     userId = IntegerField('userId', validators=[DataRequired()])
-
-    # like = SubmitField("Like")
