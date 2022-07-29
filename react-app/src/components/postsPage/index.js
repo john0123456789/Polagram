@@ -1,7 +1,7 @@
 import { getAllPostsThunk, deletePostThunk } from "../../store/posts";
 import { getAllLikesThunk, addLikesThunk, deleteLikesThunk } from "../../store/likes";
 import { useDispatch, useSelector} from "react-redux";
-import { useHistory, useParams } from "react-router-dom";
+import { useHistory, useParams, NavLink } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { FaHeart, FaRegHeart,FaRegComment} from "react-icons/fa"
 import { BsThreeDots } from "react-icons/bs"
@@ -116,7 +116,7 @@ function PostsPage() {
           <div className="eachpost">
           <div key={post.id}>
           <div className="posttopbar">
-          <img src={post.user.profile_pic} width="25px" height="25px" className="profpic"/><b className="name">{post.user.username}</b>
+          <img src={post.user.profile_pic} width="25px" height="25px" className="profpic"/><NavLink to={`/users/${post.user.id}`}><b className="name">{post.user.username}</b></NavLink>
           <BsThreeDots prop={post.id} size="18px" className="popupimg" onClick={() => setButtonPopup(true)}/>
           <div>
            <Popup trigger={buttonPopup} setTrigger={setButtonPopup}>

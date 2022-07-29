@@ -51,6 +51,7 @@ function User() {
 
 
   return (
+      <>
     <ul>
       <li>
        <img className="profilepicture"src={user.profile_pic}/>
@@ -66,6 +67,8 @@ function User() {
       </li>
       <button type="button" onClick={followClick}>Follow</button>
     </ul>
+      <UserPosts userId={userId}></UserPosts>
+    </>
   );
 }
 export default User;
