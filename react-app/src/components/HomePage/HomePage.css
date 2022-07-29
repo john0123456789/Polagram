@@ -1,0 +1,27 @@
+.home-title{
+    font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    text-align: center;
+    font-size: 40px;
+}
+
+.home-scene{
+    display: flex;
+    justify-content: space-evenly;
+    margin-left: auto;
+    padding-top: 100px;
+}
+
+.home-img{
+    font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    font-size: 18px;
+    height: 350;
+    width: 500;
+    border-radius: 10px;
+}
+
+.github{
+    display: flex;
+    justify-content: center;
+    padding-right: 5px;
+    font-size: 10px;
+}
