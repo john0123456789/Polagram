@@ -36,9 +36,6 @@ function FollowersPage() {
     }
 
 
-
-
-
     return(
       <ul id="Followers-container">
           <h1>Followers</h1>
@@ -46,9 +43,8 @@ function FollowersPage() {
               { followers.map(follower =>{
                   return (
                       <div key={follower.id}>
-                          <h3>{follower.followerId}</h3>
-                          <h3>{follower.followingId}</h3>
-                          <button type="button" onClick={handleBack}>Back</button>
+                          <h3>{follower.follower}</h3>
+                          {/* <button type="button" onClick={handleBack}>Back</button> */}
                           <button id={follower.id} type="button" onClick={handleUnfollow}>unfollow</button>
                       </div>
                       )
