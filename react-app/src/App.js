@@ -16,6 +16,7 @@ import EditPostsPage from './components/editPostsPage'
 import CreateCommentsPage from './components/createCommentsPage';
 import EditCommentsPage from './components/editCommentsPage';
 import LikesPage from './components/likesPage';
+import HomePage from './components/HomePage';
 
 
 
@@ -77,7 +78,7 @@ function App() {
           <User />
         </ProtectedRoute>
         <ProtectedRoute path='/' exact={true} >
-          <h1>My Home Page</h1>
+          <HomePage/>
         </ProtectedRoute>
       </Switch>
     </BrowserRouter>
