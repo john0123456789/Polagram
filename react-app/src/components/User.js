@@ -4,7 +4,7 @@ import './User.css'
 import { useSelector, useDispatch } from 'react-redux';
 import { getAllPostsThunk } from "../store/posts";
 import UserPosts from "../components/userPosts"
-import { addFollowThunk, deleteFollowThunk, getAllFollowersThunk } from "../store/followers"
+import { addFollowThunk, getAllFollowersThunk } from "../store/followers"
 import FollowersPage from "../components/followersPage"
 
 
@@ -13,11 +13,12 @@ function User() {
   const history = useHistory();
 
   const [user, setUser] = useState({});
-  const [following, setFollowing] = useState('')
   const { userId }  = useParams();
+
   const follower = useSelector(state => state.session.user)
   const [followerId] = useState(follower.id)
   const [followingId] = useState(userId)
+
 
   const updateFollowers = (e) => setFollowing(e.target.value)
   const followersList = document.getElementById("followersList");
@@ -44,7 +45,7 @@ function User() {
 
   useEffect(() => {
     dispatch(getAllFollowersThunk(userId));
-  }, [dispatch]);
+  }, [dispatch, userId]);
 
   if (!user) {
     return null;
@@ -53,14 +54,13 @@ function User() {
 
   const followClick = (e) => {
     e.preventDefault();
-    console.log("FOLLOWER HERE", follower)
     const followed = {
       followerId,
       followingId,
     };
     dispatch(addFollowThunk(followed))
-    // history.push("/");
   };
+
 
   const handleUnfollow = (e) => {
     e.preventDefault();
@@ -81,7 +81,7 @@ function User() {
       <>
     <ul>
       <li>
-       <img className="profilepicture"src={user.profile_pic}/>
+       <img alt="profilepic" className="profilepicture" src={user.profile_pic}/>
       </li>
       <li>
         <strong>User Id</strong> {userId}
@@ -96,6 +96,7 @@ function User() {
       <button id="showFollowersList" onClick={showFollowers}>Show Followers</button>
       <div id="followersList" style={{display:"none"}}><FollowersPage/></div>
       {/* <button id={userId} type="button" onClick={handleUnfollow}>UnFollow</button> */}
+
 
     </ul>
       <UserPosts userId={user.id}></UserPosts>

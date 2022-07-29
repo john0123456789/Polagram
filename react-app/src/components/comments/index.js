@@ -1,13 +1,13 @@
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { thunkGetAllComments, deleteCommentThunk } from '../../store/comments'
-import { useHistory, useParams } from "react-router-dom";
+import { useHistory } from "react-router-dom";
 
 
 const PostsComments = () => {
     const dispatch = useDispatch();
     const history = useHistory();
-    const { id } = useParams();
+
 
 
     const comments = useSelector(state => {

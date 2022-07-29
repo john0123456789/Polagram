@@ -1,3 +1,11 @@
 .commenter{
     padding-bottom:1px;
 }
+.comname{
+    text-decoration:none;
+    color:black
+}
+
+.commentalters{
+    cursor:pointer;
+}

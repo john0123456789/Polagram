@@ -7,8 +7,7 @@ function LikesPage() {
     const dispatch = useDispatch();
     const history = useHistory();
 
-    // const likesObject = useSelector((state) => state.likes);
-    // const likes = Object.values(likesObject);
+
     const likes = useSelector(state => {
       return Object.values(state.likes)
     })
