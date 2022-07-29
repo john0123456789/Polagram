@@ -8,11 +8,13 @@ comment_routes = Blueprint("comments", __name__, url_prefix="")
 
 
 @comment_routes.route('/')
+@login_required
 def get_comments():
     comments = Comment.query.all()
     return {'comments': [comment.to_dict() for comment in comments]}
 
 @comment_routes.route('/create', methods=['POST'])
+@login_required
 def post_comment():
     form = CommentForm()
     form['csrf_token'].data = request.cookies['csrf_token']
@@ -26,6 +28,7 @@ def post_comment():
     return redirect('/comments')
 
 @comment_routes.route('/<int:id>', methods=['PUT'])
+@login_required
 def put_comment(id):
     comment = Comment.query.get(id)
     data = request.json

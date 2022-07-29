@@ -1,7 +1,7 @@
 import { getAllFollowersThunk, deleteFollowThunk } from "../../store/followers";
 import { useDispatch, useSelector} from "react-redux";
 import { useHistory } from "react-router-dom";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 
 function FollowersPage() {
     const dispatch = useDispatch();
@@ -10,6 +10,8 @@ function FollowersPage() {
 
     const urlArray = window.location.href.split('/');
     const num = Number(urlArray[urlArray.length - 1]);
+    const [following, setFollowing] = useState('')
+    const updateFollowers = (e) => setFollowing(e.target.value)
 
     const followers = useSelector(state => {
       return Object.values(state.followers)
@@ -19,18 +21,13 @@ function FollowersPage() {
       dispatch(getAllFollowersThunk(num));
     }, [dispatch]);
 
-    const handleBack = (e) => {
-      e.preventDefault();
-      history.push("/");
-    };
-
     const handleUnfollow = (e) => {
       e.preventDefault();
       const buttonData = Number(e.target.id);
       for (const follower of followers) {
         if (follower.id === buttonData) {
           dispatch(deleteFollowThunk(follower, buttonData))
-          history.push("/")
+          // history.push("/")
         }
       }
     }
@@ -45,7 +42,7 @@ function FollowersPage() {
                       <div key={follower.id}>
                           <h3>{follower.follower}</h3>
                           {/* <button type="button" onClick={handleBack}>Back</button> */}
-                          <button id={follower.id} type="button" onClick={handleUnfollow}>unfollow</button>
+                          <button id={follower.id} type="button" onClick={handleUnfollow} onChange={updateFollowers}>unfollow</button>
                       </div>
                       )
                   })}

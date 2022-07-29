@@ -117,13 +117,13 @@ function PostsPage() {
           <div key={post.id}>
           <div className="posttopbar">
           <img src={post.user.profile_pic} width="25px" height="25px" className="profpic"/><NavLink to={`/users/${post.user.id}`}><b className="name">{post.user.username}</b></NavLink>
-          <BsThreeDots prop={post.id} size="18px" className="popupimg" onClick={() => setButtonPopup(true)}/>
+          {/* <BsThreeDots prop={post.id} size="18px" className="popupimg" onClick={() => setButtonPopup(true)}/>
           <div>
            <Popup trigger={buttonPopup} setTrigger={setButtonPopup}>
             <button type="button" id={post.id} onClick={handleEditClick}>Edit</button>
             <button type="button" id={post.id} onClick={handleDeleteClick}>Delete</button>
             </Popup>
-          </div>
+          </div> */}
           </div>
           <div>
             <img className="photo" src={post.imageURL} alt={"Where Posts go"} width="400" height="280"/>
@@ -134,8 +134,14 @@ function PostsPage() {
 
             <FaRegHeart size="22px" id={post.id} className="likebutton" onClick={(e)=> likeClick(e)}/>
             <FaRegComment size="22px" id={post.id} className="likebutton" onClick={(e)=> commentClick(e)}/>
+          {post.user.id === user.id ? (
+            <>
             <button type="button" id={post.id} onClick={handleEditClick}>Edit</button>
             <button type="button" id={post.id} onClick={handleDeleteClick}>Delete</button>
+            </>
+
+          ) : null}
+
 
             </div>
             <div className="likedby">

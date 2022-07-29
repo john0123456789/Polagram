@@ -63,13 +63,21 @@ function NavBar({ isLoaded }){
     <div className='navbar'>
       <img src="https://i.imgur.com/41BYjqQ.png" alt="logo" className='polalogo'  onClick={forHOME}/>
         {isLoaded && sessionLinks}
-        <button type="button" className='usebutton' onClick={forLOGIN}>Log In</button>
-        <button type="button" className='usebutton' onClick={forSIGNUP}> Sign Up</button>
-        <button type="button" className='usebutton' onClick={forCREATE}><FiPlusSquare size="23px"/></button>
-        <button type="button" className='usebutton' onClick={forUSERS}><FaUsers size="23px"/></button>
-        <button type="button" className='usebutton'><LogoutButton/></button>
-        <button type="button" className='usebutton' onClick={forPosts}>Posts</button>
-        
+        {!sessionUser && (
+          <>
+          <button type="button" className='usebutton' onClick={forLOGIN}>Log In</button>
+          <button type="button" className='usebutton' onClick={forSIGNUP}> Sign Up</button>
+          </>
+        )}
+        {sessionUser && (
+          <>
+            <button type="button" className='usebutton' onClick={forCREATE}><FiPlusSquare size="23px"/></button>
+            <button type="button" className='usebutton' onClick={forUSERS}><FaUsers size="23px"/></button>
+            <button type="button" className='usebutton'><LogoutButton/></button>
+            <button type="button" className='usebutton' onClick={forPosts}>Posts</button>
+          </>
+        )}
+
     </div>
   );
 }
