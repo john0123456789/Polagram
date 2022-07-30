@@ -18,14 +18,16 @@ def get_comments():
 def post_comment():
     form = CommentForm()
     form['csrf_token'].data = request.cookies['csrf_token']
-    comment = Comment(
-        userId=form.data['userId'],
-        postId=form.data['postId'],
-        content=form.data['content']
-    )
-    db.session.add(comment)
-    db.session.commit()
-    return redirect('/posts/')
+    if form.validate_on_submit():
+        comment = Comment(
+            userId=form.data['userId'],
+            postId=form.data['postId'],
+            content=form.data['content']
+        )
+        db.session.add(comment)
+        db.session.commit()
+        return comment.to_dict()
+    return ('error')
 
 @comment_routes.route('/<int:id>', methods=['PUT'])
 @login_required

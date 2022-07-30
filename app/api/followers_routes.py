@@ -18,15 +18,16 @@ def followers(id):
 def follow_user():
     form = FollowForm()
     form['csrf_token'].data = request.cookies['csrf_token']
+    if form.validate_on_submit():
+        followed = Follower (
+            followerId = form.data["followerId"],
+            followingId = form.data["followingId"],
+        )
 
-    followed = Follower (
-        followerId = form.data["followerId"],
-        followingId = form.data["followingId"],
-    )
-
-    db.session.add(followed)
-    db.session.commit()
-    return followed.to_dict()
+        db.session.add(followed)
+        db.session.commit()
+        return followed.to_dict()
+    return ("error")
 
 @follow_routes.route('/<int:id>', methods=['DELETE'])
 @login_required
