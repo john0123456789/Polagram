@@ -23,14 +23,16 @@ def posts():
 def post_post():
     form = PostsForm()
     form['csrf_token'].data = request.cookies['csrf_token']
-    post = Post(
-        userId=form.data['userId'],
-        caption=form.data['caption'],
-        imageURL=form.data['imageURL']
-    )
-    db.session.add(post)
-    db.session.commit()
-    return redirect("/posts/")
+    if form.validate_on_submit():
+        post = Post(
+            userId=form.data['userId'],
+            caption=form.data['caption'],
+            imageURL=form.data['imageURL']
+        )
+        db.session.add(post)
+        db.session.commit()
+        return post.to_dict()
+    return ('Error')
 
 @post_routes.route('/<int:id>', methods=['PUT'])
 @login_required
