@@ -49,16 +49,18 @@ function CreatePostsPage() {
         imageURL,
         caption
       };
+
       let newPost = await dispatch(createPostThunk(createdPost))
           if(newPost) {
-          history.push('/posts')
+          history.push('/posts/')
         }
       }
+
 }
 
   const handleCancelClick = (e) => {
     e.preventDefault();
-    history.push("/posts");
+    history.push("/posts/");
   };
 
 

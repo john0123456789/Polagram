@@ -44,14 +44,16 @@ function CreateCommentsPage() {
         content
       };
 
+
     await dispatch(createCommentThunk(newComment));
-    history.push("/posts");
+    history.push("/posts/");
+
   }
 };
 
   const handleCancelClick = (e) => {
     e.preventDefault();
-    history.push("/posts");
+    history.push("/posts/");
   };
 
 

@@ -26,9 +26,11 @@ const PostComments = ({postId}) => {
         const buttonData = Number(e.target.id);
         for (const comment of comments) {
           if (comment.id === buttonData) {
+
             let deletedComment = await dispatch(deleteCommentThunk(comment, buttonData))
                     if(deletedComment) {
-                    history.push('/posts')
+                    history.push('/posts/')
+
         }
       }
     }
