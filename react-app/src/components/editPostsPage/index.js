@@ -53,13 +53,13 @@ function EditPostsPage() {
       };
 
       dispatch(updatePostThunk(updatedPost, id));
-    history.push("/posts");
+    history.push("/posts/");
   }
 };
 
   const handleCancelClick = (e) => {
     e.preventDefault();
-    history.push("/posts");
+    history.push("/posts/");
   };
 
 

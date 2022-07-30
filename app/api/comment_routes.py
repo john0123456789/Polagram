@@ -25,7 +25,7 @@ def post_comment():
     )
     db.session.add(comment)
     db.session.commit()
-    return redirect('/comments')
+    return redirect('/posts/')
 
 @comment_routes.route('/<int:id>', methods=['PUT'])
 @login_required

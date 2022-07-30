@@ -17,7 +17,7 @@ function HomePage() {
             <a className="github" href="https://github.com/Christian-AC" size="25px">
                 <AiFillGithub />
             </a> */}
-            <div className="github">
+            {/* <div className="github">
                 <a href="https://github.com/john0123456789">
                     John
                 </a>
@@ -30,7 +30,7 @@ function HomePage() {
                 <a href="https://github.com/Christian-AC">
                     Christian
                 </a>
-            </div>
+            </div> */}
             <ul className="home-scene">
                 <img className="home-img" src="https://i.imgur.com/iSvJUEL.jpg"/>
             </ul>

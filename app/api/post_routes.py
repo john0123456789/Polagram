@@ -30,7 +30,7 @@ def post_post():
     )
     db.session.add(post)
     db.session.commit()
-    return redirect("/posts")
+    return redirect("/posts/")
 
 @post_routes.route('/<int:id>', methods=['PUT'])
 @login_required

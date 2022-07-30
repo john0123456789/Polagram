@@ -29,14 +29,15 @@ function PostsPage() {
   // const  [toggleHeart, setToggleHeart] = useState(false)
 
 
-  useEffect(() => {
-    dispatch(getAllPostsThunk());
-  }, [dispatch]);
+  // useEffect(() => {
+  //   dispatch(getAllPostsThunk());
+  //   dispatch(getAllLikesThunk())
+  // }, [dispatch]);
 
 
-  useEffect(() => {
-    dispatch(getAllLikesThunk());
-  }, [dispatch]);
+  // useEffect(() => {
+  //   dispatch(getAllLikesThunk());
+  // }, [dispatch]);
 
 
   useEffect(() => {
@@ -46,6 +47,8 @@ function PostsPage() {
       setUsers(responseData.users);
     }
     fetchData();
+    dispatch(getAllPostsThunk());
+    dispatch(getAllLikesThunk())
   }, [dispatch]);
 
 
@@ -76,7 +79,7 @@ function PostsPage() {
     for (const post of posts) {
       if (post.id === buttonData) {
         dispatch(deletePostThunk(post, buttonData))
-        history.push("/posts")
+        history.push("/posts/")
       }
     }
   }
@@ -124,10 +127,7 @@ function PostsPage() {
             <button type="button" id={post.id} onClick={handleEditClick}>Edit</button>
             <button type="button" id={post.id} onClick={handleDeleteClick}>Delete</button>
             </>
-
           ) : null}
-
-
             </div>
             <div className="likedby">
               <LikeComponent postId={post.id} userId={users.id}/>

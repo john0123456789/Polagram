@@ -30,7 +30,7 @@ const PostComments = ({postId}) => {
         for (const comment of comments) {
           if (comment.id === buttonData) {
             dispatch(deleteCommentThunk(comment, buttonData))
-            history.push("/posts")
+            history.push("/posts/")
           }
         }
       }

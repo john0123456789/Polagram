@@ -18,7 +18,7 @@ function LikesPage() {
 
     const handleBack = (e) => {
       e.preventDefault();
-      history.push("/posts");
+      history.push("/posts/");
     };
 
     const handleUnlike = (e) => {
@@ -27,7 +27,7 @@ function LikesPage() {
       for (const like of likes) {
         if (like.id === buttonData) {
           dispatch(deleteLikesThunk(like, buttonData))
-          history.push("/posts")
+          history.push("/posts/")
         }
       }
     }

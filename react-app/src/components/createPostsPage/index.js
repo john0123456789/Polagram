@@ -51,13 +51,13 @@ function CreatePostsPage() {
       };
 
       dispatch(createPostThunk(createdPost));
-    history.push("/posts");
+    history.push("/posts/");
   }
 }
 
   const handleCancelClick = (e) => {
     e.preventDefault();
-    history.push("/posts");
+    history.push("/posts/");
   };
 
 
