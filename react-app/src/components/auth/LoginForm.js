@@ -27,6 +27,16 @@ const LoginForm = () => {
     setPassword(e.target.value);
   };
 
+  const demoUser = async (e) => {
+    e.preventDefault();
+    const DemoEmail = "demo@aa.io"
+    const DemoPassword = "password"
+    const data = await dispatch(login(DemoEmail, DemoPassword));
+    if (data) {
+      setErrors(data);
+    }
+  };
+
   if (user) {
     return <Redirect to='/posts' />;
   }
@@ -41,6 +51,7 @@ const LoginForm = () => {
         {/* <label htmlFor='password'>Password</label> */}
         <input name='password' type='password' className='inputs' placeholder='Password' value={password} onChange={updatePassword}/>
         <button type='submit' className="button" >Login</button>
+        <button type='submit' className="button" onClick={demoUser}>Demo User</button>
     </form>
   );
 };

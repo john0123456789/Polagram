@@ -35,4 +35,4 @@ def unfollow_user(id):
     follow = Follower.query.get(id)
     db.session.delete(follow)
     db.session.commit()
-    return "Unfollowed."
+    return follow.to_dict()

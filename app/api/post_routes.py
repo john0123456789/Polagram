@@ -1,6 +1,6 @@
 from flask import Blueprint, request, redirect
 from flask_login import login_required
-from app.models import Post, Comment, comment, db
+from app.models import Post, Comment, Like, comment, db
 from app.forms.post_form import PostsForm
 
 post_routes = Blueprint('posts', __name__)
@@ -49,9 +49,11 @@ def put_post(id):
 def delete_post(id):
     post = Post.query.get(id)
     allComments = Comment.query.filter_by(postId=id)
+    allLikes = Like.query.filter_by(postId=id)
     for comments in allComments:
         db.session.delete(comments)
+    for likes in allLikes:
+        db.session.delete(likes)
     db.session.delete(post)
     db.session.commit()
-
-    return "Post has been removed."
+    return post.to_dict()

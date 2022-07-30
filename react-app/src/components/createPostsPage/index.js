@@ -21,7 +21,7 @@ function CreatePostsPage() {
   const updateUrl = (e) => setUrl(e.target.value)
   const updateCaption = (e) => setCaption(e.target.value);
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
 
     let error = false;
@@ -50,9 +50,12 @@ function CreatePostsPage() {
         caption
       };
 
-      dispatch(createPostThunk(createdPost));
-    history.push("/posts/");
-  }
+      let newPost = await dispatch(createPostThunk(createdPost))
+          if(newPost) {
+          history.push('/posts/')
+        }
+      }
+
 }
 
   const handleCancelClick = (e) => {

@@ -20,6 +20,7 @@ function PostsPage() {
 
   const postsObject = useSelector((state) => state.posts);
   const posts = Object.values(postsObject);
+  const sortedPost = posts.sort().reverse();
   const [users, setUsers] = useState([]);
 
   const user = useSelector(state => state.session.user)
@@ -73,13 +74,15 @@ function PostsPage() {
     history.push(`/comments/create/${buttonData}`)
   }
 
-  const handleDeleteClick = (e) => {
+  const handleDeleteClick = async(e) => {
     e.preventDefault();
     const buttonData = Number(e.target.id);
     for (const post of posts) {
       if (post.id === buttonData) {
-        dispatch(deletePostThunk(post, buttonData))
+
+        await dispatch(deletePostThunk(post, buttonData))
         history.push("/posts/")
+
       }
     }
   }
@@ -96,7 +99,7 @@ function PostsPage() {
           <>
     <div className="feed">
 
-        {posts.map((post) =>
+        {sortedPost.map((post) =>
         (
           <main>
           <div className="eachpost">

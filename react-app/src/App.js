@@ -21,8 +21,6 @@ import Footer from "./components/Footer";
 
 
 
-
-
 function App() {
   const [loaded, setLoaded] = useState(false);
   const dispatch = useDispatch();
@@ -79,9 +77,9 @@ function App() {
         <ProtectedRoute path='/users/:userId' exact={true} >
           <User />
         </ProtectedRoute>
-        <ProtectedRoute path='/' exact={true} >
+        <Route path='/' exact={true} >
           <HomePage/>
-        </ProtectedRoute>
+        </Route>
       </Switch>
     </BrowserRouter>
     <Footer />

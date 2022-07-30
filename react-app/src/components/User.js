@@ -4,7 +4,7 @@ import './User.css'
 import { useSelector, useDispatch } from 'react-redux';
 import { getAllPostsThunk } from "../store/posts";
 import UserPosts from "../components/userPosts"
-import { addFollowThunk, getAllFollowersThunk, deleteFollowThunk } from "../store/followers"
+import { addFollowThunk, deleteFollowThunk, getAllFollowersThunk } from "../store/followers"
 import FollowersPage from "../components/followersPage"
 
 
@@ -13,7 +13,9 @@ function User() {
   const history = useHistory();
 
   const [user, setUser] = useState({});
-  const [following, setFollowing] = useState("")
+
+  const [following, setFollowing] = useState('');
+
   const { userId }  = useParams();
 
   const follower = useSelector(state => state.session.user)

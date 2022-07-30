@@ -47,9 +47,11 @@ function EditCommentsPage() {
 
       dispatch(updateCommentThunk(updatedComment, id));
 
+
     history.push("/posts/");
-  };
-}
+  }
+};
+
 
 
   const handleCancelClick = (e) => {
