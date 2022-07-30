@@ -18,23 +18,23 @@ const PostComments = ({postId}) => {
     })
 
     useEffect(() => {
-        async function getImages() {
-            await dispatch(thunkGetAllComments(postId))
-        }
-        getImages()
+        dispatch(thunkGetAllComments(postId))
     }, [dispatch, postId])
 
-    const handleDeleteComment = (e) => {
+    const handleDeleteComment = async (e) => {
         e.preventDefault();
         const buttonData = Number(e.target.id);
         for (const comment of comments) {
           if (comment.id === buttonData) {
-            dispatch(deleteCommentThunk(comment, buttonData))
-            history.push("/posts/")
-          }
+
+            let deletedComment = await dispatch(deleteCommentThunk(comment, buttonData))
+                    if(deletedComment) {
+                    history.push('/posts/')
+
         }
       }
-
+    }
+}
     const handleEditComment = (e) => {
         e.preventDefault();
         const buttonData = Number(e.target.id);
@@ -62,4 +62,4 @@ const PostComments = ({postId}) => {
     )
 }
 
-export default PostComments
+export default PostComments;
