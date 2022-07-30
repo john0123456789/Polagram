@@ -23,7 +23,7 @@ function CreateCommentsPage() {
 
   const updateContent = (e) => setContent(e.target.value);
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
 
     let error = false;
@@ -44,7 +44,7 @@ function CreateCommentsPage() {
         content
       };
 
-    dispatch(createCommentThunk(newComment));
+    await dispatch(createCommentThunk(newComment));
     history.push("/posts");
   }
 };

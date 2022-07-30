@@ -21,8 +21,6 @@ import Footer from "./components/Footer";
 
 
 
-
-
 function App() {
   const [loaded, setLoaded] = useState(false);
   const dispatch = useDispatch();
