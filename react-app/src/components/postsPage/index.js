@@ -9,6 +9,7 @@ import  './posts.css'
 import PostComments from "../postComments";
 import LikeComponent from "../LikeComponent";
 import Popup from '../popup'
+import CreateCommentsPage from '../createCommentsPage'
 
 
 function PostsPage() {
@@ -107,14 +108,8 @@ function PostsPage() {
           <div className="posttopbar">
 
           <img alt="profilepic" src={post.user.profile_pic} width="25px" height="25px" className="profpic"/><NavLink className="name" to={`/users/${post.user.id}`}><b>{post.user.username}</b></NavLink>
-          <BsThreeDots prop={post.id} size="18px" className="popupimg" onClick={() => setButtonPopup(true)}/>
+          <BsThreeDots prop={post.id} size="18px" className="popupimg"/>
 
-          <div>
-           <Popup trigger={buttonPopup} setTrigger={setButtonPopup}>
-            <button type="button" id={post.id} onClick={handleEditClick}>Edit</button>
-            <button type="button" id={post.id} onClick={handleDeleteClick}>Delete</button>
-            </Popup>
-          </div>
           </div>
           <div>
             <img className="photo" src={post.imageURL} alt={"Where Posts go"} width="400" height="280"/>
@@ -124,7 +119,7 @@ function PostsPage() {
             <div className="contentbuttons">
 
             <FaRegHeart size="22px" id={post.id} className="likebutton" onClick={(e)=>likeClick(e)}/>
-            <FaRegComment size="22px" id={post.id} className="likebutton" onClick={(e)=> commentClick(e)}/>
+            <FaRegComment size="22px" id={post.id} className="likebutton" onClick={() => setButtonPopup(true)}/>
           {post.user.id === user.id ? (
             <>
             <button type="button" className="postbuttons" id={post.id} onClick={handleEditClick}>Edit</button>
@@ -147,6 +142,11 @@ function PostsPage() {
 
         </div>
 
+          <div>
+           <Popup trigger={buttonPopup} setTrigger={setButtonPopup}>
+            <CreateCommentsPage value={post.id}/>
+            </Popup>
+          </div>
         </main>
 
         )
