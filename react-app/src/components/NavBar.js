@@ -14,7 +14,7 @@ function NavBar({ isLoaded }){
 
   const forHOME = (e) => {
     e.preventDefault();
-    history.push('/posts')
+    history.push('/')
   }
   const forLOGIN = (e) => {
     e.preventDefault();
@@ -61,16 +61,17 @@ function NavBar({ isLoaded }){
   return (
 
     <div className='navbar'>
-      <img src="https://i.imgur.com/41BYjqQ.png" alt="logo" className='polalogo'  onClick={forHOME}/>
         {isLoaded && sessionLinks}
         {!sessionUser && (
           <>
+          <img src="https://i.imgur.com/41BYjqQ.png" alt="logo" className='polalogo'  onClick={forHOME}/>
           <button type="button" className='usebutton' onClick={forLOGIN}>Log In</button>
           <button type="button" className='usebutton' onClick={forSIGNUP}> Sign Up</button>
           </>
         )}
         {sessionUser && (
           <>
+            <img src="https://i.imgur.com/41BYjqQ.png" alt="logo" className='polalogo'  onClick={forPosts}/>
             <button type="button" className='usebutton' onClick={forCREATE}><FiPlusSquare size="20px"/></button>
             <button type="button" className='usebutton' onClick={forUSERS}><FaUsers size="20px"/></button>
             <button type="button" className='usebutton'><LogoutButton/></button>
