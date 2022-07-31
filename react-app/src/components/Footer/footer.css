@@ -3,6 +3,7 @@
   border-bottom:1px solid rgb(218, 218, 218);
   text-decoration: underline;
   font-size: 15px;
+  cursor:pointer;
 }
 
 #footer-container{
@@ -12,11 +13,13 @@
   display: flex;
   flex-direction: row;
   /* justify-content: center; */
+  font-family:helvetica;
   align-items: center;
   justify-content:space-evenly;
 }
 
 #footer{
+  font-family:helvetica;
   position: fixed;
   left: 0px;
   bottom: 0px;
@@ -26,14 +29,17 @@
 
 
 .each{
-  padding:15px
+  padding:15px;
+  font-family:helvetica;
 }
 .feet{
   /* margin-right:10px; */
+  font-family:helvetica;
   text-decoration:none;
   color:black;
   padding:10px;
-  font-size:17px
+  font-size:12px;
+  font-weight:lighter
 }
 
 .githubby{
