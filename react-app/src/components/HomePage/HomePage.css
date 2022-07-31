@@ -8,14 +8,14 @@
     display: flex;
     justify-content: space-evenly;
     margin-left: auto;
-    padding-top: 100px;
+
 }
 
 .home-img{
     font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
     font-size: 18px;
     height: 350;
-    width: 500;
+    width: 80%;
     border-radius: 10px;
 }
 

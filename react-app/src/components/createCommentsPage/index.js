@@ -2,6 +2,7 @@ import { createCommentThunk } from '../../store/comments'
 import { useDispatch, useSelector} from "react-redux";
 import { useHistory } from "react-router-dom";
 import { useState } from "react";
+import './createComment.css'
 
 function CreateCommentsPage() {
   const dispatch = useDispatch();
@@ -59,12 +60,12 @@ function CreateCommentsPage() {
 
 
   return (
-    <form>
+    <form className="commentform" >
       <h1>CREATE A COMMENT!</h1>
-      <input type="text" className='inputs' placeholder="Content" value={content} onChange={updateContent}/>
+      <input type="text"  className='inputfirst' placeholder="Content" value={content} onChange={updateContent}/>
       {errors.content && <div>{errors.content}</div>}
-      <button type="submit" onClick={handleSubmit}>Comment</button>
-      <button type="button" onClick={handleCancelClick}>Cancel</button>
+      <button type="submit" className="button" onClick={handleSubmit}>Comment</button>
+      <button type="button" className="button" onClick={handleCancelClick}>Cancel</button>
     </form>
   );
 
