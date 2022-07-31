@@ -1,6 +1,7 @@
 import React from 'react'
 import './PopUp.css'
 import { RiCloseFill } from "react-icons/ri"
+import { createCommentThunk } from '../../store/comments'
 
 function Popup(props) {
     return (props.trigger) ? (
