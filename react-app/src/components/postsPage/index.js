@@ -17,7 +17,7 @@ function PostsPage() {
   const history = useHistory();
 
 
-  const [buttonPopup, setButtonPopup] = useState(false)
+  const [isShown, setIsShown] = useState(false);
 
   const postsObject = useSelector((state) => state.posts);
   const posts = Object.values(postsObject);
@@ -27,20 +27,12 @@ function PostsPage() {
   const user = useSelector(state => state.session.user)
   const[userId] = useState(user.id);
 
+  const handleClick = event => {
 
-  // const  [toggleHeart, setToggleHeart] = useState(false)
-
-
-  // useEffect(() => {
-  //   dispatch(getAllPostsThunk());
-  //   dispatch(getAllLikesThunk())
-  // }, [dispatch]);
+    setIsShown(current => !current);
 
 
-  // useEffect(() => {
-  //   dispatch(getAllLikesThunk());
-  // }, [dispatch]);
-
+  };
 
   useEffect(() => {
     async function fetchData() {
@@ -108,7 +100,7 @@ function PostsPage() {
           <div className="posttopbar">
 
           <img alt="profilepic" src={post.user.profile_pic} width="25px" height="25px" className="profpic"/><NavLink className="name" to={`/users/${post.user.id}`}><b>{post.user.username}</b></NavLink>
-          <BsThreeDots prop={post.id} size="18px" className="popupimg"/>
+          {/* <BsThreeDots prop={post.id} size="18px" className="popupimg"/> */}
 
           </div>
           <div>
@@ -119,7 +111,7 @@ function PostsPage() {
             <div className="contentbuttons">
 
             <FaRegHeart size="22px" id={post.id} className="likebutton" onClick={(e)=>likeClick(e)}/>
-            <FaRegComment size="22px" id={post.id} className="likebutton" onClick={() => setButtonPopup(true)}/>
+            <FaRegComment size="22px" id={post.id} className="likebutton" onClick={handleClick}/>
           {post.user.id === user.id ? (
             <>
             <button type="button" className="postbuttons" id={post.id} onClick={handleEditClick}>Edit</button>
@@ -137,16 +129,18 @@ function PostsPage() {
             <div className="commenter">
               <PostComments postId={post.id}/>
             </div>
+            {isShown &&
+              <CreateCommentsPage value={post.id} />
+            }
           </div>
           </div>
 
         </div>
-
+{/*
           <div>
-           <Popup trigger={buttonPopup} setTrigger={setButtonPopup}>
-            <CreateCommentsPage value={post.id}/>
+           <Popup value={post.id} trigger={buttonPopup} setTrigger={setButtonPopup}>
             </Popup>
-          </div>
+          </div> */}
         </main>
 
         )
