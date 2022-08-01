@@ -113,27 +113,6 @@ function PostsPage() {
           <div className="posttopbar">
 
           <img alt="profilepic" src={post.user.profile_pic} width="25px" height="25px" className="profpic"/><NavLink className="name" to={`/users/${post.user.id}`}><b>{post.user.username}</b></NavLink>
-          {/* <BsThreeDots prop={post.id} size="18px" className="popupimg"/> */}
-
-          </div>
-          <div>
-            <img className="photo" src={post.imageURL} alt={"Where Posts go"} width="400" height="280"/>
-          </div>
-
-          <div className="content">
-            <div className="contentbuttons">
-
-            <FaRegHeart size="22px" id={post.id} className="likebutton" onClick={(e)=>likeClick(e)}/>
-            <FaRegComment size="22px" id={post.id} className="likebutton" onClick={handleClick}/>
-          {post.user.id === user.id ? (
-            <>
-            <button type="button" className="postbuttons" id={post.id} onClick={handleEditClick}>Edit</button>
-            <button type="button" className="postbuttons" id={post.id} onClick={handleDeleteClick}>Delete</button>
-            </>
-          ) : null}
-
-            </div>
-            </div>
             <div>
               <img className="photo" src={post.imageURL} alt={"Where Posts go"} width="400" height="280"/>
             </div>
@@ -150,7 +129,7 @@ function PostsPage() {
                 }
               })}
               {heart}
-              <FaRegComment size="22px" className="likebutton"  onClick={(e)=>commentClick(e)}/>
+              <FaRegComment size="22px" id={post.id} className="likebutton" onClick={handleClick}/>
             {post.user.id === user.id ? (
               <>
               <button type="button" id={post.id} onClick={handleEditClick}>Edit</button>
@@ -169,7 +148,7 @@ function PostsPage() {
                 <PostComments postId={post.id}/>
               </div>
             </div>
-            </div>
+
 
 
           </div>
@@ -178,17 +157,11 @@ function PostsPage() {
               <CreateCommentsPage value={post.id} />
             }
           </div>
-          </div>
+
 
         </div>
-{/*
-          <div>
-           <Popup value={post.id} trigger={buttonPopup} setTrigger={setButtonPopup}>
-            </Popup>
-          </div> */}
-        </main>
 
-          </main>
+        </main>
 
           )
           )}
