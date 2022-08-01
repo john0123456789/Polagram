@@ -9,7 +9,7 @@ const Footer = () => {
 
       <div id='footer-container'>
             <div className="each">
-                <a className="feet">
+                <a className="feet"href="https://github.com/john0123456789" >
                     John Pham <AiFillGithub className="githubby" href="https://github.com/john0123456789" />
                 </a>
             </div>

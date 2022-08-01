@@ -9,6 +9,7 @@ import  './posts.css'
 import PostComments from "../postComments";
 import LikeComponent from "../LikeComponent";
 import Popup from '../popup'
+import CreateCommentsPage from '../createCommentsPage'
 
 
 function PostsPage() {
@@ -16,7 +17,7 @@ function PostsPage() {
   const history = useHistory();
 
 
-  const [buttonPopup, setButtonPopup] = useState(false)
+  const [isShown, setIsShown] = useState(false);
 
   const postsObject = useSelector((state) => state.posts);
   const posts = Object.values(postsObject);
@@ -27,8 +28,14 @@ function PostsPage() {
   const user = useSelector((state) => state.session.user)
   const[userId] = useState(user.id);
 
+
   const likesObject = useSelector((state) => state.likes)
   const likes = Object.values(likesObject)
+
+  const handleClick = event => {
+    setIsShown(current => !current);
+  };
+
 
   useEffect(() => {
     async function fetchData() {
@@ -92,25 +99,39 @@ function PostsPage() {
 
   let heart = ''
 
-    return (
+
+
+  return (
+          <>
+    <div className="feed">
+
+        {sortedPost.map((post) =>
+        (
+          <main>
+          <div className="eachpost">
+          <div key={post.id}>
+          <div className="posttopbar">
+
+          <img alt="profilepic" src={post.user.profile_pic} width="25px" height="25px" className="profpic"/><NavLink className="name" to={`/users/${post.user.id}`}><b>{post.user.username}</b></NavLink>
+          {/* <BsThreeDots prop={post.id} size="18px" className="popupimg"/> */}
+
+          </div>
+          <div>
+            <img className="photo" src={post.imageURL} alt={"Where Posts go"} width="400" height="280"/>
+          </div>
+
+          <div className="content">
+            <div className="contentbuttons">
+
+            <FaRegHeart size="22px" id={post.id} className="likebutton" onClick={(e)=>likeClick(e)}/>
+            <FaRegComment size="22px" id={post.id} className="likebutton" onClick={handleClick}/>
+          {post.user.id === user.id ? (
             <>
-      <div className="feed">
+            <button type="button" className="postbuttons" id={post.id} onClick={handleEditClick}>Edit</button>
+            <button type="button" className="postbuttons" id={post.id} onClick={handleDeleteClick}>Delete</button>
+            </>
+          ) : null}
 
-          {sortedPost.map((post) =>
-          (
-            <main>
-            <div className="eachpost">
-            <div key={post.id}>
-            <div className="posttopbar">
-
-            <img alt="profilepic" src={post.user.profile_pic} width="25px" height="25px" className="profpic"/><NavLink className="name" to={`/users/${post.user.id}`}><b>{post.user.username}</b></NavLink>
-            <BsThreeDots prop={post.id} size="18px" className="popupimg" onClick={() => setButtonPopup(true)}/>
-
-            <div>
-             <Popup trigger={buttonPopup} setTrigger={setButtonPopup}>
-              <button type="button" id={post.id} onClick={handleEditClick}>Edit</button>
-              <button type="button" id={post.id} onClick={handleDeleteClick}>Delete</button>
-              </Popup>
             </div>
             </div>
             <div>
@@ -150,7 +171,22 @@ function PostsPage() {
             </div>
             </div>
 
+
           </div>
+
+            {isShown &&
+              <CreateCommentsPage value={post.id} />
+            }
+          </div>
+          </div>
+
+        </div>
+{/*
+          <div>
+           <Popup value={post.id} trigger={buttonPopup} setTrigger={setButtonPopup}>
+            </Popup>
+          </div> */}
+        </main>
 
           </main>
 
