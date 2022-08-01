@@ -60,7 +60,7 @@ function CreateCommentsPage({value}) {
     <form className="commentform" >
       <input type="text"  className='inputfirst' placeholder="Content" value={content} onChange={updateContent}/>
       {errors.content && <div>{errors.content}</div>}
-      <button type="submit" className="button" onClick={(e)=>handleSubmit(e)}>Comment</button>
+      <button type="submit" className="createbutton" onClick={(e)=>handleSubmit(e)}>Comment</button>
     </form>
   );
 

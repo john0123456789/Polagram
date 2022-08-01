@@ -2,7 +2,7 @@ import { updateCommentThunk } from '../../store/comments'
 import { useDispatch, useSelector} from "react-redux";
 import { useHistory, useParams } from "react-router-dom";
 import { useState } from "react";
-
+import './editcomments.css'
 function EditCommentsPage({commentId}) {
   const dispatch = useDispatch();
   const history = useHistory();
@@ -65,8 +65,8 @@ function EditCommentsPage({commentId}) {
       {/* <h1>Edit your COMMENT!</h1> */}
       <input type="text" className='inputs' placeholder="Content" value={content} onChange={updateContent}/>
       {errors.content && <div>{errors.content}</div>}
-      <button type="submit" onClick={handleSubmit}>Update Comment</button>
-      <button type="button" onClick={handleCancelClick}>Cancel</button>
+      <button type="submit" className="editcombutt" onClick={handleSubmit}>Update Comment</button>
+      <button type="button" className="editcombutt" onClick={handleCancelClick}>Cancel</button>
     </form>
   );
 
