@@ -119,7 +119,7 @@ function PostsPage() {
 
             <div className="content">
               <div className="contentbuttons">
-              {likes.forEach((likeLinks) => {
+              {likes.map((likeLinks) => {
                 if(likeLinks.userId === user.id && likeLinks.postId === post.id) {
                     heart = <FaHeart size="22px" className="likebutton" id={post.id} onClick={(e)=>handleUnlike(e)}/>
                     return
