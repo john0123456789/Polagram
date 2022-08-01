@@ -9,6 +9,8 @@ import  './posts.css'
 import PostComments from "../postComments";
 import LikeComponent from "../LikeComponent";
 import Popup from '../popup'
+import CreateCommentsPage from '../createCommentsPage'
+import EditPostsPage from '../editPostsPage'
 
 
 function PostsPage() {
@@ -16,7 +18,8 @@ function PostsPage() {
   const history = useHistory();
 
 
-  const [buttonPopup, setButtonPopup] = useState(false)
+  const [isShown, setIsShown] = useState(false);
+  const [editPost, setEditPost] = useState(false);
 
   const postsObject = useSelector((state) => state.posts);
   const posts = Object.values(postsObject);
@@ -27,8 +30,20 @@ function PostsPage() {
   const user = useSelector((state) => state.session.user)
   const[userId] = useState(user.id);
 
+
+
   const likesObject = useSelector((state) => state.likes)
   const likes = Object.values(likesObject)
+
+  const handleClick = event => {
+    setIsShown(current => !current);
+  };
+
+  const handleEditPost = event => {
+    setEditPost(current => !current)
+  }
+
+
 
   useEffect(() => {
     async function fetchData() {
@@ -40,6 +55,7 @@ function PostsPage() {
     dispatch(getAllPostsThunk());
     dispatch(getAllLikesThunk());
   }, [dispatch]);
+
 
 
   const likeClick = (e) => {
@@ -84,57 +100,53 @@ function PostsPage() {
   }
 
 
-
   const handleEditClick = (e) => {
     e.preventDefault();
     const buttonData = Number(e.target.id);
         history.push(`/posts/${buttonData}`)
       }
 
-  let heart = ''
 
-    return (
-            <>
-      <div className="feed">
 
-          {sortedPost.map((post) =>
-          (
-            <main>
-            <div className="eachpost">
-            <div key={post.id}>
-            <div className="posttopbar">
 
-            <img alt="profilepic" src={post.user.profile_pic} width="25px" height="25px" className="profpic"/><NavLink className="name" to={`/users/${post.user.id}`}><b>{post.user.username}</b></NavLink>
-            <BsThreeDots prop={post.id} size="18px" className="popupimg" onClick={() => setButtonPopup(true)}/>
+  return (
+          <>
+    <div className="feed">
 
-            <div>
-             <Popup trigger={buttonPopup} setTrigger={setButtonPopup}>
-              <button type="button" id={post.id} onClick={handleEditClick}>Edit</button>
-              <button type="button" id={post.id} onClick={handleDeleteClick}>Delete</button>
-              </Popup>
-            </div>
-            </div>
+        {sortedPost.map((post) =>
+        (
+          <main>
+          <div className="eachpost">
+          <div key={post.id}>
+          <div className="posttopbar">
+
+          <img alt="profilepic" src={post.user.profile_pic} width="25px" height="25px" className="profpic"/><NavLink className="name" to={`/users/${post.user.id}`}><b>{post.user.username}</b></NavLink>
             <div>
               <img className="photo" src={post.imageURL} alt={"Where Posts go"} width="400" height="280"/>
             </div>
 
             <div className="content">
+
               <div className="contentbuttons" >
+
               {likes.map((likeLinks) => {
                 if(likeLinks.userId === user.id && likeLinks.postId === post.id) {
                     heart = <FaHeart size="22px" className="likebutton" id={post.id} onClick={(e)=>handleUnlike(e)}/>
                     return
+
                 } else if(likeLinks.userId !== user.id && likeLinks.postId !== post.id) {
                     heart = <FaRegHeart size="22px" className="likebutton" id={post.id} onClick={(e)=>likeClick(e)}/>
                     return
                 }
               })}
               {heart}
+
               <FaRegComment size="22px" className="likebutton"  onClick={(e)=>commentClick(e)}/>
             {post.user.id === user.id ? (
               <>
               <button type="button" id={post.id} onClick={handleEditClick}>Edit</button>
               <button type="button" id={post.id} onClick={handleDeleteClick}>Delete</button>
+
               </>
             ) : null}
               </div>
@@ -148,8 +160,23 @@ function PostsPage() {
               <div className="commenter">
                 <PostComments postId={post.id}/>
               </div>
+
             </div>
             </div>
+
+            </div>
+
+
+
+          </div>
+
+            {isShown &&
+              <CreateCommentsPage value={post.id} />
+            }
+          </div>
+
+
+        </div>
 
           </div>
 
@@ -158,6 +185,9 @@ function PostsPage() {
           )
           )}
 
+
+          )
+          )}
 
         </div>
       </>

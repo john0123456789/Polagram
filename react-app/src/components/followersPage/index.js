@@ -35,20 +35,20 @@ function FollowersPage() {
 
 
     return(
-      <ul id="Followers-container">
+      <div id="Followers-container">
           <h1>Followers</h1>
           <div id="thisfollowers-container">
               { followers.map(follower =>{
                   return (
                       <div key={follower.id}>
                           <h3>{follower.follower}</h3>
-                          <button id={follower.id} type="button" onClick={handleUnfollow}>unfollow</button>
+                          <button id={follower.id} type="button" className="unfollow" onClick={handleUnfollow}>unfollow</button>
 
                       </div>
                       )
                   })}
           </div>
-      </ul>
+      </div>
   )
 }
 

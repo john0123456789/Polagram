@@ -82,27 +82,17 @@ function User() {
 
   return (
       <>
-    <ul>
-      <li>
+    <div className="wrapper">
+      <div className="topstuff">
        <img alt="profilepic" className="profilepicture" src={user.profile_pic}/>
-      </li>
-      <li>
-        <strong>User Id</strong> {userId}
-      </li>
-      <li>
-        <strong>Username</strong> {user.username}
-      </li>
-      <li>
-        <strong>Email</strong> {user.email}
-      </li>
-      <button type="button" onClick={followClick} onChange={updateFollowers}>Follow</button>
-      <button id="showFollowersList" onClick={showFollowers}>Show Followers</button>
-      <div id="followersList" style={{display:"none"}}><FollowersPage/></div>
+        <a className='profuser'>{user.username}</a>
+      {/* <button type="button" className="followbuttfirst" onClick={followClick} onChange={updateFollowers}>Follow</button>
+      <button id="showFollowersList" className="followbutt" onClick={showFollowers}>Show Followers</button> */}
+      {/* <div id="followersList" style={{display:"none"}}><FollowersPage/></div> */}
+      </div>
       {/* <button id={userId} type="button" onClick={handleUnfollow}>UnFollow</button> */}
-
-
-    </ul>
-      <UserPosts userId={user.id}></UserPosts>
+      <div className="spacem"><UserPosts className="picwide" userId={user.id}></UserPosts></div>
+      </div>
     </>
   );
 }
