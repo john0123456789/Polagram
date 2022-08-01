@@ -1,6 +1,6 @@
 from flask import Blueprint, request, redirect
 from flask_login import login_required, current_user
-from app.models import Like, db
+from app.models import Like, Post, db
 from app.forms.like_form import LikesForm
 
 like_routes = Blueprint('likes', __name__)

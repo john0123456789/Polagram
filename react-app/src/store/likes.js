@@ -44,11 +44,10 @@ export const deleteLikesThunk = (deleteLike, id) => async(dispatch) => {
     const res = await fetch(`/api/likes/${id}`, {
         method: 'DELETE',
     });
-
     if (res.ok) {
         const deleted = await res.json(deleteLike);
         dispatch(deleteLikes(deleted));
-        return deleted
+        return deleted;
     }
 }
 
@@ -71,7 +70,6 @@ export const likesReducer = (state = initialState, action) => {
         case DELETE_LIKES:
             delete newState[action.deleteLike.id];
             return newState
-
     default:
         return state;
 

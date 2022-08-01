@@ -1,5 +1,5 @@
 import { getAllPostsThunk, deletePostThunk } from "../../store/posts";
-import { getAllLikesThunk, addLikesThunk } from "../../store/likes";
+import { getAllLikesThunk, addLikesThunk, deleteLikesThunk } from "../../store/likes";
 import { useDispatch, useSelector} from "react-redux";
 import { useHistory, NavLink } from "react-router-dom";
 import { useEffect, useState } from "react";
@@ -22,17 +22,20 @@ function PostsPage() {
   const postsObject = useSelector((state) => state.posts);
   const posts = Object.values(postsObject);
   const sortedPost = posts.sort().reverse();
+
   const [users, setUsers] = useState([]);
 
-  const user = useSelector(state => state.session.user)
+  const user = useSelector((state) => state.session.user)
   const[userId] = useState(user.id);
 
+
+  const likesObject = useSelector((state) => state.likes)
+  const likes = Object.values(likesObject)
+
   const handleClick = event => {
-
     setIsShown(current => !current);
-
-
   };
+
 
   useEffect(() => {
     async function fetchData() {
@@ -46,18 +49,17 @@ function PostsPage() {
   }, [dispatch]);
 
 
+
   const likeClick = (e) => {
     e.preventDefault();
-    // setToggleHeart(!toggleHeart)
     const buttonData = Number(e.target.id);
     const createdLike = {
-      id: buttonData,
       postId: buttonData,
       userId,
-      totalLikes: 1
+      totalLikes: 0
     };
     dispatch(addLikesThunk(createdLike))
-    history.push("/likes/new/");
+    history.push("/posts/");
   };
 
 
@@ -72,19 +74,30 @@ function PostsPage() {
     const buttonData = Number(e.target.id);
     for (const post of posts) {
       if (post.id === buttonData) {
-
-        await dispatch(deletePostThunk(post, buttonData))
+        dispatch(deletePostThunk(post, buttonData))
         history.push("/posts/")
-
       }
     }
   }
+
+
+  const handleUnlike = (e) => {
+    e.preventDefault();
+    for (const like of likes) {
+      if(like.userId === user.id)
+        dispatch(deleteLikesThunk(like, like.id))
+        history.push("/posts/")
+      }
+    }
+
 
   const handleEditClick = (e) => {
     e.preventDefault();
     const buttonData = Number(e.target.id);
         history.push(`/posts/${buttonData}`)
       }
+
+  let heart = ''
 
 
 
@@ -118,17 +131,49 @@ function PostsPage() {
             <button type="button" className="postbuttons" id={post.id} onClick={handleDeleteClick}>Delete</button>
             </>
           ) : null}
+
             </div>
-            <div className="likedby">
-              <LikeComponent postId={post.id} userId={users.id}/>
             </div>
-            <div className="usercapt">
-              <b>{post.user.username}</b> {post.caption}
+            <div>
+              <img className="photo" src={post.imageURL} alt={"Where Posts go"} width="400" height="280"/>
             </div>
 
-            <div className="commenter">
-              <PostComments postId={post.id}/>
+            <div className="content">
+              <div className="contentbuttons">
+              {likes.map((likeLinks) => {
+                if(likeLinks.userId === user.id && likeLinks.postId === post.id) {
+                    heart = <FaHeart size="22px" className="likebutton" id={post.id} onClick={(e)=>handleUnlike(e)}/>
+                    return
+                } else {
+                    heart = <FaRegHeart size="22px" className="likebutton" id={post.id} onClick={(e)=>likeClick(e)}/>
+                    return
+                }
+              })}
+              {heart}
+              <FaRegComment size="22px" className="likebutton"  onClick={(e)=>commentClick(e)}/>
+            {post.user.id === user.id ? (
+              <>
+              <button type="button" id={post.id} onClick={handleEditClick}>Edit</button>
+              <button type="button" id={post.id} onClick={handleDeleteClick}>Delete</button>
+              </>
+            ) : null}
+              </div>
+              <div className="likedby">
+                <LikeComponent postId={post.id} userId={users.id}/>
+              </div>
+              <div className="usercapt">
+                <b>{post.user.username}</b> {post.caption}
+              </div>
+
+              <div className="commenter">
+                <PostComments postId={post.id}/>
+              </div>
             </div>
+            </div>
+
+
+          </div>
+
             {isShown &&
               <CreateCommentsPage value={post.id} />
             }
@@ -143,14 +188,15 @@ function PostsPage() {
           </div> */}
         </main>
 
-        )
-        )}
+          </main>
+
+          )
+          )}
 
 
-      </div>
-    </>
-  );
-}
-
+        </div>
+      </>
+    );
+  }
 
 export default PostsPage;
