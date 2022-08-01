@@ -31,6 +31,7 @@ function PostsPage() {
   const[userId] = useState(user.id);
 
 
+
   const likesObject = useSelector((state) => state.likes)
   const likes = Object.values(likesObject)
 
@@ -43,6 +44,7 @@ function PostsPage() {
   }
 
 
+
   useEffect(() => {
     async function fetchData() {
       const response = await fetch('/api/users/');
@@ -51,7 +53,7 @@ function PostsPage() {
     }
     fetchData();
     dispatch(getAllPostsThunk());
-    dispatch(getAllLikesThunk())
+    dispatch(getAllLikesThunk());
   }, [dispatch]);
 
 
@@ -90,11 +92,12 @@ function PostsPage() {
   const handleUnlike = (e) => {
     e.preventDefault();
     for (const like of likes) {
-      if(like.userId === user.id)
-        dispatch(deleteLikesThunk(like, like.id))
-        history.push("/posts/")
+      if(like.userId === user.id) {
+         dispatch(deleteLikesThunk(like, like.id))
+         return
       }
     }
+  }
 
 
   const handleEditClick = (e) => {
@@ -103,7 +106,6 @@ function PostsPage() {
         history.push(`/posts/${buttonData}`)
       }
 
-  let heart = ''
 
 
 
@@ -124,24 +126,26 @@ function PostsPage() {
             </div>
 
             <div className="content">
-              <div className="contentbuttons">
+
+              <div className="contentbuttons" >
+
               {likes.map((likeLinks) => {
                 if(likeLinks.userId === user.id && likeLinks.postId === post.id) {
                     heart = <FaHeart size="22px" className="likebutton" id={post.id} onClick={(e)=>handleUnlike(e)}/>
                     return
-                } else {
+
+                } else if(likeLinks.userId !== user.id && likeLinks.postId !== post.id) {
                     heart = <FaRegHeart size="22px" className="likebutton" id={post.id} onClick={(e)=>likeClick(e)}/>
                     return
                 }
               })}
               {heart}
-              <FaRegComment size="22px" id={post.id} className="likebutton" onClick={handleClick}/>
+
+              <FaRegComment size="22px" className="likebutton"  onClick={(e)=>commentClick(e)}/>
             {post.user.id === user.id ? (
               <>
-
-              <button type="button" className="postbuttons" id={post.id} onClick={handleEditPost}>Edit</button>
-              <button type="button" className="postbuttons" id={post.id} onClick={handleDeleteClick}>Delete</button>
-              {editPost && <EditPostsPage postId={post.id}/> }
+              <button type="button" id={post.id} onClick={handleEditClick}>Edit</button>
+              <button type="button" id={post.id} onClick={handleDeleteClick}>Delete</button>
 
               </>
             ) : null}
@@ -156,6 +160,10 @@ function PostsPage() {
               <div className="commenter">
                 <PostComments postId={post.id}/>
               </div>
+
+            </div>
+            </div>
+
             </div>
 
 
@@ -170,11 +178,16 @@ function PostsPage() {
 
         </div>
 
-        </main>
+          </div>
+
+          </main>
 
           )
           )}
 
+
+          )
+          )}
 
         </div>
       </>

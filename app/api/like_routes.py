@@ -32,6 +32,7 @@ def like_post():
 @login_required
 def unlike_post(id):
     like = Like.query.get(id)
+    print("THIS IS THE LIKE---------", like)
     db.session.delete(like)
     db.session.commit()
     return like.to_dict()
