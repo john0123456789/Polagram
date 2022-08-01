@@ -2,6 +2,7 @@ import { updatePostThunk } from '../../store/posts'
 import { useDispatch, useSelector} from "react-redux";
 import { useHistory, useParams } from "react-router-dom";
 import { useState } from "react";
+import './editPosts.css'
 
 function EditPostsPage({postId}) {
   const dispatch = useDispatch();
@@ -68,7 +69,7 @@ function EditPostsPage({postId}) {
       {Object.values(errors).map((error, idx) => <li key={idx}>{error}</li>)}
       <input type="text" className='inputs' placeholder="Image Url" value={imageURL} onChange={updateUrl}/>
       <input type="text" className='inputs' placeholder="Caption" value={caption} onChange={updateCaption}/>
-      <button type="submit" onClick={handleSubmit}>Submit Edit</button>
+      <button type="submit" className="submitbutton" onClick={handleSubmit}>Submit Edit</button>
     </form>
   );
 
