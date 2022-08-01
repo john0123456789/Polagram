@@ -27,12 +27,14 @@ const SignUpForm = () => {
       errorsObj.username = "Requires username!";
       error = true;
     } else if (username.length < 5 || username.length > 20) {
-      errorsObj.username = "usernames must be longer than 5 characters and shorter than 20";
+      errorsObj.username = "Usernames must be longer than 5 characters and shorter than 20.";
       error = true;
     }
     if(email === '') {
       errorsObj.email = "Requires email!";
       error = true;
+    } else if (!email.includes("@")) {
+      errorsObj.email = "Please input a valid email address."
     }
     if(password === '') {
       errorsObj.password = "Requires password!";
@@ -41,7 +43,11 @@ const SignUpForm = () => {
     if(repeatPassword === '') {
       errorsObj.repeatPassword = "Requires password!";
       error = true;
+    } else if (repeatPassword !== password) {
+      errorsObj.repeatPassword = "Passwords must match!";
+      error = true;
     }
+
     setReactErrors(errorsObj);
 
     if(!error) {
