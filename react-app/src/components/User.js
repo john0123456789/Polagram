@@ -85,6 +85,7 @@ function User() {
     <div className="wrapper">
       <div className="topstuff">
        <img alt="profilepic" className="profilepicture" src={user.profile_pic}/>
+       <a className="profuser">{user.username}</a>
       </div>
       <div className="spacem"><UserPosts className="picwide" userId={user.id}></UserPosts></div>
       </div>
