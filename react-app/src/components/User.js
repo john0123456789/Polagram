@@ -86,9 +86,9 @@ function User() {
       <div className="topstuff">
        <img alt="profilepic" className="profilepicture" src={user.profile_pic}/>
         <a className='profuser'>{user.username}</a>
-      <button type="button" className="followbuttfirst" onClick={followClick} onChange={updateFollowers}>Follow</button>
-      <button id="showFollowersList" className="followbutt" onClick={showFollowers}>Show Followers</button>
-      <div id="followersList" style={{display:"none"}}><FollowersPage/></div>
+      {/* <button type="button" className="followbuttfirst" onClick={followClick} onChange={updateFollowers}>Follow</button>
+      <button id="showFollowersList" className="followbutt" onClick={showFollowers}>Show Followers</button> */}
+      {/* <div id="followersList" style={{display:"none"}}><FollowersPage/></div> */}
       </div>
       {/* <button id={userId} type="button" onClick={handleUnfollow}>UnFollow</button> */}
       <div className="spacem"><UserPosts className="picwide" userId={user.id}></UserPosts></div>
