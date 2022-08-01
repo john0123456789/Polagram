@@ -22,7 +22,6 @@ const UserPosts = ({userId}) => {
 
                 {posts.map((post)=>{
                     return (
-
                             <img className="photos" src={post.imageURL} alt={"Where Posts go"}/>
 
                     )

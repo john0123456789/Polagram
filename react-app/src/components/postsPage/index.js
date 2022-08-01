@@ -154,7 +154,7 @@ function PostsPage() {
                 <LikeComponent postId={post.id} userId={users.id}/>
               </div>
               <div className="usercapt">
-                <b>{post.user.username}</b> {post.caption}
+              <NavLink className="comname" to={`/users/${post.user.id}`}><b>{post.user.username}</b></NavLink> {post.caption}
               </div>
 
               <div className="commenter">
