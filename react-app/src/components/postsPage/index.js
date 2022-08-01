@@ -144,8 +144,8 @@ function PostsPage() {
               <FaRegComment size="22px" className="likebutton"  onClick={(e)=>handleClick(e)}/>
             {post.user.id === user.id ? (
               <>
-              <button type="button" className="editcombutt" id={post.id} onClick={handleEditPost}>Edit</button>
-              <button type="button" className="editcombutt" id={post.id} onClick={handleDeleteClick}>Delete</button>
+              <button type="button" className="postbuttons" id={post.id} onClick={handleEditPost}>Edit</button>
+              <button type="button" className="postbuttons" id={post.id} onClick={handleDeleteClick}>Delete</button>
               {editPost && <EditPostsPage postId={post.id}/> }
               </>
             ) : null}
