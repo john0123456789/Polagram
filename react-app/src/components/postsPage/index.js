@@ -38,14 +38,14 @@ function PostsPage() {
     }
     fetchData();
     dispatch(getAllPostsThunk());
-    dispatch(getAllLikesThunk())
+    dispatch(getAllLikesThunk());
   }, [dispatch]);
-
 
 
   const likeClick = (e) => {
     e.preventDefault();
     const buttonData = Number(e.target.id);
+    console.log(buttonData)
     const createdLike = {
       postId: buttonData,
       userId,
@@ -76,12 +76,15 @@ function PostsPage() {
 
   const handleUnlike = (e) => {
     e.preventDefault();
+    console.log(likes)
     for (const like of likes) {
-      if(like.userId === user.id)
-        dispatch(deleteLikesThunk(like, like.id))
-        history.push("/posts/")
-      }
+      if(like.userId === user.id) {
+         dispatch(deleteLikesThunk(like, like.id))
+         return
+      } 
     }
+  }
+
 
 
   const handleEditClick = (e) => {
@@ -118,12 +121,12 @@ function PostsPage() {
             </div>
 
             <div className="content">
-              <div className="contentbuttons">
+              <div className="contentbuttons" >
               {likes.map((likeLinks) => {
                 if(likeLinks.userId === user.id && likeLinks.postId === post.id) {
                     heart = <FaHeart size="22px" className="likebutton" id={post.id} onClick={(e)=>handleUnlike(e)}/>
                     return
-                } else {
+                } else if(likeLinks.userId !== user.id && likeLinks.postId !== post.id) {
                     heart = <FaRegHeart size="22px" className="likebutton" id={post.id} onClick={(e)=>likeClick(e)}/>
                     return
                 }
