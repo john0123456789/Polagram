@@ -1,5 +1,5 @@
 import { getAllPostsThunk, deletePostThunk } from "../../store/posts";
-import { getAllLikesThunk, addLikesThunk } from "../../store/likes";
+import { getAllLikesThunk, addLikesThunk, deleteLikesThunk } from "../../store/likes";
 import { useDispatch, useSelector} from "react-redux";
 import { useHistory, NavLink } from "react-router-dom";
 import { useEffect, useState } from "react";
@@ -21,25 +21,14 @@ function PostsPage() {
   const postsObject = useSelector((state) => state.posts);
   const posts = Object.values(postsObject);
   const sortedPost = posts.sort().reverse();
+
   const [users, setUsers] = useState([]);
 
-  const user = useSelector(state => state.session.user)
+  const user = useSelector((state) => state.session.user)
   const[userId] = useState(user.id);
 
-
-  // const  [toggleHeart, setToggleHeart] = useState(false)
-
-
-  // useEffect(() => {
-  //   dispatch(getAllPostsThunk());
-  //   dispatch(getAllLikesThunk())
-  // }, [dispatch]);
-
-
-  // useEffect(() => {
-  //   dispatch(getAllLikesThunk());
-  // }, [dispatch]);
-
+  const likesObject = useSelector((state) => state.likes)
+  const likes = Object.values(likesObject)
 
   useEffect(() => {
     async function fetchData() {
@@ -53,18 +42,17 @@ function PostsPage() {
   }, [dispatch]);
 
 
+
   const likeClick = (e) => {
     e.preventDefault();
-    // setToggleHeart(!toggleHeart)
     const buttonData = Number(e.target.id);
     const createdLike = {
-      id: buttonData,
       postId: buttonData,
       userId,
-      totalLikes: 1
+      totalLikes: 0
     };
     dispatch(addLikesThunk(createdLike))
-    history.push("/likes/new/");
+    history.push("/posts/");
   };
 
 
@@ -79,13 +67,22 @@ function PostsPage() {
     const buttonData = Number(e.target.id);
     for (const post of posts) {
       if (post.id === buttonData) {
-
-        await dispatch(deletePostThunk(post, buttonData))
+        dispatch(deletePostThunk(post, buttonData))
         history.push("/posts/")
-
       }
     }
   }
+
+
+  const handleUnlike = (e) => {
+    e.preventDefault();
+    for (const like of likes) {
+      if(like.userId === user.id)
+        dispatch(deleteLikesThunk(like, like.id))
+        history.push("/posts/")
+      }
+    }
+
 
   const handleEditClick = (e) => {
     e.preventDefault();
@@ -93,70 +90,77 @@ function PostsPage() {
         history.push(`/posts/${buttonData}`)
       }
 
+  let heart = ''
 
-
-  return (
-          <>
-    <div className="feed">
-
-        {sortedPost.map((post) =>
-        (
-          <main>
-          <div className="eachpost">
-          <div key={post.id}>
-          <div className="posttopbar">
-
-          <img alt="profilepic" src={post.user.profile_pic} width="25px" height="25px" className="profpic"/><NavLink className="name" to={`/users/${post.user.id}`}><b>{post.user.username}</b></NavLink>
-          <BsThreeDots prop={post.id} size="18px" className="popupimg" onClick={() => setButtonPopup(true)}/>
-
-          <div>
-           <Popup trigger={buttonPopup} setTrigger={setButtonPopup}>
-            <button type="button" id={post.id} onClick={handleEditClick}>Edit</button>
-            <button type="button" id={post.id} onClick={handleDeleteClick}>Delete</button>
-            </Popup>
-          </div>
-          </div>
-          <div>
-            <img className="photo" src={post.imageURL} alt={"Where Posts go"} width="400" height="280"/>
-          </div>
-
-          <div className="content">
-            <div className="contentbuttons">
-
-            <FaRegHeart size="22px" id={post.id} className="likebutton" onClick={(e)=>likeClick(e)}/>
-            <FaRegComment size="22px" id={post.id} className="likebutton" onClick={(e)=> commentClick(e)}/>
-          {post.user.id === user.id ? (
+    return (
             <>
-            <button type="button" id={post.id} onClick={handleEditClick}>Edit</button>
-            <button type="button" id={post.id} onClick={handleDeleteClick}>Delete</button>
-            </>
-          ) : null}
+      <div className="feed">
+
+          {sortedPost.map((post) =>
+          (
+            <main>
+            <div className="eachpost">
+            <div key={post.id}>
+            <div className="posttopbar">
+
+            <img alt="profilepic" src={post.user.profile_pic} width="25px" height="25px" className="profpic"/><NavLink className="name" to={`/users/${post.user.id}`}><b>{post.user.username}</b></NavLink>
+            <BsThreeDots prop={post.id} size="18px" className="popupimg" onClick={() => setButtonPopup(true)}/>
+
+            <div>
+             <Popup trigger={buttonPopup} setTrigger={setButtonPopup}>
+              <button type="button" id={post.id} onClick={handleEditClick}>Edit</button>
+              <button type="button" id={post.id} onClick={handleDeleteClick}>Delete</button>
+              </Popup>
             </div>
-            <div className="likedby">
-              <LikeComponent postId={post.id} userId={users.id}/>
             </div>
-            <div className="usercapt">
-              <b>{post.user.username}</b> {post.caption}
+            <div>
+              <img className="photo" src={post.imageURL} alt={"Where Posts go"} width="400" height="280"/>
             </div>
 
-            <div className="commenter">
-              <PostComments postId={post.id}/>
+            <div className="content">
+              <div className="contentbuttons">
+              {likes.forEach((likeLinks) => {
+                if(likeLinks.userId === user.id && likeLinks.postId === post.id) {
+                    heart = <FaHeart size="22px" className="likebutton" id={post.id} onClick={(e)=>handleUnlike(e)}/>
+                    return
+                } else {
+                    heart = <FaRegHeart size="22px" className="likebutton" id={post.id} onClick={(e)=>likeClick(e)}/>
+                    return
+                }
+              })}
+              {heart}
+              <FaRegComment size="22px" className="likebutton"  onClick={(e)=>commentClick(e)}/>
+            {post.user.id === user.id ? (
+              <>
+              <button type="button" id={post.id} onClick={handleEditClick}>Edit</button>
+              <button type="button" id={post.id} onClick={handleDeleteClick}>Delete</button>
+              </>
+            ) : null}
+              </div>
+              <div className="likedby">
+                <LikeComponent postId={post.id} userId={users.id}/>
+              </div>
+              <div className="usercapt">
+                <b>{post.user.username}</b> {post.caption}
+              </div>
+
+              <div className="commenter">
+                <PostComments postId={post.id}/>
+              </div>
             </div>
+            </div>
+
           </div>
-          </div>
+
+          </main>
+
+          )
+          )}
+
 
         </div>
-
-        </main>
-
-        )
-        )}
-
-
-      </div>
-    </>
-  );
-}
-
+      </>
+    );
+  }
 
 export default PostsPage;
