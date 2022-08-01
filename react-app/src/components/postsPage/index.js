@@ -107,7 +107,7 @@ function PostsPage() {
       }
 
 
-
+      let heart = ''
 
   return (
           <>
@@ -160,13 +160,6 @@ function PostsPage() {
               <div className="commenter">
                 <PostComments postId={post.id}/>
               </div>
-
-            </div>
-            </div>
-
-            </div>
-
-
 
           </div>
 
