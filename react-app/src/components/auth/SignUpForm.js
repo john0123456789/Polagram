@@ -11,6 +11,7 @@ const SignUpForm = () => {
 
   const [errors, setErrors] = useState([]);
   const [username, setUsername] = useState('');
+  const [profile_pic, setprofile_pic] = useState('https://i.pinimg.com/550x/18/b9/ff/18b9ffb2a8a791d50213a9d595c4dd52.jpg');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [repeatPassword, setRepeatPassword] = useState('');
@@ -23,6 +24,14 @@ const SignUpForm = () => {
 
     let error = false;
     errorsObj = {...errorsObj};
+    if (!profile_pic.includes(".jpg") && !profile_pic.includes(".png") && !profile_pic.includes(".JPG") && !profile_pic.includes(".PNG") && !profile_pic.includes("image")) {
+      errorsObj.profile_pic = "profile_pic must be jpg/png or contain image"
+      error = true
+    }
+    else if (profile_pic.length < 4) {
+      errorsObj.profile_pic = "profile_pic must be at least 4 characters."
+      error = true
+    }
     if(username === '') {
       errorsObj.username = "Requires username!";
       error = true;
@@ -46,7 +55,7 @@ const SignUpForm = () => {
 
     if(!error) {
     if (password === repeatPassword) {
-      const data = await dispatch(signUp(username, email, password));
+      const data = await dispatch(signUp(username, email, password, profile_pic));
       if (data) {
         setErrors(data)
       }
@@ -68,6 +77,10 @@ const SignUpForm = () => {
 
   const updateRepeatPassword = (e) => {
     setRepeatPassword(e.target.value);
+  };
+
+  const updateprofile_pic = (e) => {
+    setprofile_pic(e.target.value);
   };
 
   if (user) {
@@ -125,6 +138,9 @@ const SignUpForm = () => {
           value={repeatPassword}
           required={true}
         ></input>
+      </div>
+      <div>
+      <input type="text" className='inputfirst' placeholder="profile picture"  onChange={updateprofile_pic}/>
       </div>
       <button type='submit' className="button">Sign Up</button>
     </form>
