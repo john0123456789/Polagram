@@ -36,10 +36,14 @@ const PostLikes = ({postId, post}) => {
         }
       }
 
+      const likeCount = likes.length
+
     return (
         <>
                         <div>
-                            <div>Liked by <b>{likes.length}</b> people</div>
+                            {likeCount === 0 && <b>Liked by no one</b>}
+                            {likeCount === 1 && <b>Liked by 1 person</b>}
+                            {likeCount > 1 && <b>Liked by {likeCount} people</b>}
                         </div>
 
         </>
