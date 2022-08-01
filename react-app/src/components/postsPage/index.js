@@ -45,7 +45,6 @@ function PostsPage() {
   const likeClick = (e) => {
     e.preventDefault();
     const buttonData = Number(e.target.id);
-    console.log(buttonData)
     const createdLike = {
       postId: buttonData,
       userId,
@@ -76,12 +75,11 @@ function PostsPage() {
 
   const handleUnlike = (e) => {
     e.preventDefault();
-    console.log(likes)
     for (const like of likes) {
       if(like.userId === user.id) {
          dispatch(deleteLikesThunk(like, like.id))
          return
-      } 
+      }
     }
   }
 
