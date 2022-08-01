@@ -10,6 +10,7 @@ import PostComments from "../postComments";
 import LikeComponent from "../LikeComponent";
 import Popup from '../popup'
 import CreateCommentsPage from '../createCommentsPage'
+import EditPostsPage from '../editPostsPage'
 
 
 function PostsPage() {
@@ -18,6 +19,7 @@ function PostsPage() {
 
 
   const [isShown, setIsShown] = useState(false);
+  const [editPost, setEditPost] = useState(false);
 
   const postsObject = useSelector((state) => state.posts);
   const posts = Object.values(postsObject);
@@ -35,6 +37,10 @@ function PostsPage() {
   const handleClick = event => {
     setIsShown(current => !current);
   };
+
+  const handleEditPost = event => {
+    setEditPost(current => !current)
+  }
 
 
   useEffect(() => {
@@ -132,8 +138,11 @@ function PostsPage() {
               <FaRegComment size="22px" id={post.id} className="likebutton" onClick={handleClick}/>
             {post.user.id === user.id ? (
               <>
-              <button type="button" className="postbuttons" id={post.id} onClick={handleEditClick}>Edit</button>
+
+              <button type="button" className="postbuttons" id={post.id} onClick={handleEditPost}>Edit</button>
               <button type="button" className="postbuttons" id={post.id} onClick={handleDeleteClick}>Delete</button>
+              {editPost && <EditPostsPage postId={post.id}/> }
+
               </>
             ) : null}
               </div>

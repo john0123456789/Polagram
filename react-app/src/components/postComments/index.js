@@ -1,15 +1,18 @@
-import { useEffect } from 'react';
+import { useEffect, useState } from "react";
 import { useSelector, useDispatch } from 'react-redux';
 import { thunkGetAllComments, deleteCommentThunk } from '../../store/comments'
 import { useHistory, NavLink } from "react-router-dom";
 import { AiFillDelete } from 'react-icons/ai';
 import { MdEdit } from 'react-icons/md';
+import EditCommentsPage from '../editCommentsPage';
 
 import './postComment.css'
 
 const PostComments = ({postId}) => {
     const dispatch = useDispatch();
     const history = useHistory();
+
+    const [editComment, setEditComment] = useState(false);
 
     const user = useSelector(state => state.session.user)
 
@@ -35,6 +38,10 @@ const PostComments = ({postId}) => {
       }
     }
 }
+const handleClick = event => {
+    setEditComment(current => !current);
+  };
+
     const handleEditComment = (e) => {
         e.preventDefault();
         const buttonData = Number(e.target.id);
@@ -50,8 +57,11 @@ const PostComments = ({postId}) => {
                            <NavLink className="comname" to={`/users/${comment.commentersId}`}><b>{comment.poster}</b></NavLink> {comment.content}
                            {comment.commentersId === user.id ? (
                             <>
-                            <button id={comment.id} size="13px" className="firstcommentalters" onClick={(e)=>handleEditComment(e)}>Edit</button>
+                            <button id={comment.id} size="13px" className="firstcommentalters" onClick={handleClick}>Edit</button>
                             <button id={comment.id} size="13px" className="commentalters" onClick={(e)=>handleDeleteComment(e)}>Delete</button>
+                            {editComment &&
+                            <EditCommentsPage commentId={comment.id}/>
+                }
                             </>
                            ) : null}
                         </div>
