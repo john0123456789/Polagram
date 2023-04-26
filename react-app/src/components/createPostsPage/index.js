@@ -27,7 +27,7 @@ function CreatePostsPage() {
     let error = false;
     errorsObj = {...errorsObj};
     if (!imageURL.includes(".jpg") && !imageURL.includes(".png") && !imageURL.includes(".JPG") && !imageURL.includes(".PNG") && !imageURL.includes("image")) {
-      errorsObj.imageURL = "imageURL must be jpg/png or contain image"
+      errorsObj.imageURL = "imageURL must be in .jpg .png or contain image"
       error = true
     }
     else if (imageURL.length < 4) {

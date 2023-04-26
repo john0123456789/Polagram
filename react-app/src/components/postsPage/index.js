@@ -61,6 +61,7 @@ function PostsPage() {
   const likeClick = (e) => {
     e.preventDefault();
     const buttonData = Number(e.target.id);
+    console.log(buttonData)
     const createdLike = {
       postId: buttonData,
       userId,
@@ -77,7 +78,7 @@ function PostsPage() {
     history.push(`/comments/create/${buttonData}`)
   }
 
-  const handleDeleteClick = async(e) => {
+  const handleDeleteClick = (e) => {
     e.preventDefault();
     const buttonData = Number(e.target.id);
     for (const post of posts) {
@@ -91,6 +92,8 @@ function PostsPage() {
 
   const handleUnlike = (e) => {
     e.preventDefault();
+    const buttonData = Number(e.target.id);
+    console.log(buttonData)
     for (const like of likes) {
       if(like.userId === user.id) {
          dispatch(deleteLikesThunk(like, like.id))
@@ -127,7 +130,7 @@ function PostsPage() {
 
             <div className="content">
 
-              <div className="contentbuttons" >
+              <div className="contentbuttons">
 
               {likes.map((likeLinks) => {
                 if(likeLinks.userId === user.id && likeLinks.postId === post.id) {
