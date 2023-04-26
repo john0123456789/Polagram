@@ -72,8 +72,8 @@ function NavBar({ isLoaded }){
         {sessionUser && (
           <>
             <img src="https://i.imgur.com/41BYjqQ.png" alt="logo" className='polalogo'  onClick={forPosts}/>
-            <button type="button" className='usebutton' onClick={forCREATE}><FiPlusSquare size="23px"/></button>
-            <button type="button" className='usebutton' onClick={forUSERS}><FaUsers size="23px"/></button>
+            <button type="button" className='usebutton' onClick={forCREATE}><FiPlusSquare size="20px"/></button>
+            <button type="button" className='usebutton' onClick={forUSERS}><FaUsers size="20px"/></button>
             <button type="button" className='usebutton'><LogoutButton/></button>
           </>
         )}

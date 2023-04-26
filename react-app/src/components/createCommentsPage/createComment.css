@@ -1,0 +1,49 @@
+.commentform {
+    background-color: rgb(255, 255, 255);
+    display: block;
+    width: min-content;
+    height: auto;
+    margin: auto;
+    /* border: 1px solid black; */
+    border-radius: 10px;
+    text-align: center;
+}
+
+
+
+.createbutton{
+    justify-content:center;
+    align-items:center;
+    position:relative;
+    cursor:pointer;
+    outline:none;
+    border: 0.5px solid rgb(196, 193, 193);
+    border-radius:10px;
+    background-color: transparent;
+    font-family:helvetica;
+    font-size: 10px;
+    color:rgb(186, 186, 186);
+    margin-right:5px;
+}
+
+.inputfirst{
+    padding:12px;
+    font-size:12px;
+    margin-bottom: 5px;
+    border-radius:15px;
+    border:1px solid rgb(235, 235, 235);
+    outline:none;
+    font-family:Helvetica;
+    margin-left:10px;
+    margin-right:10px;
+    margin-top:20px
+}
+
+body {
+    background-color:#f7f7f7;
+    font-family: Helvetica;
+    font-size:11px;
+    /* border-top: 11px solid white; */
+    padding:none;
+    margin:-.5px
+}

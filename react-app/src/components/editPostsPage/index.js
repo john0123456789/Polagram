@@ -2,8 +2,9 @@ import { updatePostThunk } from '../../store/posts'
 import { useDispatch, useSelector} from "react-redux";
 import { useHistory, useParams } from "react-router-dom";
 import { useState } from "react";
+import './editPosts.css'
 
-function EditPostsPage() {
+function EditPostsPage({postId}) {
   const dispatch = useDispatch();
   const history = useHistory();
 
@@ -13,7 +14,7 @@ function EditPostsPage() {
   const {id} = useParams();
   const user = useSelector(state => state.session.user)
   const post = useSelector(state => state.posts)
-  const singlePost = post[id]
+  const singlePost = post[postId]
 
   const[userId] = useState(user.id);
   const [imageURL, setUrl] = useState(singlePost.imageURL);
@@ -52,7 +53,7 @@ function EditPostsPage() {
         caption
       };
 
-      dispatch(updatePostThunk(updatedPost, id));
+      dispatch(updatePostThunk(updatedPost, postId));
     history.push("/posts/");
   }
 };
@@ -65,12 +66,10 @@ function EditPostsPage() {
 
   return (
     <form>
-      <h1>Edit your POST!</h1>
       {Object.values(errors).map((error, idx) => <li key={idx}>{error}</li>)}
       <input type="text" className='inputs' placeholder="Image Url" value={imageURL} onChange={updateUrl}/>
       <input type="text" className='inputs' placeholder="Caption" value={caption} onChange={updateCaption}/>
-      <button type="submit" onClick={handleSubmit}>POST THAT POST HOMIE</button>
-      <button type="button" onClick={handleCancelClick}>Cancel</button>
+      <button type="submit" className="submitbutton" onClick={handleSubmit}>Submit Edit</button>
     </form>
   );
 

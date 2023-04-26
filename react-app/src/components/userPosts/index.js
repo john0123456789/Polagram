@@ -1,6 +1,8 @@
 import React, { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { getAllPostsThunk } from "../../store/posts";
+import './userPosts.css'
+
 
 
 const UserPosts = ({userId}) => {
@@ -17,15 +19,13 @@ const UserPosts = ({userId}) => {
 
     return (
         <>
-            <div>
+
                 {posts.map((post)=>{
                     return (
-                        <div>
-                            <img className="photo" src={post.imageURL} alt={"Where Posts go"} width="400" height="280"/>
-                        </div>
+                            <img className="photos" src={post.imageURL} alt={"Where Posts go"}/>
+
                     )
                 })}
-            </div>
         </>
     )
 }

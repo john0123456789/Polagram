@@ -1,3 +1,81 @@
 .profilepicture{
-    border-radius:50%
+    border-radius:50%;
+    margin-left:50px;
+    position:relative;
+    top:-5px;
+    width:125px;
+    height:125px;
+}
+
+
+.wrapper{
+    display:block;
+    margin-left:25%;
+    width:55%;
+    justify-content:center;
+    align-items:center;
+    font-family:helvetica;
+}
+
+.profuser{
+    position:relative;
+    top:-95px;
+    margin-left:60px;
+    font-size:24px;
+    font-family:helvetica;
+    font-weight:lighter
+}
+
+.topstuff{
+    margin-bottom:10px;
+    border-bottom: 0.5px solid rgb(226, 224, 224);
+    padding-bottom:30px;
+
+}
+
+.spacem{
+    display:flex;
+    justify-content: space-evenly;
+    /* margin-right:10px */
+}
+
+.followbuttfirst{
+    margin-left:20%;
+    position:relative;
+    top:-97px;
+    cursor:pointer;
+    outline:none;
+    border: 0.5px solid rgb(196, 193, 193);
+    border-radius:10px;
+    background-color: transparent;
+    font-family:helvetica;
+    font-size: 10px;
+    color:rgb(186, 186, 186)
+}
+
+.followbutt{
+    margin-left:5px;
+    position:relative;
+    top:-97px;
+    cursor:pointer;
+    outline:none;
+    border: 0.5px solid rgb(196, 193, 193);
+    border-radius:10px;
+    background-color: transparent;
+    font-family:helvetica;
+    font-size: 10px;
+    color:rgb(186, 186, 186)
+}
+
+.unfollow{
+    /* margin-left:5px; */
+    position:relative;
+    cursor:pointer;
+    outline:none;
+    border: 0.5px solid rgb(196, 193, 193);
+    border-radius:10px;
+    background-color: transparent;
+    font-family:helvetica;
+    font-size: 10px;
+    color:rgb(186, 186, 186)
 }
